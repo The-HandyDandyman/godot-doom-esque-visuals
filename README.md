@@ -4,6 +4,18 @@ I've made this open source Github repo packaged with the shaders I use and some
 stock assets seperate from my original project, specifically to act as a way to both share what I've managed to start so far and as a way to hopefully get assistance on specific aspects!
 ![alt text](https://raw.githubusercontent.com/The-HandyDandyman/godot-doom-esque-visuals/refs/heads/main/godotDoomesqueVisualsPreview.png "Wacky preview")
 
+-- What's included? --
+
+- My improved multi-directional sprite shader, which includes the ability to adjust the amount of directions and animation frames, the ability for asymmetry, the ability to scale,
+Y-billboarding and the ability to modulate! If you'd like more info, check the credits and read the instructions in the link!
+
+- Several public Godot shaders I've used for the project: particularly, tetrabrobpy's N64 Sky, ALT_OhDude's adapt-to-paletete shader, and what (from what I remember) a modified version of
+the palette swap technique used by Ombarus on Youtube.
+
+- Some sample textures, mostly modified from OpenGameArt and Wikimedia Commons with a custom demonstration spritesheet for the directional shader
+using APirateHat's Godot Plushie model!
+
+
 -----
 Assets included and credits:
 
