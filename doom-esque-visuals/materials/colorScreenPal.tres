@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ba7yqfkoksnq5"]
+
+[ext_resource type="Shader" uid="uid://xnn3ylc3i2w1" path="res://shaders/colorPaletteScreen.gdshader" id="1_mps2w"]
+[ext_resource type="Texture2D" uid="uid://ddi2lmm0wifvy" path="res://graphics/PALETTE.png" id="2_mps2w"]
+
+[resource]
+shader = ExtResource("1_mps2w")
+shader_parameter/palette = ExtResource("2_mps2w")
+shader_parameter/palette_offset_x = 0.250000011875
+shader_parameter/palette_offset_y = 0.50000002375

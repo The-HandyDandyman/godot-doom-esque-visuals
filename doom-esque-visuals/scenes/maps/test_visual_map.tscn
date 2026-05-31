@@ -1,0 +1,829 @@
+[gd_scene format=3 uid="uid://cfa7y2ntdwl2"]
+
+[ext_resource type="Material" uid="uid://bdicvoxjxrj5t" path="res://materials/directional.tres" id="2_5ya7t"]
+[ext_resource type="Script" uid="uid://podhph0kdiu1" path="res://scripts/directional_object_preview.gd" id="3_uke3l"]
+[ext_resource type="Texture2D" uid="uid://cyxbtgxktd3q5" path="res://graphics/grassTexture.png" id="4_eyxet"]
+[ext_resource type="Texture2D" uid="uid://dkcihmwjk3knb" path="res://graphics/fenceTexture.png" id="5_lye5c"]
+[ext_resource type="Texture2D" uid="uid://dtgewxk4mfpls" path="res://graphics/brickTexture.png" id="6_hiahu"]
+[ext_resource type="Texture2D" uid="uid://ch6s812wvvpwy" path="res://graphics/bushTexture.png" id="10_f0hix"]
+[ext_resource type="Texture2D" uid="uid://6rofgxx6iu7m" path="res://graphics/ceilingTexture.png" id="14_ntolb"]
+[ext_resource type="Shader" uid="uid://cudvg1b2451d" path="res://shaders/sky.gdshader" id="15_bo68a"]
+[ext_resource type="Texture2D" uid="uid://bhovjkfefkk0u" path="res://graphics/skyTexture.png" id="16_qdqv0"]
+
+[sub_resource type="Environment" id="Environment_l2n4a"]
+ambient_light_source = 1
+reflected_light_source = 1
+fog_mode = 1
+fog_light_color = Color(0.32156864, 0.3137255, 1, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 20.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pto52"]
+lightmap_size_hint = Vector2i(8, 10)
+size = Vector2(1.28, 1.6)
+orientation = 2
+
+[sub_resource type="Animation" id="Animation_wbs4n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/animframe")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_5l6uk"]
+resource_name = "animate"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/animframe")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fq3v1"]
+_data = {
+&"RESET": SubResource("Animation_wbs4n"),
+&"animate": SubResource("Animation_5l6uk")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qnej2"]
+size = Vector2(4, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xayqk"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.42745098, 0.42745098, 0.42745098, 1)
+albedo_texture = ExtResource("14_ntolb")
+uv1_scale = Vector3(2, 4, 2)
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6nme"]
+next_pass = SubResource("StandardMaterial3D_xayqk")
+shading_mode = 0
+albedo_texture = ExtResource("14_ntolb")
+uv1_scale = Vector3(2, 4, 2)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_28f7x"]
+flip_faces = true
+size = Vector3(100, 100, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckmbu"]
+render_priority = 0
+shader = ExtResource("15_bo68a")
+shader_parameter/sky_texture = ExtResource("16_qdqv0")
+shader_parameter/lock_aspect = true
+shader_parameter/aspect_ratio = 2.0
+shader_parameter/fov = Vector2(180, 180)
+shader_parameter/tiling = Vector2i(1, 1)
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ye8wr"]
+size = Vector2(40, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uulv4"]
+shading_mode = 0
+albedo_texture = ExtResource("4_eyxet")
+uv1_scale = Vector3(20, 20, 20)
+texture_filter = 0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rn8gl"]
+data = PackedVector3Array(20, 0, 20, -20, 0, 20, 20, 0, -20, -20, 0, 20, -20, 0, -20, 20, 0, -20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_itws1"]
+size = Vector2(40, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2suk"]
+shading_mode = 0
+albedo_texture = ExtResource("4_eyxet")
+uv1_scale = Vector3(20, 6, 20)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dllcc"]
+size = Vector2(40, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frvub"]
+shading_mode = 0
+albedo_texture = ExtResource("4_eyxet")
+uv1_scale = Vector3(20, 10, 20)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gx0ab"]
+size = Vector2(16, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8u2xe"]
+shading_mode = 0
+albedo_texture = ExtResource("4_eyxet")
+uv1_scale = Vector3(8, 4, 8)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p26mf"]
+size = Vector2(14, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6l20"]
+shading_mode = 0
+albedo_texture = ExtResource("4_eyxet")
+uv1_scale = Vector3(7, 4, 7)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8inmc"]
+size = Vector2(2, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65cs4"]
+shading_mode = 0
+albedo_texture = ExtResource("4_eyxet")
+uv1_scale = Vector3(1, 4, 1)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1hjvk"]
+size = Vector2(4, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1qqh"]
+shading_mode = 0
+albedo_color = Color(0.42745098, 0.42745098, 0.42745098, 1)
+albedo_texture = ExtResource("4_eyxet")
+uv1_scale = Vector3(2, 4, 2)
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ibia"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("5_lye5c")
+uv1_scale = Vector3(20, 1, 1)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kx7fj"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_5ibia")
+size = Vector2(30, 2)
+orientation = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_psjp3"]
+points = PackedVector3Array(0, -1, -15, 0, 1, -15, 0, -1, 14.999998, 0, 1, 14.999998)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5eoq"]
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("6_hiahu")
+uv1_scale = Vector3(8, 1, 1)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6xgmv"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_q5eoq")
+size = Vector2(8, 2)
+orientation = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8t70b"]
+points = PackedVector3Array(0, -1, -4, 0, 1, -4, 0, -1, 4, 0, 1, 4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_psjp3"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_q5eoq")
+size = Vector2(6, 2)
+orientation = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q5eoq"]
+points = PackedVector3Array(0, -1, -3, 0, 1, -3, 0, -1, 3, 0, 1, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kcxsp"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_q5eoq")
+size = Vector2(6, 2)
+orientation = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jru1h"]
+points = PackedVector3Array(0, -1, -3, 0, 1, -3, 0, -1, 3, 0, 1, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8t70b"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_q5eoq")
+size = Vector2(4, 2)
+orientation = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uasqv"]
+points = PackedVector3Array(0, -1, -2, 0, 1, -2, 0, -1, 2, 0, 1, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3f66c"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_q5eoq")
+size = Vector2(3, 2)
+orientation = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_at5j8"]
+points = PackedVector3Array(0, -1, -1.5, 0, 1, -1.5, 0, -1, 1.5, 0, 1, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxlx4"]
+shading_mode = 0
+albedo_color = Color(0.42745098, 0.42745098, 0.42745098, 1)
+albedo_texture = ExtResource("6_hiahu")
+uv1_scale = Vector3(8, 1, 1)
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdfln"]
+next_pass = SubResource("StandardMaterial3D_hxlx4")
+cull_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("6_hiahu")
+uv1_scale = Vector3(8, 1, 1)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_70vgx"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_fdfln")
+size = Vector2(8, 2)
+orientation = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ysfk8"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_fdfln")
+size = Vector2(8, 2)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7pwf"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.42745098, 0.42745098, 0.42745098, 1)
+albedo_texture = ExtResource("6_hiahu")
+uv1_scale = Vector3(8, 1, 1)
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fqf20"]
+next_pass = SubResource("StandardMaterial3D_g7pwf")
+shading_mode = 0
+albedo_texture = ExtResource("6_hiahu")
+uv1_scale = Vector3(8, 1, 1)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_knsqa"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_fqf20")
+size = Vector2(8, 2)
+orientation = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q1nm7"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_fqf20")
+size = Vector2(8, 2)
+orientation = 0
+
+[node name="MAP_000" type="Node3D" unique_id=614603824]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=214195318]
+environment = SubResource("Environment_l2n4a")
+
+[node name="FullMap" type="Node3D" parent="." unique_id=548319568]
+
+[node name="Props" type="Node3D" parent="FullMap" unique_id=1927334377]
+
+[node name="Bush" type="Sprite3D" parent="FullMap/Props" unique_id=231990722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9893265, 0.5124929, -0.6043769)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+metadata/sector_tag = 1
+
+[node name="Bush3" type="Sprite3D" parent="FullMap/Props" unique_id=1183684887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6060439, 0.5124929, -5.9112015)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+metadata/sector_tag = 1
+
+[node name="Bush4" type="Sprite3D" parent="FullMap/Props" unique_id=359216283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.005037, 0.5124929, -4.5472107)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush9" type="Sprite3D" parent="FullMap/Props" unique_id=412760063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.760826, 0.5124929, -4.5472107)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush10" type="Sprite3D" parent="FullMap/Props" unique_id=1775916324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.760826, 0.5124929, 8.95799)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush11" type="Sprite3D" parent="FullMap/Props" unique_id=684236870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9862766, 0.5124929, 7.9018517)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush12" type="Sprite3D" parent="FullMap/Props" unique_id=844659213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0139284, 0.5124929, 7.226568)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush2" type="Sprite3D" parent="FullMap/Props" unique_id=1277371922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.956895, 0.5124929, -14.348225)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush13" type="Sprite3D" parent="FullMap/Props" unique_id=112913672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0431051, 0.5124929, -11.348225)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush14" type="Sprite3D" parent="FullMap/Props" unique_id=365403724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.043105, 0.5124929, -17.348225)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush5" type="Sprite3D" parent="FullMap/Props" unique_id=98760305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.300806, 0.5124929, 1.4392118)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush6" type="Sprite3D" parent="FullMap/Props" unique_id=347496370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.021748, 0.5124929, -3.8676128)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush7" type="Sprite3D" parent="FullMap/Props" unique_id=491829318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3064437, 0.5124929, -2.503622)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush8" type="Sprite3D" parent="FullMap/Props" unique_id=784922307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.048553, 0.5124929, -1.3046355)
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="DirectionalObject" type="MeshInstance3D" parent="FullMap/Props" unique_id=1552064395]
+transform = Transform3D(0.6363961, 0, -0.63639605, 0, 0.8999999, 0, 0.63639605, 0, 0.6363961, -2, 0.8, -9)
+material_override = ExtResource("2_5ya7t")
+mesh = SubResource("PlaneMesh_pto52")
+skeleton = NodePath("../..")
+script = ExtResource("3_uke3l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FullMap/Props/DirectionalObject" unique_id=230657610]
+libraries/ = SubResource("AnimationLibrary_fq3v1")
+
+[node name="Ceiling" type="Node3D" parent="FullMap" unique_id=1096250876]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FullMap/Ceiling" unique_id=141148369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
+mesh = SubResource("PlaneMesh_qnej2")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_r6nme")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FullMap/Ceiling" unique_id=323484234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -4)
+mesh = SubResource("PlaneMesh_qnej2")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_r6nme")
+
+[node name="LazySkyboxBecauseThisIsATestMap" type="MeshInstance3D" parent="FullMap" unique_id=1336289040]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -2, 0)
+mesh = SubResource("BoxMesh_28f7x")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ckmbu")
+
+[node name="Map" type="Node3D" parent="FullMap" unique_id=1388571201]
+
+[node name="Floor" type="MeshInstance3D" parent="FullMap/Map" unique_id=577844639]
+visible = false
+mesh = SubResource("PlaneMesh_ye8wr")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_uulv4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/Floor" unique_id=83740746]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/Floor/StaticBody3D" unique_id=557206302]
+shape = SubResource("ConcavePolygonShape3D_rn8gl")
+
+[node name="FloorVisual" type="MeshInstance3D" parent="FullMap/Map" unique_id=1544999453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+mesh = SubResource("PlaneMesh_itws1")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_j2suk")
+
+[node name="FloorVisual2" type="MeshInstance3D" parent="FullMap/Map" unique_id=1777232606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+mesh = SubResource("PlaneMesh_dllcc")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_frvub")
+
+[node name="FloorVisual3" type="MeshInstance3D" parent="FullMap/Map" unique_id=131337591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
+mesh = SubResource("PlaneMesh_gx0ab")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_8u2xe")
+
+[node name="FloorVisual4" type="MeshInstance3D" parent="FullMap/Map" unique_id=312876893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -4)
+mesh = SubResource("PlaneMesh_p26mf")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_o6l20")
+
+[node name="FloorVisual5" type="MeshInstance3D" parent="FullMap/Map" unique_id=1752728032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
+mesh = SubResource("PlaneMesh_8inmc")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_65cs4")
+
+[node name="FloorVisual6" type="MeshInstance3D" parent="FullMap/Map" unique_id=1611885519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+mesh = SubResource("PlaneMesh_1hjvk")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_j1qqh")
+
+[node name="FloorVisual7" type="MeshInstance3D" parent="FullMap/Map" unique_id=34870173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+mesh = SubResource("PlaneMesh_1hjvk")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_j1qqh")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="FullMap/Map" unique_id=1370368654]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 16, 1, -4)
+mesh = SubResource("PlaneMesh_kx7fj")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D3" unique_id=829764065]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D3/StaticBody3D" unique_id=1563017065]
+shape = SubResource("ConvexPolygonShape3D_psjp3")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="FullMap/Map" unique_id=1141588129]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1, -19)
+mesh = SubResource("PlaneMesh_kx7fj")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D10" unique_id=1409584660]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D10/StaticBody3D" unique_id=2045422058]
+shape = SubResource("ConvexPolygonShape3D_psjp3")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="FullMap/Map" unique_id=22307298]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -14, 1, -4)
+mesh = SubResource("PlaneMesh_kx7fj")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D11" unique_id=1638408853]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D11/StaticBody3D" unique_id=473865619]
+shape = SubResource("ConvexPolygonShape3D_psjp3")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="FullMap/Map" unique_id=1882751158]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 1, 1, 11)
+mesh = SubResource("PlaneMesh_kx7fj")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D12" unique_id=223017826]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D12/StaticBody3D" unique_id=835963180]
+shape = SubResource("ConvexPolygonShape3D_psjp3")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="FullMap/Map" unique_id=1346241820]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1, -10)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D4" unique_id=445865327]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D4/StaticBody3D" unique_id=1029058296]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="FullMap/Map" unique_id=1587269185]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1, 2)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D5" unique_id=1739138798]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D5/StaticBody3D" unique_id=1631488415]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="FullMap/Map" unique_id=1259935785]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1, 6)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D17" unique_id=1420792983]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D17/StaticBody3D" unique_id=1283173036]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="FullMap/Map" unique_id=854134939]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1, 8)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D18" unique_id=2007462760]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D18/StaticBody3D" unique_id=208927501]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="FullMap/Map" unique_id=1328451994]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1, -16)
+mesh = SubResource("PlaneMesh_psjp3")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D19" unique_id=181953283]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D19/StaticBody3D" unique_id=2071899611]
+shape = SubResource("ConvexPolygonShape3D_q5eoq")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="FullMap/Map" unique_id=2064802835]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, 1, -16)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D21" unique_id=886775016]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D21/StaticBody3D" unique_id=1374766705]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="FullMap/Map" unique_id=1646128368]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 1, -13)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D22" unique_id=1093955148]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D22/StaticBody3D" unique_id=879581389]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="FullMap/Map" unique_id=382716330]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -9, 1, -10)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D23" unique_id=81908103]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D23/StaticBody3D" unique_id=321549154]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="FullMap/Map" unique_id=913338269]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -9, 1, 3)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D25" unique_id=1753276309]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D25/StaticBody3D" unique_id=621801767]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="FullMap/Map" unique_id=1418840466]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -6, 1, 6)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D26" unique_id=1583155433]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D26/StaticBody3D" unique_id=1762884061]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="FullMap/Map" unique_id=1314507600]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -12, 1, -13)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D24" unique_id=1478813067]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D24/StaticBody3D" unique_id=1753621136]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="FullMap/Map" unique_id=1009071200]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 14, 1, -13)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D28" unique_id=2024230401]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D28/StaticBody3D" unique_id=253215799]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="FullMap/Map" unique_id=1199495552]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 11, 1, -10)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D29" unique_id=1537199201]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D29/StaticBody3D" unique_id=133105890]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="FullMap/Map" unique_id=798080613]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 8, 1, -13)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D30" unique_id=1298384439]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D30/StaticBody3D" unique_id=1725014338]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="FullMap/Map" unique_id=1067678494]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11, 1, 3)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D31" unique_id=44365551]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D31/StaticBody3D" unique_id=1692555662]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="FullMap/Map" unique_id=1436899549]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 1, -5)
+mesh = SubResource("PlaneMesh_8t70b")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D35" unique_id=412632457]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D35/StaticBody3D" unique_id=1879924162]
+shape = SubResource("ConvexPolygonShape3D_uasqv")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="FullMap/Map" unique_id=1329037648]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, 1, -17.5)
+mesh = SubResource("PlaneMesh_3f66c")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D36" unique_id=2015316513]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D36/StaticBody3D" unique_id=580121046]
+shape = SubResource("ConvexPolygonShape3D_at5j8")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="FullMap/Map" unique_id=952249113]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 14, 1, 6)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D32" unique_id=175397771]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D32/StaticBody3D" unique_id=408372175]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="FullMap/Map" unique_id=630179788]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 11, 1, 9)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D33" unique_id=1182908045]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D33/StaticBody3D" unique_id=2050584179]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="FullMap/Map" unique_id=1706008861]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 8, 1, 6)
+mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D34" unique_id=2090388325]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D34/StaticBody3D" unique_id=2144270903]
+shape = SubResource("ConvexPolygonShape3D_jru1h")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="FullMap/Map" unique_id=693773290]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1, -14)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D20" unique_id=1739156819]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D20/StaticBody3D" unique_id=1223923615]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="FullMap/Map" unique_id=1681721670]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, -4)
+mesh = SubResource("PlaneMesh_70vgx")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D6" unique_id=1814712937]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D6/StaticBody3D" unique_id=1637979588]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="FullMap/Map" unique_id=355112711]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 1, -4)
+mesh = SubResource("PlaneMesh_ysfk8")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D7" unique_id=478516726]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D7/StaticBody3D" unique_id=54670879]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="FullMap/Map" unique_id=760220143]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, -4)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D15" unique_id=665681494]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D15/StaticBody3D" unique_id=328628893]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="FullMap/Map" unique_id=1460041454]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 12, 1, -4)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D16" unique_id=1914062947]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D16/StaticBody3D" unique_id=241095916]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="FullMap/Map" unique_id=2068304331]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 1, -4)
+mesh = SubResource("PlaneMesh_knsqa")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D8" unique_id=2103716219]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D8/StaticBody3D" unique_id=1471737155]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="FullMap/Map" unique_id=978229416]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 1, -4)
+mesh = SubResource("PlaneMesh_q1nm7")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D9" unique_id=798648900]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D9/StaticBody3D" unique_id=9892560]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="FullMap/Map" unique_id=1662605826]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7, 1, -4)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D13" unique_id=1211791911]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D13/StaticBody3D" unique_id=712844646]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="FullMap/Map" unique_id=1962612572]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 1, -4)
+mesh = SubResource("PlaneMesh_6xgmv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D14" unique_id=614915146]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D14/StaticBody3D" unique_id=1209472291]
+shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1948516196]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -3, 1, -6)
