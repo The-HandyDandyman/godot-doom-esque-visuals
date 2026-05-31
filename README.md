@@ -27,3 +27,5 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 Built off I think the same shader this uses https://www.youtube.com/watch?v=CLqMcgDi--Y ]
 
 [ Rest of the graphical assets are created from stock images pulled from OpenGameArt and Wikimedia Commons ]
+
+[ Color palette is directly pulled from the PLAYPAL found in Sonic Robo Blast 2 and Dr. Robotnik's Ring Racers. ]
