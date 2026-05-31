@@ -7,7 +7,8 @@ Assets included and credits:
 
 [  Multi-Directional Sprite Shader -- https://godotshaders.com/shader/multi-directional-sprite-shader/  
 
-Built off an open source shader I found 3 years ago by Reddit user dron1885. Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
+Built off an open source shader I found 3 years ago by Reddit user dron1885. If you need any instructions, I'd recommend reading the link above!
+Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 
 [ N64 Sky Shader (a lot of old PC games use a sky texture akin to this!] - https://godotshaders.com/shader/n64-style-skybox/ 
  
@@ -17,7 +18,7 @@ Built off an open source shader I found 3 years ago by Reddit user dron1885. Ini
 
  Shader by ALT_OhDude on Godot Shaders ]
 
-[ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character ]
+[ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
 [ Screen Palette Swap Shader
  Currently works more like a palette corruption shader, though ideally in the future this could also be doubled as a way to swap the palette regularly.
