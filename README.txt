@@ -1,6 +1,8 @@
 Hello! My name's Dandy, and I'm somebody who likes programming and has been working on a project inspired by old, cheap, 3D first person PC games! 
 Due to this, the commitment to authenticity for that aforementioned project and the fact I have a feeling there are more people besides I who are probably interested in that sort of niche:
-I've made this open source Github repo specifically to act as a way to both share what I've managed to start so far and as a way to hopefully get assistance on specific aspects!
+I've made this open source Github repo packaged with the shaders I use and some
+stock assets seperate from my original project, specifically to act as a way to both share what I've managed to start so far and as a way to hopefully get assistance on specific aspects!
+
 
 -----
 Assets included and credits:
