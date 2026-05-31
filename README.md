@@ -15,6 +15,15 @@ the palette swap technique used by Ombarus on Youtube.
 - Some sample textures, mostly modified from OpenGameArt and Wikimedia Commons with a custom demonstration spritesheet for the directional shader
 using APirateHat's Godot Plushie model!
 
+- A modified version of a test map I had been using in the unrelated personal project that served as part of the reason I created this repo.
+
+-- What am I seeking to include in the future? --
+
+- The big one at the moment is sector-based lighting: I've opened a thread on the Godot Forums you can find at this link
+( https://forum.godotengine.org/t/seeking-advice-regarding-attempts-to-replicate-the-behavior-of-doom-style-lighting/139445 )
+to discuss the matter and try and figure out a good way to implement that sort of system,
+though at the moment I'm currently experimenting to see what methods would work best for the kind of technique I'm trying to replicate.
+
 
 -----
 Assets included and credits:
