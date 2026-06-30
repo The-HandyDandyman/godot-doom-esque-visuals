@@ -1,16 +1,19 @@
 shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 
+// palette that will be displayed on the screen
 uniform sampler2D palette: filter_nearest;
-
+// original palette
 uniform sampler2D origPalette: filter_nearest;
-
+// number of colors in palettes, horizontally and vertically.
 uniform ivec2 paletteSize;
+// the palette's offset in pixels
 uniform ivec2 paletteOffset;
 
 void fragment() {
 	vec4 screenColor = COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
-	vec2 uvOffset = 1.0/vec2(paletteSize); //Ensures palette size is accurately translated into UVs
+	// We ought to make sure the uv offset is pixel by pixel
+	vec2 uvOffset = 1.0/vec2(paletteSize);
 	
 	for (int x = 0; x < paletteSize.x; x++)
 		for (int y = 0; y < paletteSize.y; y++) {
@@ -23,7 +26,7 @@ void fragment() {
 			
 			vec4 oldColor = texture(origPalette, paletteUV);
 			vec4 newColor = texture(palette, newPaletteUV);
-			// If you're offsetting palette: make sure no two colors on your palette index are the same!
+			// If you're offsetting palette: make sure no two colors on your palette index are the same! Original code used 0.0 but 0.01 has seemed to work better in this case
 			float areSameColor = step(distance(screenColor, oldColor), 0.01);
 			
 			COLOR = mix(COLOR, newColor, areSameColor);

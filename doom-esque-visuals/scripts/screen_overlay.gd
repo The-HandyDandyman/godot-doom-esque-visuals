@@ -1,4 +1,5 @@
 extends Node2D
+
 @onready var screenOverlay:CanvasLayer = $ScreenOverlay
 @onready var adaptPalCover:ColorRect = $ScreenOverlay/OverlayB/adaptToPal
 @onready var adaptPalShader:ShaderMaterial = adaptPalCover.material
