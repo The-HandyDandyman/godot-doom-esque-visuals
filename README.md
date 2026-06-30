@@ -51,3 +51,5 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 [ PALETTE.png is directly pulled from the PLAYPAL found in Sonic Robo Blast 2 and Dr. Robotnik's Ring Racers. ]
 
 [ PALETTESWAPTEST.png is directly pulled from the PLAYPAL found in maxwellCleanColors, a SRB2 mod that you can find here: https://mb.srb2.org/addons/maxwellcleancolors-a-palette-mod.5754/. ]
+
+[PixelOperator font comes from https://www.dafont.com/pixel-operator.font )
