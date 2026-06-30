@@ -1,41 +1,26 @@
 [gd_scene format=3 uid="uid://dwv2myun1ngli"]
 
 [ext_resource type="Shader" uid="uid://cs6wrvvaqlby7" path="res://shaders/palette.gdshader" id="1_6xx4g"]
-[ext_resource type="Texture2D" uid="uid://ddi2lmm0wifvy" path="res://graphics/PALETTE.png" id="2_6vaad"]
+[ext_resource type="Script" uid="uid://3kusqpx2k5ca" path="res://scripts/screen_overlay.gd" id="1_r0i5l"]
+[ext_resource type="Texture2D" uid="uid://ddi2lmm0wifvy" path="res://graphics/palette/PALETTE.png" id="2_6vaad"]
 [ext_resource type="Material" uid="uid://ba7yqfkoksnq5" path="res://materials/colorScreenPal.tres" id="2_qn3rw"]
+[ext_resource type="Texture2D" uid="uid://dr72n23t7eq64" path="res://graphics/palette/PALETTESWAPTEST.png" id="3_qy7j0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qn3rw"]
 shader = ExtResource("1_6xx4g")
 shader_parameter/palette = ExtResource("2_6vaad")
 
 [node name="Screen" type="Node2D" unique_id=424585871]
+script = ExtResource("1_r0i5l")
+defaultPALETTE = ExtResource("2_6vaad")
+PALETTE_SWAP = ExtResource("3_qy7j0")
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="." unique_id=1835449877]
 layer = 99999
 
-[node name="FadeRect" type="ColorRect" parent="ScreenOverlay" unique_id=50821213]
-visible = false
-z_index = 999
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
+[node name="OverlayB" type="CanvasLayer" parent="ScreenOverlay" unique_id=1196718151]
 
-[node name="paletteShader" type="ColorRect" parent="ScreenOverlay" unique_id=107914873]
-visible = false
-z_index = 1000
-material = ExtResource("2_qn3rw")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="ScreenOverlay" unique_id=1422239826]
+[node name="adaptToPal" type="ColorRect" parent="ScreenOverlay/OverlayB" unique_id=1422239826]
 z_index = 999
 material = SubResource("ShaderMaterial_qn3rw")
 anchors_preset = 15
@@ -45,10 +30,22 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PaletteTest" type="TextureRect" parent="ScreenOverlay" unique_id=549930887]
+[node name="PaletteTest" type="TextureRect" parent="ScreenOverlay/OverlayB" unique_id=549930887]
 z_index = 998
 texture_filter = 1
 offset_right = 80.0
 offset_bottom = 80.0
 mouse_filter = 2
 texture = ExtResource("2_6vaad")
+
+[node name="OverlayA" type="CanvasLayer" parent="ScreenOverlay" unique_id=823916376]
+
+[node name="palSwap" type="ColorRect" parent="ScreenOverlay/OverlayA" unique_id=107914873]
+z_index = 1000
+material = ExtResource("2_qn3rw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

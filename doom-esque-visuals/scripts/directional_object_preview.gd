@@ -7,8 +7,8 @@ func _ready():
 	animator.play("animate")
 
 func _process(delta):
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("rotate_right"):
 		directionAmount += 0.005
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("rotate_left"):
 		directionAmount -= 0.005
 	self.rotate_y(directionAmount)

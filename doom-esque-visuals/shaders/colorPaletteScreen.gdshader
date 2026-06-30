@@ -1,15 +1,31 @@
-shader_type canvas_item; // This secondary palette shader's used to create a sort of "palette corruption" effect at the moment, 
-//though I hope to figure out how to make this effect work by rows and how to map the colors more properly for palette swapping the whole screen.
+shader_type canvas_item;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 
-uniform sampler2D palette: filter_nearest, repeat_enable;
-uniform sampler2D screen_texture: hint_screen_texture, filter_nearest;
-uniform float palette_offset_x: hint_range(0.0,1.0);
-uniform float palette_offset_y: hint_range(0.0,1.0);
+uniform sampler2D palette: filter_nearest;
+
+uniform sampler2D origPalette: filter_nearest;
+
+uniform ivec2 paletteSize;
+uniform ivec2 paletteOffset;
 
 void fragment() {
-	vec4 rgba = texture(screen_texture, UV);
-	vec4 final_color = texture(palette, vec2(rgba.r + palette_offset_x, rgba.g + palette_offset_y));
-	final_color.a = rgba.a;
+	vec4 screenColor = COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec2 uvOffset = 1.0/vec2(paletteSize); //Ensures palette size is accurately translated into UVs
 	
-	COLOR = final_color;
-}
+	for (int x = 0; x < paletteSize.x; x++)
+		for (int y = 0; y < paletteSize.y; y++) {
+			vec2 paletteUV = vec2(float(x) + 0.5, float(y) + 0.5) * uvOffset;
+			// Set palette offset properly and ensure it's modulated to the palette size
+			vec2 palOffset = vec2(mod(float(x + paletteOffset.x), float(paletteSize.x)),mod(float(y + paletteOffset.y), float(paletteSize.y)));
+			
+			// Set new palette UV using the palOffset and the uvOffset
+			vec2 newPaletteUV = vec2(palOffset.x + 0.5, palOffset.y + 0.5) * uvOffset;
+			
+			vec4 oldColor = texture(origPalette, paletteUV);
+			vec4 newColor = texture(palette, newPaletteUV);
+			// If you're offsetting palette: make sure no two colors on your palette index are the same!
+			float areSameColor = step(distance(screenColor, oldColor), 0.01);
+			
+			COLOR = mix(COLOR, newColor, areSameColor);
+		}
+	}
