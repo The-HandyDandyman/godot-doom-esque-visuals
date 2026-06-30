@@ -15,6 +15,7 @@ var paletteSize:Vector2i = defaultPalSize
 var newOffset:Vector2i = Vector2i.ZERO
 var previousPalOffset:Vector2i = newOffset
 var swap:bool = true
+var paletteRelatedText:String
 
 func paletteSetup(material:ShaderMaterial = palSwapShader, defaultPal:Texture = defaultPALETTE, paletteSwap:Texture = PALETTE_SWAP,paletteOffset:Vector2i = defaultPalOffset,newSize:Vector2i = defaultPalSize):
 	if PALETTE_SWAP == null:
@@ -37,7 +38,6 @@ func setPaletteSize(newSize:Vector2i = defaultPalSize,material:ShaderMaterial = 
 	material.set_shader_parameter("paletteSize",paletteSize)
 
 func setPaletteOffset(paletteOffset:Vector2i = Vector2i(0,0),material:ShaderMaterial = palSwapShader):
-	print(paletteOffset)
 	material.set_shader_parameter("paletteOffset",paletteOffset)
 
 # Called when the node enters the scene tree for the first time.
@@ -67,3 +67,4 @@ func _process(delta):
 		setPaletteSwap(PALETTE_SWAP)
 	else:
 		setPaletteSwap(defaultPALETTE)
+	paletteRelatedText = "Enter to toggle palette swap (Currently set to " + str(swap) + ")\nArrow keys to set palette offset" + str(newOffset) + "\n"
