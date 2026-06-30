@@ -44,9 +44,10 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 [ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
 [ Screen Palette Swap Shader
- Currently works more like a palette corruption shader, though ideally in the future this could also be doubled as a way to swap the palette regularly.
-Built off I think the same shader this uses https://www.youtube.com/watch?v=CLqMcgDi--Y ]
+ Works both for palette swapping the whole screen and for "glitchy corrupted" colors if you need those. Built off this shader by Badger_ on the Godot Shaders website: https://godotshaders.com/shader/palette-swap-post-process-image-parametrized/]
 
 [ Rest of the graphical assets are created from stock images pulled from OpenGameArt and Wikimedia Commons ]
 
-[ Color palette is directly pulled from the PLAYPAL found in Sonic Robo Blast 2 and Dr. Robotnik's Ring Racers. ]
+[ PALETTE.png is directly pulled from the PLAYPAL found in Sonic Robo Blast 2 and Dr. Robotnik's Ring Racers. ]
+
+[ PALETTESWAPTEST.png is directly pulled from the PLAYPAL found in maxwellCleanColors, a SRB2 mod that you can find here: https://mb.srb2.org/addons/maxwellcleancolors-a-palette-mod.5754/. ]
