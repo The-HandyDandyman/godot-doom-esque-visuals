@@ -6,9 +6,11 @@
 [ext_resource type="Script" uid="uid://podhph0kdiu1" path="res://scripts/directional_object_preview.gd" id="3_uke3l"]
 [ext_resource type="Texture2D" uid="uid://cyxbtgxktd3q5" path="res://graphics/grassTexture.png" id="4_eyxet"]
 [ext_resource type="Texture2D" uid="uid://dkcihmwjk3knb" path="res://graphics/fenceTexture.png" id="5_lye5c"]
+[ext_resource type="Shader" uid="uid://jwy36pp0ptuu" path="res://shaders/triplanar.gdshader" id="6_0d08v"]
 [ext_resource type="Texture2D" uid="uid://dtgewxk4mfpls" path="res://graphics/brickTexture.png" id="6_hiahu"]
 [ext_resource type="Texture2D" uid="uid://ch6s812wvvpwy" path="res://graphics/bushTexture.png" id="10_f0hix"]
 [ext_resource type="Script" uid="uid://77vsu21lgba8" path="res://scripts/camera_3d.gd" id="10_wbs4n"]
+[ext_resource type="Shader" uid="uid://bve5fr5ivrwj" path="res://shaders/triplanar_opaque.gdshader" id="11_v2usc"]
 [ext_resource type="Texture2D" uid="uid://6rofgxx6iu7m" path="res://graphics/ceilingTexture.png" id="14_ntolb"]
 [ext_resource type="Shader" uid="uid://cudvg1b2451d" path="res://shaders/sky.gdshader" id="15_bo68a"]
 [ext_resource type="Texture2D" uid="uid://bhovjkfefkk0u" path="res://graphics/skyTexture.png" id="16_qdqv0"]
@@ -72,20 +74,52 @@ _data = {
 [sub_resource type="PlaneMesh" id="PlaneMesh_qnej2"]
 size = Vector2(4, 8)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xayqk"]
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(0.42745098, 0.42745098, 0.42745098, 1)
-albedo_texture = ExtResource("14_ntolb")
-uv1_scale = Vector3(2, 4, 2)
-texture_filter = 0
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_au4xj"]
+load_path = "res://.godot/imported/ceilingTexture.png-7e4da25657914a5f3f9d259104c73fcc.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6nme"]
-next_pass = SubResource("StandardMaterial3D_xayqk")
-shading_mode = 0
-albedo_texture = ExtResource("14_ntolb")
-uv1_scale = Vector3(2, 4, 2)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vogo8"]
+render_priority = 0
+shader = ExtResource("6_0d08v")
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_au4xj")
+shader_parameter/modulate = Color(0.42745098, 0.42745098, 0.42745098, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/render_front = false
+shader_parameter/render_back = true
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gk7wh"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_vogo8")
+shader = ExtResource("6_0d08v")
+shader_parameter/texture_albedo = ExtResource("14_ntolb")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ymvm"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_vogo8")
+shader = ExtResource("6_0d08v")
+shader_parameter/texture_albedo = ExtResource("14_ntolb")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_28f7x"]
 flip_faces = true
@@ -116,92 +150,118 @@ data = PackedVector3Array(20, 0, 20, -20, 0, 20, 20, 0, -20, -20, 0, 20, -20, 0,
 [sub_resource type="PlaneMesh" id="PlaneMesh_itws1"]
 size = Vector2(40, 12)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2suk"]
-shading_mode = 0
-albedo_texture = ExtResource("4_eyxet")
-uv1_scale = Vector3(20, 6, 20)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5k6x"]
+render_priority = 0
+shader = ExtResource("6_0d08v")
+shader_parameter/texture_albedo = ExtResource("4_eyxet")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 25
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dllcc"]
 size = Vector2(40, 20)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frvub"]
-shading_mode = 0
-albedo_texture = ExtResource("4_eyxet")
-uv1_scale = Vector3(20, 10, 20)
-texture_filter = 0
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_gx0ab"]
 size = Vector2(16, 8)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8u2xe"]
-shading_mode = 0
-albedo_texture = ExtResource("4_eyxet")
-uv1_scale = Vector3(8, 4, 8)
-texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p26mf"]
 size = Vector2(14, 8)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6l20"]
-shading_mode = 0
-albedo_texture = ExtResource("4_eyxet")
-uv1_scale = Vector3(7, 4, 7)
-texture_filter = 0
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_8inmc"]
 size = Vector2(2, 8)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65cs4"]
-shading_mode = 0
-albedo_texture = ExtResource("4_eyxet")
-uv1_scale = Vector3(1, 4, 1)
-texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1hjvk"]
 size = Vector2(4, 8)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1qqh"]
-shading_mode = 0
-albedo_color = Color(0.42745098, 0.42745098, 0.42745098, 1)
-albedo_texture = ExtResource("4_eyxet")
-uv1_scale = Vector3(2, 4, 2)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_woe0t"]
+render_priority = 0
+shader = ExtResource("6_0d08v")
+shader_parameter/texture_albedo = ExtResource("4_eyxet")
+shader_parameter/modulate = Color(0.42745098, 0.42745098, 0.42745098, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 25
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ibia"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-shading_mode = 0
-albedo_texture = ExtResource("5_lye5c")
-uv1_scale = Vector3(20, 1, 1)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yv2o7"]
+render_priority = 0
+shader = ExtResource("6_0d08v")
+shader_parameter/texture_albedo = ExtResource("4_eyxet")
+shader_parameter/modulate = Color(0.42745098, 0.42745098, 0.42745098, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 25
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qiwxd"]
+render_priority = 0
+shader = ExtResource("11_v2usc")
+shader_parameter/alpha_scissor_threshold = 0.50000002375
+shader_parameter/texture_albedo = ExtResource("5_lye5c")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kx7fj"]
 lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("StandardMaterial3D_5ibia")
+material = SubResource("ShaderMaterial_qiwxd")
 size = Vector2(30, 2)
 orientation = 0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_psjp3"]
 points = PackedVector3Array(0, -1, -15, 0, 1, -15, 0, -1, 14.999998, 0, 1, 14.999998)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5eoq"]
-cull_mode = 2
-shading_mode = 0
-albedo_texture = ExtResource("6_hiahu")
-uv1_scale = Vector3(8, 1, 1)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_umug6"]
+render_priority = 0
+shader = ExtResource("6_0d08v")
+shader_parameter/texture_albedo = ExtResource("6_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6xgmv"]
 lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("StandardMaterial3D_q5eoq")
+material = SubResource("ShaderMaterial_umug6")
 size = Vector2(8, 2)
 orientation = 0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8t70b"]
 points = PackedVector3Array(0, -1, -4, 0, 1, -4, 0, -1, 4, 0, 1, 4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v6r00"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_qiwxd")
+size = Vector2(3, 2)
+orientation = 0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_anwq7"]
+data = PackedVector3Array(0, -1, -1.5, 0, -1, 1.5, 0, 1, -1.5, 0, -1, 1.5, 0, 1, 1.5, 0, 1, -1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbs4n"]
 shading_mode = 0
@@ -245,9 +305,23 @@ material = SubResource("StandardMaterial3D_0d08v")
 size = Vector2(4, 2)
 orientation = 0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0inlb"]
+render_priority = 0
+shader = ExtResource("6_0d08v")
+shader_parameter/texture_albedo = ExtResource("6_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_kcxsp"]
 lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("StandardMaterial3D_q5eoq")
+material = SubResource("ShaderMaterial_0inlb")
 size = Vector2(6, 2)
 orientation = 0
 
@@ -493,13 +567,13 @@ libraries/ = SubResource("AnimationLibrary_fq3v1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
 mesh = SubResource("PlaneMesh_qnej2")
 skeleton = NodePath("../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_r6nme")
+surface_material_override/0 = SubResource("ShaderMaterial_gk7wh")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="FullMap/Ceiling" unique_id=323484234]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -4)
 mesh = SubResource("PlaneMesh_qnej2")
 skeleton = NodePath("../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_r6nme")
+surface_material_override/0 = SubResource("ShaderMaterial_5ymvm")
 
 [node name="LazySkyboxBecauseThisIsATestMap" type="MeshInstance3D" parent="FullMap" unique_id=1336289040]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -2, 0)
@@ -524,43 +598,43 @@ shape = SubResource("ConcavePolygonShape3D_rn8gl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
 mesh = SubResource("PlaneMesh_itws1")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_j2suk")
+surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
 
 [node name="FloorVisual2" type="MeshInstance3D" parent="FullMap/Map" unique_id=1777232606]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 mesh = SubResource("PlaneMesh_dllcc")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_frvub")
+surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
 
 [node name="FloorVisual3" type="MeshInstance3D" parent="FullMap/Map" unique_id=131337591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
 mesh = SubResource("PlaneMesh_gx0ab")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_8u2xe")
+surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
 
 [node name="FloorVisual4" type="MeshInstance3D" parent="FullMap/Map" unique_id=312876893]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -4)
 mesh = SubResource("PlaneMesh_p26mf")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_o6l20")
+surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
 
 [node name="FloorVisual5" type="MeshInstance3D" parent="FullMap/Map" unique_id=1752728032]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
 mesh = SubResource("PlaneMesh_8inmc")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_65cs4")
+surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
 
 [node name="FloorVisual6" type="MeshInstance3D" parent="FullMap/Map" unique_id=1611885519]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
 mesh = SubResource("PlaneMesh_1hjvk")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_j1qqh")
+surface_material_override/0 = SubResource("ShaderMaterial_woe0t")
 
 [node name="FloorVisual7" type="MeshInstance3D" parent="FullMap/Map" unique_id=34870173]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 mesh = SubResource("PlaneMesh_1hjvk")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_j1qqh")
+surface_material_override/0 = SubResource("ShaderMaterial_yv2o7")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="FullMap/Map" unique_id=1370368654]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 16, 1, -4)
@@ -573,7 +647,7 @@ skeleton = NodePath("../../..")
 shape = SubResource("ConvexPolygonShape3D_psjp3")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="FullMap/Map" unique_id=1141588129]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1, -19)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 1, 1, -19)
 mesh = SubResource("PlaneMesh_kx7fj")
 skeleton = NodePath("../../..")
 
@@ -583,7 +657,7 @@ skeleton = NodePath("../../..")
 shape = SubResource("ConvexPolygonShape3D_psjp3")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="FullMap/Map" unique_id=22307298]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -14, 1, -4)
+transform = Transform3D(-1, 0, -2.6226832e-07, 0, 1, 0, 2.6226832e-07, 0, -1, -14, 1, -4)
 mesh = SubResource("PlaneMesh_kx7fj")
 skeleton = NodePath("../../..")
 
@@ -611,6 +685,16 @@ skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D4/StaticBody3D" unique_id=1029058296]
 shape = SubResource("ConvexPolygonShape3D_8t70b")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="FullMap/Map" unique_id=1565416778]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.5, 1, 0)
+mesh = SubResource("PlaneMesh_v6r00")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FullMap/Map/MeshInstance3D15" unique_id=2119688908]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullMap/Map/MeshInstance3D15/StaticBody3D" unique_id=168428331]
+shape = SubResource("ConcavePolygonShape3D_anwq7")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="FullMap/Map" unique_id=1587269185]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1, 2)
