@@ -3,7 +3,9 @@
 [ext_resource type="FontFile" uid="uid://dov0f3icir4wj" path="res://graphics/fonts/PixelOperator.ttf" id="1_5l6uk"]
 [ext_resource type="Script" uid="uid://dot31jwbosg74" path="res://scripts/test_visual_map.gd" id="1_fq3v1"]
 [ext_resource type="Material" uid="uid://bdicvoxjxrj5t" path="res://materials/directional.tres" id="2_5ya7t"]
+[ext_resource type="Environment" uid="uid://b5mgo8xoorbtn" path="res://materials/environment_b.tres" id="3_gk7wh"]
 [ext_resource type="Script" uid="uid://podhph0kdiu1" path="res://scripts/directional_object_preview.gd" id="3_uke3l"]
+[ext_resource type="Environment" uid="uid://b451krfqeoqr6" path="res://materials/environment_a.tres" id="3_vogo8"]
 [ext_resource type="Texture2D" uid="uid://cyxbtgxktd3q5" path="res://graphics/grassTexture.png" id="4_eyxet"]
 [ext_resource type="Texture2D" uid="uid://dkcihmwjk3knb" path="res://graphics/fenceTexture.png" id="5_lye5c"]
 [ext_resource type="Shader" uid="uid://jwy36pp0ptuu" path="res://shaders/triplanar.gdshader" id="6_0d08v"]
@@ -19,15 +21,6 @@
 
 [sub_resource type="Theme" id="Theme_7cfve"]
 default_font = ExtResource("1_5l6uk")
-
-[sub_resource type="Environment" id="Environment_l2n4a"]
-ambient_light_source = 1
-reflected_light_source = 1
-fog_mode = 1
-fog_light_color = Color(0.32156864, 0.3137255, 1, 1)
-fog_density = 1.0
-fog_depth_begin = 0.0
-fog_depth_end = 10.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pto52"]
 lightmap_size_hint = Vector2i(8, 10)
@@ -627,6 +620,8 @@ orientation = 0
 
 [node name="MAP_000" type="Node3D" unique_id=614603824]
 script = ExtResource("1_fq3v1")
+environment_a = ExtResource("3_vogo8")
+environment_b = ExtResource("3_gk7wh")
 
 [node name="Text" type="Control" parent="." unique_id=265325867]
 layout_mode = 3
@@ -650,11 +645,12 @@ A and D to rotate Godot plush
 Enter to toggle palette swap (Currently set to true)
 Arrow keys to set palette offset (0,0)
 Escape to toggle fog (Currently set to false)
+Tab to toggle environment
 Backspace to hide instructions"
 horizontal_alignment = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=214195318]
-environment = SubResource("Environment_l2n4a")
+environment = ExtResource("3_vogo8")
 
 [node name="FullMap" type="Node3D" parent="." unique_id=548319568]
 
