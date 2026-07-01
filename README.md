@@ -8,11 +8,14 @@ stock assets seperate from my original project, specifically to act as a way to 
 
 -- What's included? --
 
-- My improved multi-directional sprite shader, which includes the ability to adjust the amount of directions and animation frames, the ability for asymmetry, the ability to scale,
+- My improved multi-directional sprite shader built off of the original more primtive shader by dron1885 on Reddit, which now includes the ability to adjust the amount of directions and animation frames, the ability for asymmetry, the ability to scale,
 Y-billboarding and the ability to modulate! If you'd like more info, check the credits and read the instructions in the link!
 
-- Several public Godot shaders I've used for the project: particularly, tetrabrobpy's N64 Sky, ALT_OhDude's adapt-to-paletete shader, and what (from what I remember) a modified version of
-the palette swap technique used by Ombarus on Youtube.
+- A modified triplanar texture shader based on the one by Soup-o-Stat which is designed to give you options for culling, flip textures if the culling is off or the textures just don't render on the right side, along with the ability to rotate and offset the texture!
+
+- Several public Godot shaders I've used for the project: particularly, tetrabrobpy's N64 Sky and ALT_OhDude's adapt-to-paletete shader!
+
+- A modified screen palette shader based on the one by Badger_ on Godot Shaders, which allows you to both palette swap the whole screen after applying the adapt-to-palette shader first and to offset the colors!
 
 - Some sample textures, mostly modified from OpenGameArt and Wikimedia Commons with a custom demonstration spritesheet for the directional shader
 using APirateHat's Godot Plushie model!
@@ -43,10 +46,16 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 
  Shader by ALT_OhDude on Godot Shaders ]
 
+[ Screen Palette Swap Shader - https://godotshaders.com/shader/palette-swap-post-process-image-parametrized/
+
+   Original Shader by Badger_ on Godot Shaders, Extra Adjustments by Dandy ]
+
+[ Triplanar Texture Shader - https://github.com/Soup-o-Stat/Triplanar-Texture-Shader
+
+   Originally Shader by Soup-o-Stat on Github, Extra Adjustments by Dandy ]
+
 [ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
-[ Screen Palette Swap Shader
- Works both for palette swapping the whole screen and for "glitchy corrupted" colors if you need those. Built off this shader by Badger_ on the Godot Shaders website: https://godotshaders.com/shader/palette-swap-post-process-image-parametrized/]
 
 [ Rest of the graphical assets are created from stock images pulled from OpenGameArt and Wikimedia Commons ]
 
