@@ -18,7 +18,13 @@ uniform bool render_back = true;
 uniform bool fix_back = false;
 uniform bool flip_texture = false;
 
-varying ivec2 texture_size;
+
+uniform sampler2D mask_texture:source_color,filter_nearest; 
+uniform float mask_scale = 1.0;
+varying vec2 mask_ratio;
+uniform vec2 mask_offset;
+uniform int mask_rotation:hint_range(-360,360);
+
 varying vec3 world_position;
 varying vec3 world_normal;
 
@@ -28,10 +34,12 @@ void vertex() {
 }
 
 void fragment() {
-	// Get texture size
-	texture_size = textureSize(texture_albedo,0);
-	vec2 ftexSize = vec2(texture_size);
-	texture_ratio = vec2(1.0,ftexSize.x/ftexSize.y);
+	// Get texture size and ratio
+	vec2 texture_size = vec2(textureSize(texture_albedo,0));
+	texture_ratio = vec2(1.0,texture_size.x/texture_size.y);
+	// Get mask size and ratio
+	vec2 mask_size = vec2(textureSize(mask_texture,0));
+	mask_ratio = vec2(1.0,mask_size.x/mask_size.y);
 	if (!render_front && FRONT_FACING){ //Discard if render front or render back are disabled
 		discard;
 	}
@@ -56,7 +64,7 @@ void fragment() {
    
     vec2 uv = (top_weight > side_x_weight && top_weight > side_z_weight) ? uv_top :
                (side_x_weight > side_z_weight) ? uv_side_x : uv_side_z;
-	uv += vec2(texture_offset) / vec2(texture_size);
+	uv += vec2(texture_offset) / texture_size;
 	// Convert degree integer to a float in radians
 	float rad = radians(float(rotation_degrees));
 	// Calculate sine and cosine of the angle
@@ -70,7 +78,29 @@ void fragment() {
 	if (flip_texture){
 		uv.x = -uv.x;
 	}
-    ALBEDO = texture(texture_albedo, uv).rgb * modulate.rgb;
-	ALPHA *= texture(texture_albedo, uv).a * modulate.a;
+	
+	// repeat process for mask
+	uv_top = world_position.xz / -mask_scale * mask_ratio;
+	uv_side_x = world_position.zy / -mask_scale * mask_ratio;
+	uv_side_z = world_position.xy / -mask_scale * mask_ratio;
+	vec2 mask_uv = (top_weight > side_x_weight && top_weight > side_z_weight) ? uv_top :
+               (side_x_weight > side_z_weight) ? uv_side_x : uv_side_z;
+	mask_uv += vec2(mask_offset) / mask_size;
+	rad = radians(float(mask_rotation));
+	sin_angle = sin(rad);
+	cos_angle = cos(rad);
+	mask_uv = vec2(mask_uv.x * cos_angle - mask_uv.y * sin_angle,mask_uv.x * sin_angle + mask_uv.y * cos_angle);
+	if (!FRONT_FACING && fix_back){ // flip horizontally if true
+		mask_uv.x = -mask_uv.x;
+	}
+	if (flip_texture){
+		mask_uv.x = -mask_uv.x;
+	}
+	// Set up final albedo, then multiply alpha by texture mask
+	vec4 final_albedo = texture(texture_albedo, uv);
+	final_albedo.a *= texture(mask_texture,mask_uv).r;
+	
+	ALBEDO = final_albedo.rgb * modulate.rgb;
+	ALPHA *= final_albedo.a * modulate.a;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
 }

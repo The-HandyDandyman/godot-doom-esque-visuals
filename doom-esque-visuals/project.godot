@@ -13,7 +13,9 @@ config_version=5
 config/name="Doom-esque Visuals"
 run/main_scene="uid://cfa7y2ntdwl2"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.02745098, 0.02745098, 0.02745098, 1)
+boot_splash/image="uid://c0lbugvn7unwf"
+config/icon="uid://504gsi4p8x1q"
 
 [autoload]
 
