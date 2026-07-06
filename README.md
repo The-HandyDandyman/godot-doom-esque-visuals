@@ -11,7 +11,7 @@ stock assets seperate from my original project, specifically to act as a way to 
 - My improved multi-directional sprite shader built off of the original more primtive shader by dron1885 on Reddit, which now includes the ability to adjust the amount of directions and animation frames, the ability for asymmetry, the ability to scale,
 Y-billboarding and the ability to modulate! If you'd like more info, check the credits and read the instructions in the link!
 
-- A modified triplanar texture shader based on the one by Soup-o-Stat which is designed to give you options for culling, flip textures if the culling is off or the textures just don't render on the right side, along with the ability to rotate and offset the texture!
+- A modified triplanar texture shader based on the one by Soup-o-Stat which is designed to give you options for culling, flip textures if the culling is off or the textures just don't render on the right side, along with the ability to rotate and offset the texture! Also uses a bit of the transparency dither shader by jacob on Godot Shaders in order to apply transparency!
 
 - Several public Godot shaders I've used for the project: particularly, tetrabrobpy's N64 Sky and ALT_OhDude's adapt-to-paletete shader!
 
@@ -53,6 +53,9 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 [ Triplanar Texture Shader - https://github.com/Soup-o-Stat/Triplanar-Texture-Shader
 
    Originally Shader by Soup-o-Stat on Github, Extra Adjustments by Dandy ]
+
+[ Transparency Dither Shader - https://godotshaders.com/shader/transparency-dither/ 
+            Created by jacob on Godot Shaders, used partially for the dithered transparency in the triplanar shader]
 
 [ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
