@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0lb5p1t7neqr"
-path.s3tc="res://.godot/imported/brickGateMask2.png-4b199d19a3b881e983407fe206a5f893.s3tc.ctex"
+path="res://.godot/imported/brickGateMask2.png-4b199d19a3b881e983407fe206a5f893.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://graphics/brickGateMask2.png"
-dest_files=["res://.godot/imported/brickGateMask2.png-4b199d19a3b881e983407fe206a5f893.s3tc.ctex"]
+dest_files=["res://.godot/imported/brickGateMask2.png-4b199d19a3b881e983407fe206a5f893.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,6 +3,8 @@ render_mode unshaded, cull_disabled, depth_draw_opaque; // Since this is set to 
 
 uniform float alpha_scissor_threshold : hint_range(0.0, 1.0, 0.001);
 
+const vec3 dither = vec3(0.06711056f, 0.00583715f, 52.9829189f);
+
 uniform sampler2D texture_albedo:source_color,filter_nearest; 
 uniform vec4 modulate : source_color = vec4(255,255,255,255);
 
@@ -24,6 +26,9 @@ uniform float mask_scale = 1.0;
 varying vec2 mask_ratio;
 uniform vec2 mask_offset;
 uniform int mask_rotation:hint_range(-360,360);
+
+uniform bool mask_back_flip = false;
+uniform float mask_intensity:hint_range(0.0,1.0) = 0.0;
 
 varying vec3 world_position;
 varying vec3 world_normal;
@@ -96,11 +101,17 @@ void fragment() {
 	if (flip_texture){
 		mask_uv.x = -mask_uv.x;
 	}
+	if (mask_back_flip && !FRONT_FACING){
+		mask_uv.x = -mask_uv.x;
+	}
 	// Set up final albedo, then multiply alpha by texture mask
 	vec4 final_albedo = texture(texture_albedo, uv);
-	final_albedo.a *= texture(mask_texture,mask_uv).r;
+	final_albedo.a *= texture(mask_texture,mask_uv).r + mask_intensity;
+	final_albedo *= modulate;
 	
-	ALBEDO = final_albedo.rgb * modulate.rgb;
-	ALPHA *= final_albedo.a * modulate.a;
+	if (final_albedo.a < 0.001 || final_albedo.a < fract(dither.z * fract(dot(FRAGCOORD.xy, dither.xy)))) { // dither transparency
+		discard;
+	}
+	ALBEDO = final_albedo.rgb;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
 }
