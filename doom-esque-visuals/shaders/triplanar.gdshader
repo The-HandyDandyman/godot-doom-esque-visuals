@@ -16,7 +16,7 @@ uniform vec2 texture_offset;
 uniform int rotation_degrees:hint_range(-360,360);
 
 // if the texture is displaying flipped, use this to fix it up!
-uniform bool fix_back = false;
+uniform bool fix_back = false; // Fix_back is mainly recommended for walls, it isn't really needed for floors and ceilings
 uniform bool flip_texture = false;
 uniform bool tex_world_pos = true;
 
@@ -52,12 +52,7 @@ varying vec3 abs_normal;
 
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	world_normal = normalize(mat3(mat4( // set normals to absolute to prevent the texture from flipping backwards when the mesh is rotated
-		abs(MODEL_MATRIX[0]),
-		abs(MODEL_MATRIX[1]),
-		abs(MODEL_MATRIX[2]),
-		abs(MODEL_MATRIX[3])
-	)) * NORMAL);
+	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
 	base_uv = UV;
 }
 
@@ -72,6 +67,16 @@ vec2 uv_calc(float scale, sampler2D albedo_in, vec2 offset, bool world_pos,int r
 	vec2 uv_top = world_position.xz / -scale * ratio;
 	vec2 uv_side_x = world_position.zy / -scale * ratio;
 	vec2 uv_side_z = world_position.xy / -scale * ratio;
+	// If any of these values are off, assume normals got distorted from rotation and correct accordingly!
+	if (world_normal.y < 0.0){ // If the normal's x or y is less than 0, assume it's flipped incorrectly
+		uv_top.y = -uv_top.y;
+	}
+	if (world_normal.x < 0.0){
+		uv_side_x.x = -uv_side_x.x;
+	}
+	if (world_normal.z > 0.0){ // If the normal.z is less than 0, assume it's flipped incorrectly
+		uv_side_z.x = -uv_side_z.x;
+	}
 	vec2 result = (top_weight > side_x_weight && top_weight > side_z_weight) ? uv_top :
 		(side_x_weight > side_z_weight) ? uv_side_x : uv_side_z;
 	result = mix(base_uv,result,float(world_pos)); // Use world_pos as toggle between base_uv and world_pos uv
