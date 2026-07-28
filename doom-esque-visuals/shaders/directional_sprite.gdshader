@@ -6,7 +6,7 @@ render_mode unshaded, depth_prepass_alpha, depth_draw_opaque;
 // Last row - back
 // Rows inbetween - consecutive rotations
 
-uniform vec4 modulate : source_color = vec4(255,255,255,255);
+uniform vec4 modulate : source_color = vec4(1.0,1.0,1.0,1.0);
 uniform sampler2D sprite_sheet: filter_nearest;
 
 // Total rows and columns
@@ -20,6 +20,8 @@ uniform bool asymmetrical = false;
 uniform bool y_billboard = false;
 
 varying vec3 look_dir;
+
+uniform sampler2D dither_tex : repeat_enable,filter_nearest;
 
 void vertex() {
 	mat4 modified_model_view;
@@ -99,7 +101,14 @@ void fragment() {
 	vec2 frame = vec2(current_frame, _direction);
 	vec2 frame_size = vec2(f_ncolumns, f_directions);
 	vec4 tex = texture(sprite_sheet, (UV + frame) / frame_size * vec2(flip, 1.0));
-
+	vec4 final_albedo = tex * modulate;
+	// Handle dithered transparency
+	ivec2 dither_size = textureSize(dither_tex, 0);
+	vec2 f_dither_size = vec2(1.0 / float(dither_size.x), 1.0 / float(dither_size.y));
+	vec2 dither_uv = FRAGCOORD.xy * f_dither_size;
+	float dither_threshold = texture(dither_tex, dither_uv).r;
+	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {
+		discard;
+	}
 	ALBEDO = tex.rgb * modulate.rgb;
-	ALPHA =  tex.a * modulate.a;
 }

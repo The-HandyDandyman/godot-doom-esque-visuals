@@ -14,7 +14,7 @@ var paletteSize:Vector2i = defaultPalSize
 ## Variable just used to test palette offset and palette swap
 var newOffset:Vector2i = Vector2i.ZERO
 var previousPalOffset:Vector2i = newOffset
-var swap:bool = true
+var swap:bool = false
 var paletteRelatedText:String
 
 func paletteSetup(material:ShaderMaterial = palSwapShader, defaultPal:Texture = defaultPALETTE, paletteSwap:Texture = PALETTE_SWAP,paletteOffset:Vector2i = defaultPalOffset,newSize:Vector2i = defaultPalSize):
@@ -27,11 +27,11 @@ func paletteSetup(material:ShaderMaterial = palSwapShader, defaultPal:Texture = 
 
 func setDefaultPalette(paletteTexture:Texture = defaultPALETTE,material:ShaderMaterial = palSwapShader):
 	if paletteTexture == null: return
-	material.set_shader_parameter("origPalette",paletteTexture)
+	material.set_shader_parameter("palette_in",paletteTexture)
 
 func setPaletteSwap(paletteTexture:Texture = PALETTE_SWAP,material:ShaderMaterial = palSwapShader):
 	if paletteTexture == null: return
-	material.set_shader_parameter("palette",paletteTexture)
+	material.set_shader_parameter("palette_out",paletteTexture)
 
 func setPaletteSize(newSize:Vector2i = defaultPalSize,material:ShaderMaterial = palSwapShader):
 	paletteSize = newSize
@@ -44,7 +44,7 @@ func setPaletteOffset(paletteOffset:Vector2i = Vector2i(0,0),material:ShaderMate
 
 func fullPaletteSetup(defaultPal:Texture = defaultPALETTE, paletteSwap:Texture = PALETTE_SWAP,paletteOffset:Vector2i = defaultPalOffset,newSize:Vector2i = defaultPalSize):
 	paletteSetup()
-	adaptPalShader.set_shader_parameter("palette",defaultPal)
+	adaptPalShader.set_shader_parameter("palette_out",defaultPal)
 	
 func _ready():
 	fullPaletteSetup()

@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://cs3kqwey7im23" path="res://shaders/directional_sprite.gdshader" id="1_lj20b"]
 [ext_resource type="Texture2D" uid="uid://dh6yivqkdg1nx" path="res://graphics/asymmetricalDirectionalTest.png" id="2_anqna"]
+[ext_resource type="Texture2D" uid="uid://bcok6fpjogbpt" path="res://graphics/dither/bayer8.png" id="2_avlyq"]
 
 [resource]
 resource_local_to_scene = true
@@ -14,3 +15,4 @@ shader_parameter/frames = 3
 shader_parameter/animframe = 1
 shader_parameter/asymmetrical = true
 shader_parameter/y_billboard = false
+shader_parameter/dither_tex = ExtResource("2_avlyq")

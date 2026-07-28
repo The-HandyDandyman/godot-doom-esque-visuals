@@ -6,9 +6,14 @@ extends Node3D
 @export var environment_a:Environment
 @export var environment_b:Environment
 @onready var skybox:MeshInstance3D = $FullMap/LazySkyboxBecauseThisIsATestMap
+@onready var cameraPoint:AnimationPlayer = $Camera3D/AnimationPlayer
+@export var sky:MeshInstance3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if sky != null:
+		var skyOffset:Vector2 = Vector2(sky.get_surface_override_material(0).get_shader_parameter("offset").x + 0.01 * delta,0)
+		sky.get_surface_override_material(0).set_shader_parameter("offset",skyOffset) # Really shoddy sky autoscroll, just here for demonstration purposes
 	if Input.is_action_just_pressed("ui_cancel"):
 		WorldEnv.environment.fog_enabled = not WorldEnv.environment.fog_enabled
 	if Input.is_action_just_pressed("ui_text_backspace"):
@@ -23,4 +28,9 @@ func _process(delta):
 			newEnvironment = environment_b
 		newEnvironment.fog_enabled = WorldEnv.environment.fog_enabled
 		WorldEnv.environment = newEnvironment
-	Text.text = "Q and E to adjust camera\nA and D to rotate Godot plush\n" + ScreenOverlay.paletteRelatedText + "Escape to toggle fog (Currently set to " + str(WorldEnv.environment.fog_enabled) + ")\nTab to toggle environment\nBackspace to hide instructions"
+	if Input.is_action_just_pressed("ui_text_delete"):
+		if cameraPoint.current_animation != "otherpoint":
+			cameraPoint.play("otherpoint")
+		else:
+			cameraPoint.play("RESET")
+	Text.text = "Q and E to adjust camera\nA and D to rotate Godot plush\n" + ScreenOverlay.paletteRelatedText + "Escape to toggle fog (Currently set to " + str(WorldEnv.environment.fog_enabled) + ")\nTab to toggle environment\nDel to switch view\nBackspace to hide instructions"
