@@ -11,9 +11,10 @@ stock assets seperate from my original project, specifically to act as a way to 
 - My improved multi-directional sprite shader built off of the original more primtive shader by dron1885 on Reddit, which now includes the ability to adjust the amount of directions and animation frames, the ability for asymmetry, the ability to scale,
 Y-billboarding and the ability to modulate! If you'd like more info, check the credits and read the instructions in the link!
 
-- A modified triplanar texture shader based on the one by Soup-o-Stat which is designed to give you options for culling, flip textures if the culling is off or the textures just don't render on the right side, along with the ability to rotate and offset the texture! Also uses a bit of the transparency dither shader by jacob on Godot Shaders in order to apply transparency!
+- A modified triplanar texture shader based on the one by Soup-o-Stat which is designed to give you options for culling, flip textures if the culling is off or the textures just don't render on the right side, along with the ability to rotate and offset the texture! Also uses dithered transparency, the dithering pattern of which can be customized!
 
-- Several public Godot shaders I've used for the project: particularly, tetrabrobpy's N64 Sky and ALT_OhDude's adapt-to-paletete shader!
+- tetrabrobpy's N64 Sky, with very minimal alteration to add a transparent toggle which discards transparent pixels! You can use that in order to make layered skies!
+- ALT_OhDude's adapt-to-paletete shader.. mostly unaltered, if it ain't broke, don't fix it!
 
 - A modified screen palette shader based on the one by Badger_ on Godot Shaders, which allows you to both palette swap the whole screen after applying the adapt-to-palette shader first and to offset the colors!
 
@@ -28,6 +29,8 @@ using APirateHat's Godot Plushie model!
 ( https://forum.godotengine.org/t/seeking-advice-regarding-attempts-to-replicate-the-behavior-of-doom-style-lighting/139445 )
 to discuss the matter and try and figure out a good way to implement that sort of system,
 though at the moment I'm currently experimenting to see what methods would work best for the kind of technique I'm trying to replicate.
+
+- I may try and find a way to make the directional sprite shader work with Sprite3Ds, at the moment you kind of have to measure them based on other sprites as they use MeshInstance3Ds though I hope to remedy that issue in the future.
 
 
 -----
@@ -52,10 +55,15 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 
 [ Triplanar Texture Shader - https://github.com/Soup-o-Stat/Triplanar-Texture-Shader
 
-   Originally Shader by Soup-o-Stat on Github, Extra Adjustments by Dandy ]
+   Original Shader by Soup-o-Stat on Github, Extra Adjustments by Dandy ]
 
 [ Transparency Dither Shader - https://godotshaders.com/shader/transparency-dither/ 
-            Created by jacob on Godot Shaders, used partially for the dithered transparency in the triplanar shader]
+
+  Created by jacob on Godot Shaders, used partially for the dithered transparency (specifically for the transparency part) ]
+    
+[ General Dither Shader - https://sambigos.itch.io/godot-dither-shader
+
+   Created by sam.bigos on Itch.io, used partially for the dithered transparency (specifically the customizable dither pattern) ]
 
 [ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
