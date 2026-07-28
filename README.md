@@ -11,7 +11,7 @@ stock assets seperate from my original project, specifically to act as a way to 
 - My improved multi-directional sprite shader built off of the original more primtive shader by dron1885 on Reddit, which now includes the ability to adjust the amount of directions and animation frames, the ability for asymmetry, the ability to scale,
 Y-billboarding and the ability to modulate! If you'd like more info, check the credits and read the instructions in the link!
 
-- A modified triplanar texture shader based on the one by Soup-o-Stat which is designed to give you options for culling, flip textures if the culling is off or the textures just don't render on the right side, along with the ability to rotate and offset the texture! Also uses dithered transparency, the dithering pattern of which can be customized!
+- A modified triplanar texture shader based on the one by Soup-o-Stat which is designed to give you options for culling, flip textures if the culling is off or the textures just don't render on the right side, along with the ability to rotate and offset the texture! Also allows for masks and overlays which can also be adjusted to fit your needs, dithered transparency with a customizable dither texture to suit whatever dither pattern fits your needs most!
 
 - tetrabrobpy's N64 Sky, with very minimal alteration to add a transparent toggle which discards transparent pixels! You can use that in order to make layered skies!
 - ALT_OhDude's adapt-to-paletete shader.. mostly unaltered, if it ain't broke, don't fix it!
