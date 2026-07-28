@@ -715,6 +715,7 @@ shader_parameter/mask_rotation = 0
 shader_parameter/mask_back_flip = false
 shader_parameter/mask_intensity = 0.0
 shader_parameter/mask_world_pos = true
+shader_parameter/overlay_texture = ExtResource("19_v6r00")
 shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
 shader_parameter/overlay_scale = 1.0
 shader_parameter/overlay_offset = Vector2(0, 0)
@@ -722,7 +723,7 @@ shader_parameter/overlay_rotation = 0
 shader_parameter/flip_overlay = false
 shader_parameter/backflip_overlay = false
 shader_parameter/overlay_world_pos = true
-shader_parameter/front_mask_overlay = 0
+shader_parameter/front_mask_overlay = 1
 shader_parameter/use_back_mask_overlay = false
 shader_parameter/back_mask_overlay = 0
 
@@ -1683,10 +1684,11 @@ orientation = 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bce4m"]
 render_priority = 0
 shader = ExtResource("6_0d08v")
+shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
-shader_parameter/texture_albedo = ExtResource("6_hiahu")
+shader_parameter/texture_albedo = ExtResource("19_eyxet")
 shader_parameter/modulate = Color(0.93333334, 0.6666667, 0.36078432, 1)
 shader_parameter/tile_scale = 1.0
 shader_parameter/texture_offset = Vector2(0, 0)
@@ -1694,11 +1696,12 @@ shader_parameter/rotation_degrees = 0
 shader_parameter/fix_back = true
 shader_parameter/flip_texture = false
 shader_parameter/tex_world_pos = true
+shader_parameter/mask_texture = ExtResource("18_0inlb")
 shader_parameter/mask_scale = 1.0
 shader_parameter/mask_offset = Vector2(0, 0)
 shader_parameter/mask_rotation = 0
 shader_parameter/mask_back_flip = false
-shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_intensity = 0.250000011875
 shader_parameter/mask_world_pos = true
 shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
 shader_parameter/overlay_scale = 1.0
@@ -1715,10 +1718,11 @@ shader_parameter/back_mask_overlay = 0
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_bce4m")
 shader = ExtResource("6_0d08v")
+shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
-shader_parameter/texture_albedo = ExtResource("6_hiahu")
+shader_parameter/texture_albedo = ExtResource("19_eyxet")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/tile_scale = 1.0
 shader_parameter/texture_offset = Vector2(0, 0)
@@ -1726,11 +1730,12 @@ shader_parameter/rotation_degrees = 0
 shader_parameter/fix_back = true
 shader_parameter/flip_texture = false
 shader_parameter/tex_world_pos = true
+shader_parameter/mask_texture = ExtResource("18_0inlb")
 shader_parameter/mask_scale = 1.0
 shader_parameter/mask_offset = Vector2(0, 0)
 shader_parameter/mask_rotation = 0
 shader_parameter/mask_back_flip = false
-shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_intensity = 0.250000011875
 shader_parameter/mask_world_pos = true
 shader_parameter/overlay_texture = ExtResource("19_v6r00")
 shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
@@ -2395,7 +2400,7 @@ mesh = SubResource("PlaneMesh_q1nm7")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D36" type="MeshInstance3D" parent="FullMap/Map" unique_id=867432679]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 1, -1.5)
+transform = Transform3D(-0.9999999, 0, 1.4901161e-07, 0, 1, 0, -1.4901161e-07, 0, -0.9999999, 2, 1, -1.5)
 mesh = SubResource("PlaneMesh_xfpul")
 skeleton = NodePath("../../..")
 
@@ -2420,7 +2425,7 @@ mesh = SubResource("PlaneMesh_6xgmv")
 skeleton = NodePath("../../..")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1948516196]
-transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -3, 1, -6)
+transform = Transform3D(0.9659259, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, 0.9659258, -3, 1, -6)
 script = ExtResource("10_wbs4n")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D" unique_id=1560305235]

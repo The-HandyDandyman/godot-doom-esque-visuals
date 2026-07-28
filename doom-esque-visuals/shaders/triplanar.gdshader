@@ -52,7 +52,12 @@ varying vec3 abs_normal;
 
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
+	world_normal = normalize(mat3(mat4( // set normals to absolute to prevent the texture from flipping backwards when the mesh is rotated
+		abs(MODEL_MATRIX[0]),
+		abs(MODEL_MATRIX[1]),
+		abs(MODEL_MATRIX[2]),
+		abs(MODEL_MATRIX[3])
+	)) * NORMAL);
 	base_uv = UV;
 }
 
