@@ -23,6 +23,10 @@ using APirateHat's Godot Plushie model!
 
 - A modified version of a test map I had been using in the unrelated personal project that served as part of the reason I created this repo.
 
+- A simple transition manager with a screen melt shader transition attached to it using a modified version of ericalfaro's Pixel Melt shader!
+
+- Stock music from Microsoft Music Producer (wouldn't recommend using the audio or the midi outside of the sample project here)
+
 -- What am I seeking to include in the future? --
 
 - The big one at the moment is sector-based lighting: I've opened a thread on the Godot Forums you can find at this link
@@ -67,6 +71,9 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 
 [ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
+[ Pixel Melt Shader - https://godotshaders.com/shader/pixel-melt/
+
+   Created by ericalfaro on Godot Shaders]
 
 [ Rest of the graphical assets are created from stock images pulled from OpenGameArt and Wikimedia Commons ]
 
