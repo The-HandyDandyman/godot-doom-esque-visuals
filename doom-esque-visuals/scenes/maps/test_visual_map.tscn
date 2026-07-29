@@ -12,11 +12,15 @@
 [ext_resource type="Shader" uid="uid://jwy36pp0ptuu" path="res://shaders/triplanar.gdshader" id="6_0d08v"]
 [ext_resource type="Texture2D" uid="uid://dtgewxk4mfpls" path="res://graphics/brickTexture.png" id="6_hiahu"]
 [ext_resource type="Texture2D" uid="uid://braytkvs1i5xk" path="res://graphics/transparencyTestSprite.png" id="8_10jm7"]
+[ext_resource type="Texture2D" uid="uid://d1ncxop77tslk" path="res://graphics/dither/blue_noise.png" id="8_t8kl2"]
 [ext_resource type="Script" uid="uid://fhym4fu2sfvl" path="res://scripts/transparency_tester.gd" id="9_t8kl2"]
+[ext_resource type="Texture2D" uid="uid://ct0321kcmu20" path="res://graphics/dither/bayer16.png" id="10_5yamh"]
 [ext_resource type="Texture2D" uid="uid://ch6s812wvvpwy" path="res://graphics/bushTexture.png" id="10_f0hix"]
 [ext_resource type="Script" uid="uid://77vsu21lgba8" path="res://scripts/camera_3d.gd" id="10_wbs4n"]
 [ext_resource type="Texture2D" uid="uid://dj3glbwx8fqyw" path="res://graphics/MountainsAndVillageTexture.png" id="11_v6r00"]
 [ext_resource type="Script" uid="uid://qcgix3qllosw" path="res://scripts/directional_object_2.gd" id="12_10jm7"]
+[ext_resource type="Texture2D" uid="uid://d308nmgxf4tm0" path="res://graphics/dither/bayer4.png" id="12_pqenq"]
+[ext_resource type="Texture2D" uid="uid://g61a65pb8jw6" path="res://graphics/dither/bayer2.png" id="13_5qdoq"]
 [ext_resource type="Texture2D" uid="uid://3xbgx2lh7k6c" path="res://graphics/checkerboardTexture.png" id="13_umug6"]
 [ext_resource type="Texture2D" uid="uid://2djhen2h8wme" path="res://graphics/brickGateMask.png" id="14_au4xj"]
 [ext_resource type="Texture2D" uid="uid://6rofgxx6iu7m" path="res://graphics/ceilingTexture.png" id="14_ntolb"]
@@ -30,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://cy3p4s4oqm1ww" path="res://graphics/window.png" id="19_yv2o7"]
 [ext_resource type="Texture2D" uid="uid://bcok6fpjogbpt" path="res://graphics/dither/bayer8.png" id="20_anwq7"]
 [ext_resource type="Texture2D" uid="uid://dk273og2pkwty" path="res://graphics/directionTest.png" id="30_t8kl2"]
+[ext_resource type="AudioStream" uid="uid://ba011hsio7qjy" path="res://sound/danceHopTrackForDoomesqueRealReal.mp3" id="35_pqenq"]
 
 [sub_resource type="Theme" id="Theme_7cfve"]
 default_font = ExtResource("1_5l6uk")
@@ -2057,7 +2062,7 @@ _data = {
 &"otherpoint": SubResource("Animation_v6r00")
 }
 
-[node name="MAP_000" type="Node3D" unique_id=614603824 node_paths=PackedStringArray("sky")]
+[node name="Map" type="Node3D" unique_id=614603824 node_paths=PackedStringArray("sky")]
 script = ExtResource("1_fq3v1")
 environment_a = ExtResource("3_vogo8")
 environment_b = ExtResource("3_gk7wh")
@@ -2082,11 +2087,13 @@ theme = SubResource("Theme_7cfve")
 theme_override_constants/outline_size = 3
 text = "Q and E to adjust camera
 A and D to rotate Godot plush
-Enter to toggle palette swap (Currently set to true)
+Enter to toggle palette swap (Currently set to false)
 Arrow keys to set palette offset (0,0)
 Escape to toggle fog (Currently set to false)
 Tab to toggle environment
 Delete to switch view
+R and T to adjust ghost opacity
+H to switch ghost dither texture
 Backspace to hide instructions"
 horizontal_alignment = 2
 
@@ -2116,6 +2123,7 @@ double_sided = false
 texture_filter = 0
 texture = ExtResource("8_10jm7")
 script = ExtResource("9_t8kl2")
+dither_textures = Array[Texture2D]([ExtResource("20_anwq7"), ExtResource("10_5yamh"), ExtResource("8_t8kl2"), ExtResource("12_pqenq"), ExtResource("13_5qdoq")])
 metadata/sector_tag = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FullMap/Props/TransparencyTest" unique_id=1280554569]
@@ -2590,3 +2598,9 @@ script = ExtResource("10_wbs4n")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D" unique_id=1560305235]
 libraries/ = SubResource("AnimationLibrary_anwq7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=982813731]
+process_mode = 3
+stream = ExtResource("35_pqenq")
+volume_db = -4.0
+autoplay = true

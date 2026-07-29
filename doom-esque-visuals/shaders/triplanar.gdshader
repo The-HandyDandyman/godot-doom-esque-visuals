@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled; // Since this is set to cull_disabled, it will render both sides in most situations
 
-uniform sampler2D dither_tex : repeat_enable,filter_nearest;
+uniform sampler2D dither_tex : repeat_enable,filter_nearest,source_color,hint_default_white;
 
 uniform float blend_sharpness = 4.0;
 uniform bool render_front = true;

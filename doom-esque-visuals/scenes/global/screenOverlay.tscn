@@ -31,6 +31,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PaletteTest" type="TextureRect" parent="ScreenOverlay/OverlayB" unique_id=549930887]
+visible = false
 z_index = 998
 texture_filter = 1
 offset_right = 80.0

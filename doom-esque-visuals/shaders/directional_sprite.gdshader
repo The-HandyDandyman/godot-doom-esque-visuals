@@ -7,7 +7,7 @@ render_mode unshaded, depth_prepass_alpha, depth_draw_opaque;
 // Rows inbetween - consecutive rotations
 
 uniform vec4 modulate : source_color = vec4(1.0,1.0,1.0,1.0);
-uniform sampler2D sprite_sheet: filter_nearest;
+uniform sampler2D sprite_sheet: source_color,filter_nearest,hint_default_transparent;
 
 // Total rows and columns
 uniform int directions = 8;

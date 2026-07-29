@@ -1,5 +1,5 @@
 shader_type canvas_item;
-uniform sampler2D palette: filter_nearest, repeat_disable;
+uniform sampler2D palette: filter_nearest, repeat_disable,source_color;
 
 void fragment() {
 	vec4 rgba = texture(TEXTURE, UV);

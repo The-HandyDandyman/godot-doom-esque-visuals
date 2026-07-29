@@ -2,9 +2,9 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 
 // palette that will be displayed on the screen
-uniform sampler2D palette_out: filter_nearest;
+uniform sampler2D palette_out: filter_nearest,source_color;
 // original palette
-uniform sampler2D palette_in: filter_nearest;
+uniform sampler2D palette_in: filter_nearest,source_color;
 // number of colors in palettes, horizontally and vertically.
 uniform ivec2 paletteSize;
 // the palette's offset in pixels

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b2xqbdc34emhf"]
+
+[ext_resource type="Shader" uid="uid://cu1h2mdcir8dj" path="res://shaders/screen_melt.gdshader" id="1_f6m8m"]
+[ext_resource type="Script" uid="uid://dpjbmw1mhsxbv" path="res://scripts/transition_manager.gd" id="1_t60f8"]
+[ext_resource type="Texture2D" uid="uid://c0lbugvn7unwf" path="res://graphics/splashscreen.png" id="2_t60f8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cfve"]
+shader = ExtResource("1_f6m8m")
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 1.0
+shader_parameter/pixel_melt_chunk_length = 2
+
+[node name="TransitionManager" type="Control" unique_id=632992921 node_paths=PackedStringArray("melt_transition")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t60f8")
+melt_transition = NodePath("transitionLayer/currentImage")
+
+[node name="transitionLayer" type="CanvasLayer" parent="." unique_id=723232604]
+layer = 999
+
+[node name="currentImage" type="TextureRect" parent="transitionLayer" unique_id=1401086168]
+visible = false
+material = SubResource("ShaderMaterial_7cfve")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t60f8")
