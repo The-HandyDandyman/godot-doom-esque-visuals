@@ -5,12 +5,18 @@ uniform bool y_billboard = false; // Enables Y-Billboarding when true
 uniform sampler2D sprite_texture: source_color, filter_nearest;
 
 group_uniforms Dither;
-
 uniform sampler2D dither_tex : repeat_enable,filter_nearest;
 uniform float dither_scale = 1.0;
 
+group_uniforms Lighting;
+uniform sampler2D lightmap:hint_default_white,filter_nearest;
+uniform vec2 lightmap_size = vec2(1.0);
+uniform vec2 lightmap_offset = vec2(0.0);
+
+varying vec3 world_position;
 
 void vertex() {
+	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	if (y_billboard == true) {
 		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(normalize(cross(vec3(0.0, 1.0, 0.0), INV_VIEW_MATRIX[2].xyz)), 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0), MODEL_MATRIX[3]);
 	}
@@ -37,5 +43,8 @@ void fragment() {
 	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {
 		discard;
 	}
-	ALBEDO = final_albedo.rgb;
+	// Handle lighting
+	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
+	vec4 light = texture(lightmap,(world_position.xz * actual_lightmap_size) + lightmap_offset);
+	ALBEDO = final_albedo.rgb * light.rgb;
 }

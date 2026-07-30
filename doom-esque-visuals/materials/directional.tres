@@ -4,6 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://dh6yivqkdg1nx" path="res://graphics/asymmetricalDirectionalTest.png" id="2_anqna"]
 [ext_resource type="Texture2D" uid="uid://bcok6fpjogbpt" path="res://graphics/dither/bayer8.png" id="2_avlyq"]
 
+[sub_resource type="Gradient" id="Gradient_pqenq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.1171875, 0.296875, 0.4765625, 0.5546875, 0.640625, 0.7890625, 0.9296875)
+colors = PackedColorArray(0, 0, 1, 1, 0, 0.34117648, 1, 1, 0.17641911, 0.17641908, 0.17641908, 1, 0, 0.40784314, 0, 1, 1, 0.3882353, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_avlyq"]
+gradient = SubResource("Gradient_pqenq")
+width = 1024
+height = 1024
+fill_from = Vector2(0, 1)
+
 [resource]
 resource_local_to_scene = true
 render_priority = 0
@@ -17,3 +28,6 @@ shader_parameter/asymmetrical = true
 shader_parameter/y_billboard = false
 shader_parameter/dither_tex = ExtResource("2_avlyq")
 shader_parameter/dither_scale = 1.0
+shader_parameter/lightmap = SubResource("GradientTexture2D_avlyq")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)

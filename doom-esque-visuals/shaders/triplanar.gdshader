@@ -2,10 +2,13 @@ shader_type spatial;
 render_mode unshaded, cull_disabled; // Since this is set to cull_disabled, it will render both sides in most situations
 
 uniform float blend_sharpness = 4.0;
-uniform sampler2D dither_tex : repeat_enable,filter_nearest,source_color,hint_default_white;
-uniform float dither_scale = 1.0;
 uniform bool render_front = true;
 uniform bool render_back = true;
+
+group_uniforms Dither;
+uniform sampler2D dither_tex : repeat_enable,filter_nearest,source_color,hint_default_white;
+uniform float dither_scale = 1.0;
+
 
 group_uniforms Texture;
 
@@ -42,6 +45,11 @@ uniform bool overlay_world_pos = true;
 uniform int front_mask_overlay:hint_range(-1,1);
 uniform bool use_back_mask_overlay = false;
 uniform int back_mask_overlay:hint_range(-1,1);
+
+group_uniforms Lighting;
+uniform sampler2D lightmap:hint_default_white,filter_nearest;
+uniform vec2 lightmap_size = vec2(1.0);
+uniform vec2 lightmap_offset = vec2(0.0);
 
 varying vec3 world_position;
 varying vec2 base_uv;
@@ -160,5 +168,8 @@ void fragment() {
 	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {
 		discard;
 	}
-	ALBEDO = final_albedo.rgb;
+	// Handle lighting
+	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
+	vec4 light = texture(lightmap,(world_position.xz * actual_lightmap_size) + lightmap_offset);
+	ALBEDO = final_albedo.rgb * light.rgb;
 }

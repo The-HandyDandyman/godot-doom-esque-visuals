@@ -24,10 +24,16 @@ group_uniforms Dither;
 uniform sampler2D dither_tex : repeat_enable,filter_nearest;
 uniform float dither_scale = 1.0;
 
-varying vec3 look_dir;
+group_uniforms Lighting;
+uniform sampler2D lightmap:hint_default_white,filter_nearest;
+uniform vec2 lightmap_size = vec2(1.0);
+uniform vec2 lightmap_offset = vec2(0.0);
 
+varying vec3 look_dir;
+varying vec3 world_position;
 
 void vertex() {
+	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	mat4 modified_model_view;
 	if (y_billboard){ // Y-Billboard
 		modified_model_view = VIEW_MATRIX * mat4(
@@ -114,5 +120,8 @@ void fragment() {
 	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {
 		discard;
 	}
-	ALBEDO = tex.rgb * modulate.rgb;
+	// Handle lighting
+	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
+	vec4 light = texture(lightmap,(world_position.xz * actual_lightmap_size) + lightmap_offset);
+	ALBEDO = tex.rgb * modulate.rgb * light.rgb;
 }
