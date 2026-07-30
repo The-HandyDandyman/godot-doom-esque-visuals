@@ -1,9 +1,9 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled; // Since this is set to cull_disabled, it will render both sides in most situations
 
-uniform sampler2D dither_tex : repeat_enable,filter_nearest,source_color,hint_default_white;
-
 uniform float blend_sharpness = 4.0;
+uniform sampler2D dither_tex : repeat_enable,filter_nearest,source_color,hint_default_white;
+uniform float dither_scale = 1.0;
 uniform bool render_front = true;
 uniform bool render_back = true;
 
@@ -154,7 +154,7 @@ void fragment() {
 	}
 	// Handle dithered transparency
 	ivec2 dither_size = textureSize(dither_tex, 0);
-	vec2 f_dither_size = vec2(1.0 / float(dither_size.x), 1.0 / float(dither_size.y));
+	vec2 f_dither_size = vec2(1.0 / float(dither_size.x), 1.0 / float(dither_size.y)) * vec2(1.0 / dither_scale);
 	vec2 dither_uv = FRAGCOORD.xy * f_dither_size;
 	float dither_threshold = texture(dither_tex, dither_uv).r;
 	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {

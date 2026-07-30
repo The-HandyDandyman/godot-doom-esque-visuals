@@ -16,3 +16,4 @@ shader_parameter/animframe = 1
 shader_parameter/asymmetrical = true
 shader_parameter/y_billboard = false
 shader_parameter/dither_tex = ExtResource("2_avlyq")
+shader_parameter/dither_scale = 1.0

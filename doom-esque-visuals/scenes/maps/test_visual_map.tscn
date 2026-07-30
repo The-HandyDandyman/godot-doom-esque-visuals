@@ -46,6 +46,7 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("10_f0hix")
 shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfpul"]
 render_priority = 0
@@ -54,6 +55,7 @@ shader_parameter/modulate = Color(0.93333334, 0.6666667, 0.36078432, 0.7490196)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("8_10jm7")
 shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 
 [sub_resource type="Animation" id="Animation_tdlcb"]
 resource_name = "RESET"
@@ -101,6 +103,7 @@ shader_parameter/modulate = Color(0.42745098, 0.42745098, 0.42745098, 1)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("10_f0hix")
 shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y70l8"]
 render_priority = 0
@@ -109,6 +112,7 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("10_f0hix")
 shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_okc5b"]
 render_priority = 0
@@ -117,6 +121,7 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("10_f0hix")
 shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghvj4"]
 render_priority = 0
@@ -125,6 +130,7 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("10_f0hix")
 shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pto52"]
 lightmap_size_hint = Vector2i(8, 10)
@@ -302,6 +308,7 @@ load_path = "res://.godot/imported/ceilingTexture.png-7e4da25657914a5f3f9d259104
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = SubResource("CompressedTexture2D_au4xj")
@@ -334,6 +341,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_vogo8")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("14_ntolb")
@@ -368,6 +376,7 @@ size = Vector2(4, 8)
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = SubResource("CompressedTexture2D_au4xj")
@@ -400,6 +409,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_f0hix")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("14_ntolb")
@@ -470,6 +480,7 @@ size = Vector2(40, 12)
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("4_eyxet")
@@ -516,6 +527,7 @@ size = Vector2(4, 8)
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("13_umug6")
@@ -550,6 +562,7 @@ size = Vector2(4, 8)
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("4_eyxet")
@@ -581,6 +594,7 @@ shader_parameter/back_mask_overlay = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("5_lye5c")
@@ -624,8 +638,9 @@ orientation = 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i41x2"]
 render_priority = 0
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("19_eyxet")
@@ -665,6 +680,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -703,6 +719,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -742,6 +759,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -780,6 +798,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -814,6 +833,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_hiahu")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -852,6 +872,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -890,6 +911,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -928,6 +950,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("30_t8kl2")
@@ -964,6 +987,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -998,6 +1022,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_5qdoq")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1035,8 +1060,9 @@ orientation = 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tv3nu"]
 render_priority = 0
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1070,8 +1096,9 @@ shader_parameter/back_mask_overlay = 0
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_tv3nu")
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1110,6 +1137,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1165,8 +1193,9 @@ load_path = "res://.godot/imported/window.png-be013d7dd74bd54d9a2ceb24aee93413.s
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lye5c"]
 render_priority = 1
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = SubResource("CompressedTexture2D_0inlb")
@@ -1195,149 +1224,43 @@ shader_parameter/front_mask_overlay = 0
 shader_parameter/use_back_mask_overlay = false
 shader_parameter/back_mask_overlay = 0
 
-[sub_resource type="Shader" id="Shader_10jm7"]
-code = "shader_type spatial;
-render_mode unshaded, cull_disabled, depth_draw_opaque; // Since this is set to cull_disabled, it will render both sides in most situations
-
-uniform float alpha_scissor_threshold : hint_range(0.0, 1.0, 0.001);
-
-const vec3 dither = vec3(0.06711056f, 0.00583715f, 52.9829189f);
-
-uniform sampler2D texture_albedo:source_color,filter_nearest; 
-uniform vec4 modulate : source_color = vec4(255,255,255,255);
-
-uniform float tile_scale = 1.0;
-varying vec2 texture_ratio;
-uniform float blend_sharpness = 4.0;
-uniform vec2 texture_offset;
-uniform int rotation_degrees:hint_range(-360,360);
-
-uniform bool render_front = true;
-uniform bool render_back = true;
-// if the texture is displaying flipped, use this to fix it up!
-uniform bool fix_back = false;
-uniform bool flip_texture = false;
-
-
-uniform sampler2D mask_texture:source_color,filter_nearest; 
-uniform float mask_scale = 1.0;
-varying vec2 mask_ratio;
-uniform vec2 mask_offset;
-uniform int mask_rotation:hint_range(-360,360);
-
-uniform bool mask_back_flip = false;
-uniform float mask_intensity:hint_range(0.0,1.0) = 0.0;
-
-varying vec3 world_position;
-varying vec3 world_normal;
-
-void vertex() {
-    world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
-}
-
-void fragment() {
-	// Get texture size and ratio
-	vec2 texture_size = vec2(textureSize(texture_albedo,0));
-	texture_ratio = vec2(1.0,texture_size.x/texture_size.y);
-	// Get mask size and ratio
-	vec2 mask_size = vec2(textureSize(mask_texture,0));
-	mask_ratio = vec2(1.0,mask_size.x/mask_size.y);
-	if (!render_front && FRONT_FACING){ //Discard if render front or render back are disabled
-		discard;
-	}
-	if (!render_back && !FRONT_FACING){
-		discard;
-	}
-    vec3 n = normalize(world_normal);
-    vec3 abs_normal = abs(n);
-    
-    float top_weight = pow(abs_normal.y, blend_sharpness);
-    float side_x_weight = pow(abs_normal.x, blend_sharpness);
-    float side_z_weight = pow(abs_normal.z, blend_sharpness);
-    float total_weight = top_weight + side_x_weight + side_z_weight;
-    
-    top_weight /= total_weight;
-    side_x_weight /= total_weight;
-    side_z_weight /= total_weight;
-    
-    vec2 uv_top = world_position.xz / -tile_scale * texture_ratio;
-    vec2 uv_side_x = world_position.zy / -tile_scale * texture_ratio;
-    vec2 uv_side_z = world_position.xy / -tile_scale * texture_ratio;
-   
-    vec2 uv = (top_weight > side_x_weight && top_weight > side_z_weight) ? uv_top :
-               (side_x_weight > side_z_weight) ? uv_side_x : uv_side_z;
-	uv += vec2(texture_offset) / texture_size;
-	// Convert degree integer to a float in radians
-	float rad = radians(float(rotation_degrees));
-	// Calculate sine and cosine of the angle
-	float sin_angle = sin(rad);
-	float cos_angle = cos(rad);
-	// apply sine and cosine
-	uv = vec2(uv.x * cos_angle - uv.y * sin_angle,uv.x * sin_angle + uv.y * cos_angle);
-	if (!FRONT_FACING && fix_back){ // flip horizontally if true
-		uv.x = -uv.x;
-	}
-	if (flip_texture){
-		uv.x = -uv.x;
-	}
-	
-	// repeat process for mask
-	uv_top = world_position.xz / -mask_scale * mask_ratio;
-	uv_side_x = world_position.zy / -mask_scale * mask_ratio;
-	uv_side_z = world_position.xy / -mask_scale * mask_ratio;
-	vec2 mask_uv = (top_weight > side_x_weight && top_weight > side_z_weight) ? uv_top :
-               (side_x_weight > side_z_weight) ? uv_side_x : uv_side_z;
-	mask_uv += vec2(mask_offset) / mask_size;
-	rad = radians(float(mask_rotation));
-	sin_angle = sin(rad);
-	cos_angle = cos(rad);
-	mask_uv = vec2(mask_uv.x * cos_angle - mask_uv.y * sin_angle,mask_uv.x * sin_angle + mask_uv.y * cos_angle);
-	if (!FRONT_FACING && fix_back){ // flip horizontally if true
-		mask_uv.x = -mask_uv.x;
-	}
-	if (flip_texture){
-		mask_uv.x = -mask_uv.x;
-	}
-	if (mask_back_flip && !FRONT_FACING){
-		mask_uv.x = -mask_uv.x;
-	}
-	// Set up final albedo, then multiply alpha by texture mask
-	vec4 final_albedo = texture(texture_albedo, uv);
-	final_albedo.a *= texture(mask_texture,mask_uv).r + mask_intensity;
-	final_albedo *= modulate;
-	
-	if (final_albedo.a < 0.001 || final_albedo.a < fract(dither.z * fract(dot(FRAGCOORD.xy, dither.xy)))) { // dither transparency
-		discard;
-	}
-	ALBEDO = final_albedo.rgb;
-	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8kl2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ph3c"]
 render_priority = 0
-shader = SubResource("Shader_10jm7")
-shader_parameter/alpha_scissor_threshold = 0.0
+shader = ExtResource("6_0d08v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/tile_scale = 1.0
-shader_parameter/blend_sharpness = 4.0
 shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/rotation_degrees = 0
-shader_parameter/render_front = true
-shader_parameter/render_back = true
 shader_parameter/fix_back = true
 shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
 shader_parameter/mask_texture = ExtResource("18_woe0t")
 shader_parameter/mask_scale = 1.0
 shader_parameter/mask_offset = Vector2(0, 0)
 shader_parameter/mask_rotation = 0
 shader_parameter/mask_back_flip = false
 shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_texture = ExtResource("19_v6r00")
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7f85u"]
 lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("ShaderMaterial_t8kl2")
+material = SubResource("ShaderMaterial_6ph3c")
 size = Vector2(1, 2)
 orientation = 0
 
@@ -1345,6 +1268,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1377,6 +1301,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_pqenq")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1414,8 +1339,9 @@ orientation = 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_34lvq"]
 render_priority = 1
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("19_yv2o7")
@@ -1448,8 +1374,9 @@ shader_parameter/back_mask_overlay = 0
 render_priority = 1
 next_pass = SubResource("ShaderMaterial_34lvq")
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("19_yv2o7")
@@ -1482,6 +1409,7 @@ shader_parameter/back_mask_overlay = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1510,30 +1438,40 @@ shader_parameter/front_mask_overlay = 0
 shader_parameter/use_back_mask_overlay = false
 shader_parameter/back_mask_overlay = 0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5qdoq"]
-load_path = "res://.godot/imported/brickTexture.png-f06d0353fcddd7128180cd7cd7a5efcd.s3tc.ctex"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqjuv"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_ytx8d")
-shader = SubResource("Shader_10jm7")
-shader_parameter/alpha_scissor_threshold = 0.0
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_5qdoq")
-shader_parameter/modulate = Color(1, 1, 1, 1)
-shader_parameter/tile_scale = 1.0
+shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
-shader_parameter/texture_offset = Vector2(0, 0)
-shader_parameter/rotation_degrees = 0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
+shader_parameter/texture_albedo = ExtResource("6_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
 shader_parameter/fix_back = true
 shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
 shader_parameter/mask_texture = ExtResource("18_woe0t")
 shader_parameter/mask_scale = 1.0
 shader_parameter/mask_offset = Vector2(0, 0)
 shader_parameter/mask_rotation = 0
 shader_parameter/mask_back_flip = false
 shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_texture = ExtResource("19_v6r00")
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h5lua"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1545,6 +1483,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1577,6 +1516,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_rvo57")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1622,16 +1562,14 @@ material = SubResource("ShaderMaterial_bo68a")
 size = Vector2(8, 2)
 orientation = 0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f0hix"]
-load_path = "res://.godot/imported/brickTexture.png-f06d0353fcddd7128180cd7cd7a5efcd.s3tc.ctex"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08jpx"]
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_f0hix")
+shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(0.42745098, 0.42745098, 0.42745098, 1)
 shader_parameter/tile_scale = 1.0
 shader_parameter/texture_offset = Vector2(0, 0)
@@ -1662,6 +1600,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_08jpx")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1698,8 +1637,9 @@ orientation = 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lneui"]
 render_priority = 1
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("19_yv2o7")
@@ -1732,8 +1672,9 @@ shader_parameter/back_mask_overlay = 0
 render_priority = 1
 next_pass = SubResource("ShaderMaterial_lneui")
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("19_yv2o7")
@@ -1766,6 +1707,7 @@ shader_parameter/back_mask_overlay = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1800,6 +1742,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_h5lua")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1844,8 +1787,9 @@ orientation = 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bce4m"]
 render_priority = 0
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("19_eyxet")
@@ -1878,8 +1822,9 @@ shader_parameter/back_mask_overlay = 0
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_bce4m")
 shader = ExtResource("6_0d08v")
-shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("19_eyxet")
@@ -1919,6 +1864,7 @@ orientation = 0
 render_priority = 0
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1952,6 +1898,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_tdlcb")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1991,6 +1938,7 @@ render_priority = 0
 next_pass = SubResource("ShaderMaterial_tdlcb")
 shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
+shader_parameter/dither_scale = 1.0
 shader_parameter/render_front = false
 shader_parameter/render_back = true
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
