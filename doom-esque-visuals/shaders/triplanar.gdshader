@@ -50,6 +50,8 @@ group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_offset = vec2(0.0);
+uniform float lightmap_bias = 0.02;
+
 group_uniforms LightMask;
 uniform sampler2D light_mask:hint_default_black,filter_nearest;
 uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
@@ -58,6 +60,7 @@ uniform bool follow_overlay_uv = false;
 varying vec3 world_position;
 varying vec2 base_uv;
 varying vec3 world_normal;
+varying vec3 world_forward;
 
 varying vec3 norm_normal;
 varying vec3 abs_normal;
@@ -69,6 +72,7 @@ vec3 screen(vec3 base, vec3 blend){
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
+	world_forward = normalize(MODEL_MATRIX[2].xyz);
 	base_uv = UV;
 }
 
@@ -148,6 +152,9 @@ void fragment() {
 	}
 	// repeat process for overlay
 	vec2 overlay_uv = uv_calc(overlay_scale,overlay_texture,overlay_offset,overlay_world_pos,overlay_rotation,FRONT_FACING);
+	if (flip_overlay){
+		overlay_uv.x = -overlay_uv.x;
+	}
 	if (backflip_overlay && !FRONT_FACING){
 		overlay_uv.x = -overlay_uv.x;
 	}
@@ -178,7 +185,9 @@ void fragment() {
 	}
 	// Handle lightmap
 	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
-	vec4 light = texture(lightmap,(world_position.xz * actual_lightmap_size) + lightmap_offset);
+	// Create lightmap uv
+	vec2 lightmap_uv = world_position.xz;
+	vec4 light = texture(lightmap,(lightmap_uv * actual_lightmap_size) + lightmap_offset);
 	// Handle light mask
 	vec2 light_mask_uv = mix(uv,overlay_uv,float(follow_overlay_uv));
 	vec3 light_mask_tex = texture(light_mask,light_mask_uv).rgb;

@@ -12,6 +12,7 @@ group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_offset = vec2(0.0);
+uniform bool use_lightmap = true;
 group_uniforms LightMask;
 uniform sampler2D light_mask:hint_default_black,filter_nearest;
 uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
@@ -63,5 +64,6 @@ void fragment() {
 	// Apply light mask to light color
 	vec3 light_mask_tex = texture(light_mask,UV).rgb;
 	vec3 light_color_masked = screen(light_color,light_mask_tex * vec3(light_mask_strength));
+	light_color_masked = mix(light_color_masked,vec3(1.0),1.0 - float(use_lightmap));
 	ALBEDO = final_albedo.rgb * light_color_masked;
 }

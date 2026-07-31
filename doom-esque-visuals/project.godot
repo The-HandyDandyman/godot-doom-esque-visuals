@@ -21,6 +21,7 @@ config/icon="uid://504gsi4p8x1q"
 
 ScreenOverlay="*uid://dwv2myun1ngli"
 TransitionManager="*uid://b2xqbdc34emhf"
+LightingManager="*uid://c5126268nucih"
 
 [display]
 
