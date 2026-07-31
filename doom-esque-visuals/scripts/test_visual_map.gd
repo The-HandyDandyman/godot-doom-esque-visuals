@@ -40,4 +40,4 @@ func _process(delta):
 			cameraPoint.play("otherpoint")
 		else:
 			cameraPoint.play("RESET")
-	Text.text = "Q and E to adjust camera\nA and D to rotate Godot plush\n" + ScreenOverlay.paletteRelatedText + "Escape to toggle fog (Currently set to " + str(WorldEnv.environment.fog_enabled) + ")\nTab to toggle environment\nDel to switch view\nR and T to adjust ghost opacity\nH to switch ghost dither texture\nM to mute music\nBackspace to hide instructions"
+	Text.text = "Q and E to adjust camera\nA and D to rotate Godot plush\nW to toggle Godot plushie rotation\n" + ScreenOverlay.paletteRelatedText + "Escape to toggle fog (Currently set to " + str(WorldEnv.environment.fog_enabled) + ")\nTab to toggle environment\nDel to switch view\nR and T to adjust ghost opacity\nH to switch ghost dither texture\nM to mute music\nBackspace to hide instructions"

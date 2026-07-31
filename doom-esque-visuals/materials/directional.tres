@@ -31,3 +31,4 @@ shader_parameter/dither_scale = 1.0
 shader_parameter/lightmap = SubResource("GradientTexture2D_avlyq")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
+shader_parameter/light_mask_strength = 1.0

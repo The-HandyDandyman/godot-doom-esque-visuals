@@ -46,10 +46,14 @@ uniform int front_mask_overlay:hint_range(-1,1);
 uniform bool use_back_mask_overlay = false;
 uniform int back_mask_overlay:hint_range(-1,1);
 
-group_uniforms Lighting;
+group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_offset = vec2(0.0);
+group_uniforms LightMask;
+uniform sampler2D light_mask:hint_default_black,filter_nearest;
+uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
+uniform bool follow_overlay_uv = false;
 
 varying vec3 world_position;
 varying vec2 base_uv;
@@ -57,6 +61,10 @@ varying vec3 world_normal;
 
 varying vec3 norm_normal;
 varying vec3 abs_normal;
+
+vec3 screen(vec3 base, vec3 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
 
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -168,8 +176,12 @@ void fragment() {
 	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {
 		discard;
 	}
-	// Handle lighting
+	// Handle lightmap
 	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
 	vec4 light = texture(lightmap,(world_position.xz * actual_lightmap_size) + lightmap_offset);
-	ALBEDO = final_albedo.rgb * light.rgb;
+	// Handle light mask
+	vec2 light_mask_uv = mix(uv,overlay_uv,float(follow_overlay_uv));
+	vec3 light_mask_tex = texture(light_mask,light_mask_uv).rgb;
+	vec3 light_color_masked = screen(light.rgb,light_mask_tex * vec3(light_mask_strength));
+	ALBEDO = final_albedo.rgb * light_color_masked;
 }

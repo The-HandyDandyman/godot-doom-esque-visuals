@@ -8,23 +8,30 @@ group_uniforms Dither;
 uniform sampler2D dither_tex : repeat_enable,filter_nearest;
 uniform float dither_scale = 1.0;
 
-group_uniforms Lighting;
+group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_offset = vec2(0.0);
+group_uniforms LightMask;
+uniform sampler2D light_mask:hint_default_black,filter_nearest;
+uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
 
-varying vec3 world_position;
-varying vec3 light_color;
+varying flat vec3 world_origin;
+varying flat vec3 light_color;
+
+vec3 screen(vec3 base, vec3 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
 
 vec3 create_lightmap_color(vec2 offset){
 	// Run the same calculations done for the ground
 	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
-	vec2 lightmap_uv = (world_position.xz * actual_lightmap_size) + lightmap_offset + offset;
+	vec2 lightmap_uv = fract((world_origin.xz * actual_lightmap_size) + lightmap_offset + offset);
 	return texture(lightmap,lightmap_uv).rgb;
 }
 
 void vertex() {
-	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	world_origin = MODEL_MATRIX[3].xyz;
 	if (y_billboard == true) {
 		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(normalize(cross(vec3(0.0, 1.0, 0.0), INV_VIEW_MATRIX[2].xyz)), 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0), MODEL_MATRIX[3]);
 	}
@@ -38,10 +45,8 @@ void vertex() {
 	vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
 	vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
 	vec4(0.0, 0.0, 0.0, 1.0));
-	// Handle lightmap colors
-	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
-	vec2 lightmap_uv = (world_position.xz * actual_lightmap_size) + lightmap_offset;
-	light_color = textureLod(lightmap,lightmap_uv,0.0).rgb;
+	// Handle lightmap colors: we're handling it in here so that way the light is just one color
+	light_color = create_lightmap_color(vec2(0));
 }
 
 void fragment() {
@@ -55,5 +60,8 @@ void fragment() {
 	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {
 		discard;
 	}
-	ALBEDO = final_albedo.rgb * light_color;
+	// Apply light mask to light color
+	vec3 light_mask_tex = texture(light_mask,UV).rgb;
+	vec3 light_color_masked = screen(light_color,light_mask_tex * vec3(light_mask_strength));
+	ALBEDO = final_albedo.rgb * light_color_masked;
 }
