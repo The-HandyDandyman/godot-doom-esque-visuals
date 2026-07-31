@@ -31,7 +31,14 @@ uniform vec2 lightmap_offset = vec2(0.0);
 
 varying vec3 look_dir;
 varying vec3 world_position;
+varying vec3 light_color;
 
+vec3 create_lightmap_color(vec2 offset){
+	// Run the same calculations done for the ground
+	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
+	vec2 lightmap_uv = (world_position.xz * actual_lightmap_size) + lightmap_offset + offset;
+	return texture(lightmap,lightmap_uv).rgb;
+}
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	mat4 modified_model_view;
@@ -64,6 +71,8 @@ void vertex() {
 	vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
 	vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
 	vec4(0.0, 0.0, 0.0, 1.0));
+	// Handle lightmap colors: we're handling it in here so that way the light is just one color
+	light_color = create_lightmap_color(vec2(0));
 }
 
 
@@ -120,8 +129,5 @@ void fragment() {
 	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {
 		discard;
 	}
-	// Handle lighting
-	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
-	vec4 light = texture(lightmap,(world_position.xz * actual_lightmap_size) + lightmap_offset);
-	ALBEDO = tex.rgb * modulate.rgb * light.rgb;
+	ALBEDO = tex.rgb * modulate.rgb * light_color;
 }

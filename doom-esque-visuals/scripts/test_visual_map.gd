@@ -8,6 +8,7 @@ extends Node3D
 @onready var skybox:MeshInstance3D = $FullMap/LazySkyboxBecauseThisIsATestMap
 @onready var cameraPoint:AnimationPlayer = $Camera3D/AnimationPlayer
 @export var sky:MeshInstance3D
+@onready var musicPlayer:AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready():
 	var paletteTest:TextureRect = ScreenOverlay.get_node("ScreenOverlay/OverlayB/PaletteTest")
@@ -22,6 +23,8 @@ func _process(delta):
 		WorldEnv.environment.fog_enabled = not WorldEnv.environment.fog_enabled
 	if Input.is_action_just_pressed("ui_text_backspace"):
 		Text.visible = not Text.visible
+	if Input.is_action_just_pressed("mute"):
+		musicPlayer.volume_db = -80.0 if musicPlayer.volume_db == -4.0 else -4.0
 	if Input.is_action_just_pressed("ui_text_indent"):
 		if environment_a == null or environment_b == null: return
 		skybox.visible = not skybox.visible
@@ -37,4 +40,4 @@ func _process(delta):
 			cameraPoint.play("otherpoint")
 		else:
 			cameraPoint.play("RESET")
-	Text.text = "Q and E to adjust camera\nA and D to rotate Godot plush\n" + ScreenOverlay.paletteRelatedText + "Escape to toggle fog (Currently set to " + str(WorldEnv.environment.fog_enabled) + ")\nTab to toggle environment\nDel to switch view\nR and T to adjust ghost opacity\nH to switch ghost dither texture\nBackspace to hide instructions"
+	Text.text = "Q and E to adjust camera\nA and D to rotate Godot plush\n" + ScreenOverlay.paletteRelatedText + "Escape to toggle fog (Currently set to " + str(WorldEnv.environment.fog_enabled) + ")\nTab to toggle environment\nDel to switch view\nR and T to adjust ghost opacity\nH to switch ghost dither texture\nM to mute music\nBackspace to hide instructions"

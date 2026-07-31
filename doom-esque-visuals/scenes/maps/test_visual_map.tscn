@@ -6,7 +6,6 @@
 [ext_resource type="Environment" uid="uid://b5mgo8xoorbtn" path="res://materials/environment_b.tres" id="3_gk7wh"]
 [ext_resource type="Script" uid="uid://podhph0kdiu1" path="res://scripts/directional_object_preview.gd" id="3_uke3l"]
 [ext_resource type="Environment" uid="uid://b451krfqeoqr6" path="res://materials/environment_a.tres" id="3_vogo8"]
-[ext_resource type="Texture2D" uid="uid://cyxbtgxktd3q5" path="res://graphics/grassTexture.png" id="4_eyxet"]
 [ext_resource type="Shader" uid="uid://semt281lb46i" path="res://shaders/billboard_sprite.gdshader" id="5_hiahu"]
 [ext_resource type="Texture2D" uid="uid://dkcihmwjk3knb" path="res://graphics/fenceTexture.png" id="5_lye5c"]
 [ext_resource type="Shader" uid="uid://jwy36pp0ptuu" path="res://shaders/triplanar.gdshader" id="6_0d08v"]
@@ -41,10 +40,10 @@ default_font = ExtResource("1_5l6uk")
 
 [sub_resource type="Gradient" id="Gradient_pqenq"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.1171875, 0.296875, 0.4765625, 0.5546875, 0.640625, 0.7890625, 0.9296875)
-colors = PackedColorArray(0, 0, 1, 1, 0, 0.34117648, 1, 1, 0.17641911, 0.17641908, 0.17641908, 1, 0, 0.40784314, 0, 1, 1, 0.3882353, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.1171875, 0.3219178, 0.4041096, 0.4765625, 0.50850075, 0.5546875, 0.6059406, 0.6970297, 0.86534655)
+colors = PackedColorArray(0, 0, 1, 1, 0, 0.34117648, 1, 1, 0.67103964, 0.7867452, 1, 1, 0.17641911, 0.17641908, 0.17641908, 1, 0, 0.40784314, 0, 1, 0.6703437, 0.5297472, 0.34459335, 1, 0.9999986, 0.55848765, 0.6499725, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5qdoq"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_avlyq"]
 gradient = SubResource("Gradient_pqenq")
 width = 1024
 height = 1024
@@ -58,7 +57,7 @@ shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("10_f0hix")
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
-shader_parameter/lightmap = SubResource("GradientTexture2D_5qdoq")
+shader_parameter/lightmap = SubResource("GradientTexture2D_avlyq")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 
@@ -71,7 +70,7 @@ fill_from = Vector2(0, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfpul"]
 render_priority = 0
 shader = ExtResource("5_hiahu")
-shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/modulate = Color(1, 1, 1, 0.7490196)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("8_10jm7")
 shader_parameter/dither_tex = ExtResource("20_anwq7")
@@ -118,6 +117,12 @@ _data = {
 &"RESET": SubResource("Animation_tdlcb"),
 &"float": SubResource("Animation_lqbub")
 }
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5qdoq"]
+gradient = SubResource("Gradient_pqenq")
+width = 1024
+height = 1024
+fill_from = Vector2(0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghvj4"]
 render_priority = 0
@@ -274,7 +279,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 2, 3, 3.2, 5, 9, 11, 12.6, 15),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.8, -9), Vector3(1, 0.8, -8), Vector3(0.8862953, 0.8, 0.8862953), Vector3(5.8862953, 0.8, 0.8862953), Vector3(5.8862953, 0.8, 2.8862953), Vector3(-5.1137047, 0.8, 2.8862953), Vector3(-5.1137047, 0.8, -13.113705), Vector3(14.886295, 0.8, -17.112223), Vector3(14.886295, 0.8, -9.113705), Vector3(7, 0.8, -9)]
+"values": [Vector3(0, 0.8, -9), Vector3(1, 0.8, -8), Vector3(0.8862953, 0.8, 0.8862953), Vector3(5.8862953, 0.8, 0.8862953), Vector3(5.8862953, 0.8, 2.8862953), Vector3(-5.284, 0.8, 4.391), Vector3(-5.1137047, 0.8, -13.113705), Vector3(14.886295, 0.8, -17.112223), Vector3(14.886295, 0.8, -9.113705), Vector3(7, 0.8, -9)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -299,12 +304,6 @@ _data = {
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qnej2"]
 size = Vector2(4, 8)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pqenq"]
-gradient = SubResource("Gradient_pqenq")
-width = 1024
-height = 1024
-fill_from = Vector2(0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a7sif"]
 render_priority = 0
@@ -337,7 +336,7 @@ shader_parameter/overlay_world_pos = true
 shader_parameter/front_mask_overlay = 0
 shader_parameter/use_back_mask_overlay = false
 shader_parameter/back_mask_overlay = 0
-shader_parameter/lightmap = SubResource("GradientTexture2D_pqenq")
+shader_parameter/lightmap = SubResource("GradientTexture2D_avlyq")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 
@@ -371,12 +370,6 @@ shader_parameter/tiling = Vector2i(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/transparent = false
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_avlyq"]
-gradient = SubResource("Gradient_pqenq")
-width = 1024
-height = 1024
-fill_from = Vector2(0, 1)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r5k6x"]
 render_priority = 0
 shader = ExtResource("6_0d08v")
@@ -384,7 +377,7 @@ shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
 shader_parameter/dither_scale = 1.0
-shader_parameter/texture_albedo = ExtResource("4_eyxet")
+shader_parameter/texture_albedo = ExtResource("13_umug6")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/tile_scale = 2.0
 shader_parameter/texture_offset = Vector2(0, 0)
@@ -1165,7 +1158,6 @@ libraries/ = SubResource("AnimationLibrary_q4lqg")
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.0137936, 0.5124929, -6.9112015)
 material_override = SubResource("ShaderMaterial_7afqf")
 cast_shadow = 0
-modulate = Color(0.42745098, 0.42745098, 0.42745098, 1)
 billboard = 1
 double_sided = false
 texture_filter = 0
@@ -1173,7 +1165,7 @@ texture = ExtResource("10_f0hix")
 metadata/sector_tag = 1
 
 [node name="Bush4" type="Sprite3D" parent="FullMap/Props" unique_id=359216283]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.005037, 0.5124929, -4.5472107)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.005037, 0.5124929, -5.349105)
 material_override = SubResource("ShaderMaterial_7afqf")
 cast_shadow = 0
 billboard = 1
