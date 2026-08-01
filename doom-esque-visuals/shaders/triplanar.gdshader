@@ -56,16 +56,29 @@ uniform sampler2D light_mask:hint_default_black,filter_nearest;
 uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
 uniform bool follow_overlay_uv = false;
 
-group_uniforms Misc_Lighting;
+group_uniforms Light_Diminishing;
 global uniform bool light_diminishing = false;
-global uniform float min_diminish = 0.0;
-global uniform float max_diminish = 4.0;
-global uniform float diminish_curve = 1.0;
+global uniform float light_min_diminish = 0.0;
+global uniform float light_max_diminish = 4.0;
+global uniform float light_diminish_curve = 1.0;
 global uniform bool radial_diminish = false;
 global uniform bool color_banding = false;
 global uniform int color_bands = 32;
 global uniform bool fog_diminishing = false;
 global uniform vec4 fog_modulate : source_color = vec4(0.0,0.0,0.0,1.0);
+global uniform float fog_min_diminish = 0.0;
+global uniform float fog_max_diminish = 4.0;
+global uniform float fog_diminish_curve = 1.0;
+
+group_uniforms Flat_Warping;
+uniform float warp_speed: hint_range(0.0, 5.0)  = 1.0;
+uniform float warp_intensity: hint_range(0.0, 1.5)  = 0.12;
+uniform float warp_closeness: hint_range(0.01, 10.0) = 2.0;
+uniform vec2  flow_dir = vec2(1.0, 0.0);
+uniform float flow_speed : hint_range(0.0, 5.0) = 0.0;
+uniform bool flat_warping = false;
+uniform bool use_pausable_time = true;
+global uniform float pausable_time = 0.0;
 
 
 varying vec3 world_position;
@@ -125,6 +138,18 @@ vec2 uv_calc(float scale, sampler2D albedo_in, vec2 offset, bool world_pos,int r
 }
 
 vec4 create_full_albedo(sampler2D albedo_tex, vec2 given_uv,int mask,vec4 mask_albedo, vec4 modcolor, vec4 fragcoord){
+	// Choose between using TIME and using the global pausable time
+	float actual_time = mix(TIME,pausable_time,float(use_pausable_time));
+	// Handle flat warping
+	float warp_time = actual_time * warp_speed;
+	vec2 warped_uv = given_uv + normalize(flow_dir) * actual_time * flow_speed;
+	float nx = warped_uv.x / warp_closeness;
+	float ny = warped_uv.y / warp_closeness;
+	float warped_x = nx + warp_intensity * sin(warp_time + ny * 2.0);
+	float warped_y = ny + warp_intensity * sin(warp_time + nx * 2.0);
+	warped_uv = vec2(warped_x,warped_y) * warp_closeness;
+	// Choose whether or not to use warped uv over the normal uv
+	given_uv = mix(given_uv,warped_uv,float(flat_warping));
 	vec4 result_albedo = texture(albedo_tex, given_uv);
 	if (mask == 1){
 		result_albedo.a *= mask_albedo.r + mask_intensity;
@@ -197,13 +222,14 @@ void fragment() {
 	vec3 light_color_masked = screen(light.rgb,light_mask_tex * vec3(light_mask_strength));
 	// Calculate light diminishing and fog
 	float vertex_diminish = mix(-VERTEX.z,length(VERTEX),float(radial_diminish));
-	float light_diminish_factor = diminish_factor_calc(min_diminish,max_diminish,diminish_curve,vertex_diminish);
+	float light_diminish_factor = diminish_factor_calc(light_min_diminish,light_max_diminish,light_diminish_curve,vertex_diminish);
+	float fog_diminish_factor = diminish_factor_calc(fog_min_diminish,fog_max_diminish,fog_diminish_curve,vertex_diminish);
 	// Create final light diminishing
 	vec3 final_light_diminish = vec3(mix(0.0,light_diminish_factor,float(light_diminishing)));
 	light_color_masked = screen(light_color_masked,final_light_diminish);
 	vec3 complete_albedo = final_albedo.rgb * light_color_masked;
 	// Handle fog
-	vec3 fog_albedo = mix(complete_albedo,fog_modulate.rgb,1.0 - light_diminish_factor);
+	vec3 fog_albedo = mix(complete_albedo,fog_modulate.rgb,1.0 - fog_diminish_factor);
 	ALBEDO = mix(complete_albedo,fog_albedo,float(fog_diminishing));
 	//ALBEDO = final_light_diminish;
 }

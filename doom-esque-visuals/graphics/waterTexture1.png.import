@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d308nmgxf4tm0"
-path.s3tc="res://.godot/imported/bayer4.png-92ed8c9a67c467967e92b43b6caa29b8.s3tc.ctex"
+uid="uid://cpgifd1tkpah1"
+path="res://.godot/imported/waterTexture1.png-a51e2fe3901b8d58f9c5777f22d853e6.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/dither/bayer4.png"
-dest_files=["res://.godot/imported/bayer4.png-92ed8c9a67c467967e92b43b6caa29b8.s3tc.ctex"]
+source_file="res://graphics/waterTexture1.png"
+dest_files=["res://.godot/imported/waterTexture1.png-a51e2fe3901b8d58f9c5777f22d853e6.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

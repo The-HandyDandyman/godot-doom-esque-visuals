@@ -6,5 +6,6 @@ reflected_light_source = 1
 fog_mode = 1
 fog_light_color = Color(0.32156864, 0.3137255, 1, 1)
 fog_density = 1.0
+fog_depth_curve = 3.48221
 fog_depth_begin = 0.0
-fog_depth_end = 10.0
+fog_depth_end = 24.0

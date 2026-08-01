@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://cy3p4s4oqm1ww" path="res://graphics/window.png" id="19_yv2o7"]
 [ext_resource type="Texture2D" uid="uid://bcok6fpjogbpt" path="res://graphics/dither/bayer8.png" id="20_anwq7"]
 [ext_resource type="Texture2D" uid="uid://cyxbtgxktd3q5" path="res://graphics/grassTexture.png" id="24_ntolb"]
+[ext_resource type="Texture2D" uid="uid://cyj8dk5c6w0d5" path="res://graphics/waterTexture5.png" id="30_i41x2"]
 [ext_resource type="Texture2D" uid="uid://dk273og2pkwty" path="res://graphics/directionTest.png" id="30_t8kl2"]
 [ext_resource type="Texture2D" uid="uid://bie3ktwijxqco" path="res://graphics/window2LightMask.png" id="34_34lvq"]
 [ext_resource type="Texture2D" uid="uid://cch7lxf6cv7y4" path="res://graphics/window2Mask.png" id="35_co6d3"]
@@ -378,6 +379,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0inlb"]
 size = Vector2(4, 8)
@@ -448,13 +456,77 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ye8wr"]
 material = SubResource("ShaderMaterial_r5k6x")
 size = Vector2(40, 40)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_itws1"]
-size = Vector2(40, 12)
+size = Vector2(26, 6)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_08jpx"]
+size = Vector2(6, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djvnk"]
+render_priority = 0
+shader = ExtResource("6_0d08v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("30_i41x2")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 45
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0000000475
+shader_parameter/warp_intensity = 0.2000000095
+shader_parameter/warp_closeness = 0.50000002305148
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.22400001064
+shader_parameter/flat_warping = true
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o1bnp"]
+size = Vector2(8, 6)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x1hvy"]
+size = Vector2(40, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lneui"]
+size = Vector2(40, 4)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dllcc"]
 size = Vector2(40, 20)
@@ -507,6 +579,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1hjvk"]
 size = Vector2(4, 8)
@@ -548,6 +627,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kx7fj"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -600,6 +686,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rvo57"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -644,6 +737,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5yamh"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -694,6 +794,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lye5c"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -739,6 +846,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_anwq7"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -784,6 +898,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bo68a"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -828,6 +949,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pqenq"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -869,6 +997,13 @@ shader_parameter/lightmap_size = Vector2(1, 1)
 shader_parameter/lightmap_offset = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6ph3c"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -914,6 +1049,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i41x2"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -964,6 +1106,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v6r00"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1015,6 +1164,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqjuv"]
 render_priority = 0
@@ -1054,6 +1210,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h5lua"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1076,6 +1239,56 @@ orientation = 0
 [sub_resource type="PlaneMesh" id="PlaneMesh_kcxsp"]
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("ShaderMaterial_umug6")
+size = Vector2(6, 2)
+orientation = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tv3nu"]
+render_priority = 0
+shader = ExtResource("6_0d08v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("19_v6r00")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gt2te"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_tv3nu")
 size = Vector2(6, 2)
 orientation = 0
 
@@ -1129,6 +1342,13 @@ shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask = ExtResource("34_34lvq")
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08jpx"]
 render_priority = 0
@@ -1168,6 +1388,13 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tv3nu"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1202,6 +1429,22 @@ tracks/0/keys = {
 "values": [Vector3(-3, 1, -6)]
 }
 
+[sub_resource type="Animation" id="Animation_bce4m"]
+resource_name = "otherotherpoint"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.6661835, 1, -13.746247)]
+}
+
 [sub_resource type="Animation" id="Animation_v6r00"]
 resource_name = "otherpoint"
 loop_mode = 1
@@ -1221,6 +1464,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_anwq7"]
 _data = {
 &"RESET": SubResource("Animation_umug6"),
+&"otherotherpoint": SubResource("Animation_bce4m"),
 &"otherpoint": SubResource("Animation_v6r00")
 }
 
@@ -1321,6 +1565,26 @@ texture_filter = 0
 texture = ExtResource("15_ntolb")
 metadata/sector_tag = 1
 
+[node name="Lamp2" type="Sprite3D" parent="FullMap/Props" unique_id=1262001246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 1, -11)
+material_override = SubResource("ShaderMaterial_bo68a")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("15_ntolb")
+metadata/sector_tag = 1
+
+[node name="Lamp3" type="Sprite3D" parent="FullMap/Props" unique_id=1359430576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75, 1, -11)
+material_override = SubResource("ShaderMaterial_bo68a")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("15_ntolb")
+metadata/sector_tag = 1
+
 [node name="Bush4" type="Sprite3D" parent="FullMap/Props" unique_id=359216283]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.005037, 0.5124929, -5.349105)
 material_override = SubResource("ShaderMaterial_7afqf")
@@ -1340,7 +1604,16 @@ texture_filter = 0
 texture = ExtResource("10_f0hix")
 
 [node name="Bush10" type="Sprite3D" parent="FullMap/Props" unique_id=1775916324]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.239174, 0.5124929, -16.042011)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.239174, 0.5124929, -17.542011)
+material_override = SubResource("ShaderMaterial_ghvj4")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush16" type="Sprite3D" parent="FullMap/Props" unique_id=2109064456]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 7.739174, 0.5124929, -11.542011)
 material_override = SubResource("ShaderMaterial_ghvj4")
 cast_shadow = 0
 billboard = 1
@@ -1368,6 +1641,15 @@ texture = ExtResource("10_f0hix")
 
 [node name="Bush13" type="Sprite3D" parent="FullMap/Props" unique_id=112913672]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.0431051, 0.5124929, -11.348225)
+material_override = SubResource("ShaderMaterial_ghvj4")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("10_f0hix")
+
+[node name="Bush15" type="Sprite3D" parent="FullMap/Props" unique_id=1347136293]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.0431051, 0.5124929, -18.098225)
 material_override = SubResource("ShaderMaterial_ghvj4")
 cast_shadow = 0
 billboard = 1
@@ -1482,8 +1764,32 @@ mesh = SubResource("PlaneMesh_ye8wr")
 skeleton = NodePath("../../..")
 
 [node name="FloorVisual" type="MeshInstance3D" parent="FullMap/Map" unique_id=1544999453]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -13)
 mesh = SubResource("PlaneMesh_itws1")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
+
+[node name="Water" type="MeshInstance3D" parent="FullMap/Map" unique_id=57489611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -13)
+mesh = SubResource("PlaneMesh_08jpx")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_djvnk")
+
+[node name="FloorVisual10" type="MeshInstance3D" parent="FullMap/Map" unique_id=543534334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -13)
+mesh = SubResource("PlaneMesh_o1bnp")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
+
+[node name="FloorVisual8" type="MeshInstance3D" parent="FullMap/Map" unique_id=287712036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+mesh = SubResource("PlaneMesh_x1hvy")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
+
+[node name="FloorVisual9" type="MeshInstance3D" parent="FullMap/Map" unique_id=837360915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18)
+mesh = SubResource("PlaneMesh_lneui")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("ShaderMaterial_r5k6x")
 
@@ -1700,11 +2006,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, 
 mesh = SubResource("PlaneMesh_kcxsp")
 skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D22" type="MeshInstance3D" parent="FullMap/Map" unique_id=1646128368]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 1, -13)
-mesh = SubResource("PlaneMesh_kcxsp")
-skeleton = NodePath("../../..")
-
 [node name="MeshInstance3D23" type="MeshInstance3D" parent="FullMap/Map" unique_id=382716330]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -9, 1, -10)
 mesh = SubResource("PlaneMesh_kcxsp")
@@ -1723,6 +2024,11 @@ skeleton = NodePath("../../..")
 [node name="MeshInstance3D24" type="MeshInstance3D" parent="FullMap/Map" unique_id=1314507600]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -12, 1, -13)
 mesh = SubResource("PlaneMesh_kcxsp")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D58" type="MeshInstance3D" parent="FullMap/Map" unique_id=1524833146]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -6, 1, -13.000001)
+mesh = SubResource("PlaneMesh_gt2te")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D28" type="MeshInstance3D" parent="FullMap/Map" unique_id=1009071200]
