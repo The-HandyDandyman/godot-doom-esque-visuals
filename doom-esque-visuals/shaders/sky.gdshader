@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded,cull_disabled;
+render_mode unshaded,cull_disabled,fog_disabled;
 
 uniform sampler2D sky_texture : filter_nearest,source_color;
 uniform bool lock_aspect = false;
@@ -35,5 +35,4 @@ void fragment() {
 		discard;
 	}
 	ALBEDO = tex.rgb;
-	ALBEDO -= FOG.rgb;
 }

@@ -29,9 +29,19 @@ uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_offset = vec2(0.0);
 uniform bool use_lightmap = true;
+
 group_uniforms LightMask;
 uniform sampler2D light_mask:hint_default_black,filter_nearest;
 uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
+
+group_uniforms Misc_Lighting;
+uniform bool light_diminishing = false;
+uniform float min_diminish = 0.0;
+uniform float max_diminish = 8.0;
+uniform bool color_banding = false;
+uniform int color_bands = 32;
+uniform bool fog = false;
+uniform vec4 fog_modulate : source_color = vec4(0.0,0.0,0.0,1.0);
 
 varying vec3 look_dir;
 varying flat vec3 world_origin;
@@ -141,5 +151,15 @@ void fragment() {
 	vec3 light_mask_tex = texture(light_mask,UV).rgb;
 	vec3 light_color_masked = screen(light_color,light_mask_tex * vec3(light_mask_strength));
 	light_color_masked = mix(light_color_masked,vec3(1.0),1.0 - float(use_lightmap));
-	ALBEDO = tex.rgb * modulate.rgb * light_color_masked;
+	// Calculate light diminishing and fog
+	float light_diminish_factor = clamp(1.0 - (-min_diminish -VERTEX.z / max_diminish), 0.0, 1.0);
+	vec3 final_light_diminish = vec3(mix(0.0,light_diminish_factor,float(light_diminishing)));
+	// Use for color banding if needed
+	final_light_diminish = mix(final_light_diminish,vec3(floor(final_light_diminish * float(color_bands)) / float(color_bands)),float(color_banding));
+	// Determine whether to use as fog color
+	light_color_masked = screen(light_color_masked,final_light_diminish);
+	vec3 complete_albedo = final_albedo.rgb * modulate.rgb * light_color_masked;
+	vec3 fog_albedo = mix(complete_albedo,fog_modulate.rgb,1.0 - light_diminish_factor);
+	ALBEDO = mix(complete_albedo,fog_albedo,float(fog));
+	//ALBEDO = final_light_diminish;
 }

@@ -56,6 +56,16 @@ uniform sampler2D light_mask:hint_default_black,filter_nearest;
 uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
 uniform bool follow_overlay_uv = false;
 
+group_uniforms Misc_Lighting;
+uniform bool light_diminishing = false;
+uniform float min_diminish = 0.0;
+uniform float max_diminish = 8.0;
+uniform bool color_banding = false;
+uniform int color_bands = 32;
+uniform bool fog = false;
+uniform vec4 fog_modulate : source_color = vec4(0.0,0.0,0.0,1.0);
+
+
 varying vec3 world_position;
 varying vec2 base_uv;
 varying vec3 world_normal;
@@ -66,6 +76,9 @@ const float lightmap_bias = 0.00001; // Bias is extremely small to ensure the bi
 
 vec3 screen(vec3 base, vec3 blend){
 	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+vec3 multiply(vec3 base, vec3 blend){
+	return base * blend;
 }
 
 void vertex() {
@@ -179,5 +192,15 @@ void fragment() {
 	vec2 light_mask_uv = mix(uv,overlay_uv,float(follow_overlay_uv));
 	vec3 light_mask_tex = texture(light_mask,light_mask_uv).rgb;
 	vec3 light_color_masked = screen(light.rgb,light_mask_tex * vec3(light_mask_strength));
-	ALBEDO = final_albedo.rgb * light_color_masked;
+	// Calculate light diminishing and fog
+	float light_diminish_factor = clamp(1.0 - (-min_diminish -VERTEX.z / max_diminish), 0.0, 1.0);
+	vec3 final_light_diminish = vec3(mix(0.0,light_diminish_factor,float(light_diminishing)));
+	// Use for color banding if needed
+	final_light_diminish = mix(final_light_diminish,vec3(floor(final_light_diminish * float(color_bands)) / float(color_bands)),float(color_banding));
+	// Determine whether to use as fog color
+	light_color_masked = screen(light_color_masked,final_light_diminish);
+	vec3 complete_albedo = final_albedo.rgb * light_color_masked;
+	vec3 fog_albedo = mix(complete_albedo,fog_modulate.rgb,1.0 - light_diminish_factor);
+	ALBEDO = mix(complete_albedo,fog_albedo,float(fog));
+	//ALBEDO = final_light_diminish;
 }

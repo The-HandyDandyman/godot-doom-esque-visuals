@@ -24,7 +24,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_text_backspace"):
 		Text.visible = not Text.visible
 	if Input.is_action_just_pressed("mute"):
-		musicPlayer.volume_db = -80.0 if musicPlayer.volume_db == -4.0 else -4.0
+		musicPlayer.volume_db = -80.0 if musicPlayer.volume_db == -4.0 and musicPlayer.playing else -4.0
+		if !musicPlayer.playing: musicPlayer.play()
 	if Input.is_action_just_pressed("ui_text_indent"):
 		if environment_a == null or environment_b == null: return
 		skybox.visible = not skybox.visible
