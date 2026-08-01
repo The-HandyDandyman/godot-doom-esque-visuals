@@ -143,10 +143,10 @@ shader_parameter/light_mask = ExtResource("14_5qdoq")
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/light_diminishing = true
 shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
+shader_parameter/max_diminish = 4.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghvj4"]
@@ -167,7 +167,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pto52"]
@@ -380,7 +380,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0inlb"]
@@ -454,7 +454,7 @@ shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/light_diminishing = true
 shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
+shader_parameter/max_diminish = 4.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
 shader_parameter/fog = false
@@ -523,7 +523,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1hjvk"]
@@ -571,7 +571,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kx7fj"]
@@ -630,7 +630,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rvo57"]
@@ -738,7 +738,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lye5c"]
@@ -790,7 +790,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_anwq7"]
@@ -816,11 +816,11 @@ shader_parameter/flip_texture = false
 shader_parameter/tex_world_pos = true
 shader_parameter/mask_texture = ExtResource("15_vogo8")
 shader_parameter/mask_scale = 2.0
-shader_parameter/mask_offset = Vector2(128, 0)
+shader_parameter/mask_offset = Vector2(0, 0)
 shader_parameter/mask_rotation = 0
 shader_parameter/mask_back_flip = false
 shader_parameter/mask_intensity = 0.0
-shader_parameter/mask_world_pos = true
+shader_parameter/mask_world_pos = false
 shader_parameter/overlay_texture = ExtResource("19_v6r00")
 shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
 shader_parameter/overlay_scale = 1.0
@@ -842,7 +842,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bo68a"]
@@ -895,11 +895,6 @@ shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
 shader_parameter/fog = true
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_f0hix"]
-lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("ShaderMaterial_5yamh")
-orientation = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pqenq"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -998,7 +993,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i41x2"]
@@ -1055,7 +1050,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v6r00"]
@@ -1113,7 +1108,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqjuv"]
@@ -1159,7 +1154,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h5lua"]
@@ -1241,7 +1236,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08jpx"]
@@ -1287,7 +1282,7 @@ shader_parameter/min_diminish = 0.0
 shader_parameter/max_diminish = 8.0
 shader_parameter/color_banding = false
 shader_parameter/color_bands = 32
-shader_parameter/fog = true
+shader_parameter/fog = false
 shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tv3nu"]
@@ -1717,12 +1712,12 @@ skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D43" type="MeshInstance3D" parent="FullMap/Map" unique_id=1155395659]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 10)
-mesh = SubResource("PlaneMesh_f0hix")
+mesh = SubResource("PlaneMesh_bo68a")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D44" type="MeshInstance3D" parent="FullMap/Map" unique_id=607653065]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13, 1, 3)
-mesh = SubResource("PlaneMesh_pqenq")
+mesh = SubResource("PlaneMesh_bo68a")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D45" type="MeshInstance3D" parent="FullMap/Map" unique_id=605684789]

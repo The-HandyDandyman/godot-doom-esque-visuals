@@ -59,7 +59,7 @@ uniform bool follow_overlay_uv = false;
 group_uniforms Misc_Lighting;
 uniform bool light_diminishing = false;
 uniform float min_diminish = 0.0;
-uniform float max_diminish = 8.0;
+uniform float max_diminish = 4.0;
 uniform bool color_banding = false;
 uniform int color_bands = 32;
 uniform bool fog = false;

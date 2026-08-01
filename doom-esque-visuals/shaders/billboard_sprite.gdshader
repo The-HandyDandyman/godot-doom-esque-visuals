@@ -21,7 +21,7 @@ uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
 group_uniforms Misc_Lighting;
 uniform bool light_diminishing = false;
 uniform float min_diminish = 0.0;
-uniform float max_diminish = 8.0;
+uniform float max_diminish = 4.0;
 uniform bool color_banding = false;
 uniform int color_bands = 32;
 uniform bool fog = false;
