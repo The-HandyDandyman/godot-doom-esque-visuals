@@ -194,12 +194,13 @@ void fragment() {
 	vec3 light_color_masked = screen(light.rgb,light_mask_tex * vec3(light_mask_strength));
 	// Calculate light diminishing and fog
 	float light_diminish_factor = clamp(1.0 - (-min_diminish -VERTEX.z / max_diminish), 0.0, 1.0);
+	// Use color banding if needed
+	light_diminish_factor = mix(light_diminish_factor,(floor(light_diminish_factor * float(color_bands)) / float(color_bands)),float(color_banding));
+	// Create final light diminishing
 	vec3 final_light_diminish = vec3(mix(0.0,light_diminish_factor,float(light_diminishing)));
-	// Use for color banding if needed
-	final_light_diminish = mix(final_light_diminish,vec3(floor(final_light_diminish * float(color_bands)) / float(color_bands)),float(color_banding));
-	// Determine whether to use as fog color
 	light_color_masked = screen(light_color_masked,final_light_diminish);
 	vec3 complete_albedo = final_albedo.rgb * light_color_masked;
+	// Handle fog
 	vec3 fog_albedo = mix(complete_albedo,fog_modulate.rgb,1.0 - light_diminish_factor);
 	ALBEDO = mix(complete_albedo,fog_albedo,float(fog_diminishing));
 	//ALBEDO = final_light_diminish;

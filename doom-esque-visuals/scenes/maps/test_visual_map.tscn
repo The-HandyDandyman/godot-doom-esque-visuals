@@ -300,12 +300,43 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0.5235988, 0), Vector3(0, -0.0595356, 0), Vector3(0, 1.5112607, 0), Vector3(0, 1.5112607, 0), Vector3(0, -1.3685324, 0), Vector3(0, -1.3685324, 0), Vector3(0, -3.1415927, 0), Vector3(0, -3.1415927, 0), Vector3(0, 3.1415925, 0), Vector3(0, 1.9634954, 0), Vector3(0, 1.9634954, 0), Vector3(0, -0.13089967, 0), Vector3(0, -0.13089967, 0), Vector3(0, -1.5707963, 0), Vector3(0, -1.5707963, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ytx8d"]
+resource_name = "waddle"
+length = 6.3999999999999995
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 3.2, 4.0956764, 6.1000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.8, 2.6999998), Vector3(-1.164686, 0.8, -1.6466657), Vector3(-2.4374783, 0.8, -2.9194577), Vector3(-2.4374783, 0.8, -2.9194577), Vector3(-1.164686, 0.8, -1.6466657), Vector3(0, 0.8, 2.6999998)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.1, 3, 3.2, 4.0956764, 4.2, 6.109379, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -2.8797932, 0), Vector3(0, -2.8797932, 0), Vector3(0, -2.3561945, 0), Vector3(0, -2.3561945, 0), Vector3(0, 0.78539807, 0), Vector3(0, 0.78539807, 0), Vector3(0, 0.2617994, 0), Vector3(0, 0.2617994, 0), Vector3(0, -2.8797932, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pqenq"]
 _data = {
 &"RESET": SubResource("Animation_t8kl2"),
 &"look_around": SubResource("Animation_7f85u"),
 &"move": SubResource("Animation_f0hix"),
-&"move_2": SubResource("Animation_5yamh")
+&"move_2": SubResource("Animation_5yamh"),
+&"waddle": SubResource("Animation_ytx8d")
 }
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qnej2"]
@@ -1381,7 +1412,7 @@ texture_filter = 0
 texture = ExtResource("10_f0hix")
 
 [node name="DirectionalObject" type="MeshInstance3D" parent="FullMap/Props" unique_id=1552064395]
-transform = Transform3D(0.9, 0, 2.9802322e-08, 0, 0.8999999, 0, -2.9802322e-08, 0, 0.9, -2, 0.8, -8.1)
+transform = Transform3D(0.9, 0, 2.9802322e-08, 0, 0.8999999, 0, -2.9802322e-08, 0, 0.9, -2, 0.8, -9)
 material_override = ExtResource("2_5ya7t")
 mesh = SubResource("PlaneMesh_pto52")
 skeleton = NodePath("../..")
@@ -1396,11 +1427,25 @@ material_override = ExtResource("2_5ya7t")
 mesh = SubResource("PlaneMesh_pto52")
 skeleton = NodePath("../..")
 script = ExtResource("12_10jm7")
+multi_step = true
 
 [node name="notAPath3DBecauseImLazy" type="AnimationPlayer" parent="FullMap/Props/DirectionalObject2" unique_id=1964375988]
 libraries/ = SubResource("AnimationLibrary_pqenq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FullMap/Props/DirectionalObject2" unique_id=1570387394]
+libraries/ = SubResource("AnimationLibrary_fq3v1")
+
+[node name="DirectionalObject3" type="MeshInstance3D" parent="FullMap/Props" unique_id=1693276960]
+transform = Transform3D(6.79481e-08, 0, -0.89999986, 0, 0.89999974, 0, 0.89999986, 0, 6.79481e-08, 7, 0.8, -9)
+material_override = ExtResource("2_5ya7t")
+mesh = SubResource("PlaneMesh_pto52")
+skeleton = NodePath("../..")
+script = ExtResource("12_10jm7")
+
+[node name="notAPath3DBecauseImLazy" type="AnimationPlayer" parent="FullMap/Props/DirectionalObject3" unique_id=1611164191]
+libraries/ = SubResource("AnimationLibrary_pqenq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FullMap/Props/DirectionalObject3" unique_id=1097781892]
 libraries/ = SubResource("AnimationLibrary_fq3v1")
 
 [node name="Ceiling" type="Node3D" parent="FullMap" unique_id=1096250876]
