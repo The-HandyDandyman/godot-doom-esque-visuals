@@ -124,7 +124,7 @@ min_diminish={
 }
 max_diminish={
 "type": "float",
-"value": 8.0
+"value": 16.0
 }
 color_banding={
 "type": "bool",
@@ -141,4 +141,12 @@ fog_diminishing={
 fog_modulate={
 "type": "color",
 "value": Color(0.3137255, 0.3137255, 1, 1)
+}
+radial_diminish={
+"type": "bool",
+"value": false
+}
+diminish_curve={
+"type": "float",
+"value": 1.0
 }

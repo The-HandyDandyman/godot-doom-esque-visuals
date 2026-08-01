@@ -60,6 +60,8 @@ group_uniforms Misc_Lighting;
 global uniform bool light_diminishing = false;
 global uniform float min_diminish = 0.0;
 global uniform float max_diminish = 4.0;
+global uniform float diminish_curve = 1.0;
+global uniform bool radial_diminish = false;
 global uniform bool color_banding = false;
 global uniform int color_bands = 32;
 global uniform bool fog_diminishing = false;
@@ -77,8 +79,10 @@ const float lightmap_bias = 0.00001; // Bias is extremely small to ensure the bi
 vec3 screen(vec3 base, vec3 blend){
 	return 1.0 - (1.0 - base) * (1.0 - blend);
 }
-vec3 multiply(vec3 base, vec3 blend){
-	return base * blend;
+
+float diminish_factor_calc(float min_val,float max_val, float dim_curve, float vertex_dim){
+	float dim = pow(1.0 - smoothstep(min_val,max_val,vertex_dim),max(0.0,dim_curve)); // Initial calculations
+	return  mix(dim,(floor(dim * float(color_bands)) / float(color_bands)),float(color_banding)); // Apply color banding if needed
 }
 
 void vertex() {
@@ -93,7 +97,6 @@ vec2 uv_calc(float scale, sampler2D albedo_in, vec2 offset, bool world_pos,int r
 	float top_weight = pow(abs_normal.y, blend_sharpness);
 	float side_x_weight = pow(abs_normal.x, blend_sharpness);
 	float side_z_weight = pow(abs_normal.z, blend_sharpness);
-	float total_weight = top_weight + side_x_weight + side_z_weight;
 	
 	vec2 uv_top = world_position.xz / -scale * ratio;
 	vec2 uv_side_x = world_position.zy / -scale * ratio;
@@ -193,9 +196,8 @@ void fragment() {
 	vec3 light_mask_tex = texture(light_mask,light_mask_uv).rgb;
 	vec3 light_color_masked = screen(light.rgb,light_mask_tex * vec3(light_mask_strength));
 	// Calculate light diminishing and fog
-	float light_diminish_factor = clamp(1.0 - (-min_diminish -VERTEX.z / max_diminish), 0.0, 1.0);
-	// Use color banding if needed
-	light_diminish_factor = mix(light_diminish_factor,(floor(light_diminish_factor * float(color_bands)) / float(color_bands)),float(color_banding));
+	float vertex_diminish = mix(-VERTEX.z,length(VERTEX),float(radial_diminish));
+	float light_diminish_factor = diminish_factor_calc(min_diminish,max_diminish,diminish_curve,vertex_diminish);
 	// Create final light diminishing
 	vec3 final_light_diminish = vec3(mix(0.0,light_diminish_factor,float(light_diminishing)));
 	light_color_masked = screen(light_color_masked,final_light_diminish);
