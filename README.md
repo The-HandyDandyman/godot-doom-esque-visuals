@@ -81,6 +81,9 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 [ Light Diminishing - https://medium.com/@jmickle_/writing-a-doom-style-shader-for-unity-63fa13678634 
          Implemented by Dandy, loosely based upon the implementation of it in Unity from Jazz Mickle at Medium ]
 
+[ Quake-style Fluid/Z-Doom Flat Warping - https://godotshaders.com/shader/quake-style-fluid/
+                          Original shader by kureca8 on Godot Shaders ]
+
 [ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
 [ Pixel Melt Shader - https://godotshaders.com/shader/pixel-melt/
