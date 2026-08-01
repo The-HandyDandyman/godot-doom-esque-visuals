@@ -3,6 +3,8 @@ Due to this, the commitment to authenticity for that aforementioned project and 
 I've made this open source Github repo packaged with the shaders I use and some
 stock assets seperate from my original project, specifically to act as a way to both share what I've managed to start so far and as a way to hopefully get assistance on specific aspects!
 
+- NOTE TO SELF TO UPDATE THIS A LITTLE FURTHER LATER!! This is the lighting branch, there's some extra documentation to go over for the lightmap system! - 
+
 
 ![alt text](https://raw.githubusercontent.com/The-HandyDandyman/godot-doom-esque-visuals/refs/heads/main/godotDoomesqueVisualsPreview.png "Wacky preview")
 
@@ -68,6 +70,13 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 [ General Dither Shader - https://sambigos.itch.io/godot-dither-shader
 
    Created by sam.bigos on Itch.io, used partially for the dithered transparency (specifically the customizable dither pattern) ]
+
+[ Adobe Animate Screen Blend Function - https://godotshaders.com/shader/adobe-animate-blend-modes/
+
+   Created by cherrythecool on Godot Shaders, used to help create the light masks used alongside the lightmaps]
+
+[ Lightmap Implementation - https://forum.godotengine.org/t/seeking-advice-regarding-attempts-to-replicate-the-behavior-of-doom-style-sector-lighting/139445 
+               Implemented by Dandy, additional pointers and help from normalized on the Godot Forums ]
 
 [ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
