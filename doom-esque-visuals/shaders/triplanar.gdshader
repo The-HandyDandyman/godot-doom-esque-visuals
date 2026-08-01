@@ -86,15 +86,11 @@ vec2 uv_calc(float scale, sampler2D albedo_in, vec2 offset, bool world_pos,int r
 	vec2 uv_side_x = world_position.zy / -scale * ratio;
 	vec2 uv_side_z = world_position.xy / -scale * ratio;
 	// If any of these values are off, assume normals got distorted from rotation and correct accordingly!
-	if (world_normal.y < 0.0){ // If the normal's x or y is less than 0, assume it's flipped incorrectly
-		uv_top.y = -uv_top.y;
-	}
-	if (world_normal.x < 0.0){
-		uv_side_x.x = -uv_side_x.x;
-	}
-	if (world_normal.z > 0.0){ // If the normal.z is less than 0, assume it's flipped incorrectly
-		uv_side_z.x = -uv_side_z.x;
-	}
+	// If the normal's x or y is less than 0, assume it's flipped incorrectly
+	uv_top.y = mix(uv_top.y,-uv_top.y,float(world_normal.y < 0.0));
+	uv_side_x.x = mix(uv_side_x.x,-uv_side_x.x,float(world_normal.x < 0.0));
+	// If the normal.z is more than 0, assume it's flipped incorrectly
+	uv_side_z.x = mix(uv_side_z.x,-uv_side_z.x,float(world_normal.z > 0.0));
 	vec2 result = (top_weight > side_x_weight && top_weight > side_z_weight) ? uv_top :
 		(side_x_weight > side_z_weight) ? uv_side_x : uv_side_z;
 	result = mix(base_uv,result,float(world_pos)); // Use world_pos as toggle between base_uv and world_pos uv
@@ -106,12 +102,9 @@ vec2 uv_calc(float scale, sampler2D albedo_in, vec2 offset, bool world_pos,int r
 	float cos_angle = cos(rad);
 	// apply sine and cosine
 	result = vec2(result.x * cos_angle - result.y * sin_angle,result.x * sin_angle + result.y * cos_angle);
-	if (!frontface && fix_back){ // Fix back if back-facing and fix_back is enabled
-		result.x = -result.x;
-	}
-	if (flip_texture){
-		result.x = -result.x;
-	}
+	// Fix back if back-facing and fix_back is enabled
+	result.x = mix(result.x,-result.x,float(!frontface && fix_back));
+	result.x = mix(result.x,-result.x,float(flip_texture));
 	return result;
 }
 
@@ -145,23 +138,16 @@ void fragment() {
 	vec2 uv = uv_calc(tile_scale,texture_albedo,texture_offset,tex_world_pos,rotation_degrees,FRONT_FACING);
 	// repeat process for mask
 	vec2 mask_uv = uv_calc(mask_scale,mask_texture,mask_offset,mask_world_pos,mask_rotation,FRONT_FACING);
-	if (mask_back_flip && !FRONT_FACING){
-		mask_uv.x = -mask_uv.x;
-	}
+	mask_uv.x = mix(mask_uv.x,-mask_uv.x,float(mask_back_flip && !FRONT_FACING)); // Flip mask if not front facing and marked to be flipped backwards
 	// repeat process for overlay
 	vec2 overlay_uv = uv_calc(overlay_scale,overlay_texture,overlay_offset,overlay_world_pos,overlay_rotation,FRONT_FACING);
-	if (flip_overlay){
-		overlay_uv.x = -overlay_uv.x;
-	}
-	if (backflip_overlay && !FRONT_FACING){
-		overlay_uv.x = -overlay_uv.x;
-	}
+	// Apply flip and backside flip
+	overlay_uv.x = mix(overlay_uv.x,-overlay_uv.x,float(flip_overlay));
+	overlay_uv.x = mix(overlay_uv.x,-overlay_uv.x,float(backflip_overlay && !FRONT_FACING));
 	// Set up final albedos, get ready to set colors
 	vec4 final_mask = texture(mask_texture,mask_uv);
-	int final_overlay_mask = front_mask_overlay;
-	if (!FRONT_FACING && use_back_mask_overlay){
-		final_overlay_mask = back_mask_overlay;
-	}
+	// Set final overlay mask based on if it's front facing and based on the front and back mask settings
+	int final_overlay_mask = int(mix(float(front_mask_overlay),float(back_mask_overlay),float(!FRONT_FACING && use_back_mask_overlay)));
 	vec4 base = create_full_albedo(texture_albedo, uv,1,final_mask,modulate,FRAGCOORD);
 	vec4 over = create_full_albedo(overlay_texture, overlay_uv,final_overlay_mask,final_mask,overlay_modulate,FRAGCOORD);
 	vec4 final_albedo;
