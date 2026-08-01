@@ -50,7 +50,6 @@ group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_offset = vec2(0.0);
-uniform float lightmap_bias = 0.02;
 
 group_uniforms LightMask;
 uniform sampler2D light_mask:hint_default_black,filter_nearest;
@@ -60,10 +59,10 @@ uniform bool follow_overlay_uv = false;
 varying vec3 world_position;
 varying vec2 base_uv;
 varying vec3 world_normal;
-varying vec3 world_forward;
 
 varying vec3 norm_normal;
 varying vec3 abs_normal;
+const float lightmap_bias = 0.00001; // Bias is extremely small to ensure the bias is as accurate as possible
 
 vec3 screen(vec3 base, vec3 blend){
 	return 1.0 - (1.0 - base) * (1.0 - blend);
@@ -72,7 +71,6 @@ vec3 screen(vec3 base, vec3 blend){
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
-	world_forward = normalize(MODEL_MATRIX[2].xyz);
 	base_uv = UV;
 }
 
@@ -168,9 +166,9 @@ void fragment() {
 	vec4 over = create_full_albedo(overlay_texture, overlay_uv,final_overlay_mask,final_mask,overlay_modulate,FRAGCOORD);
 	vec4 final_albedo;
 	final_albedo = base;
-	if (base.a == 0.0 && final_overlay_mask == 1) {
+	if (base.a < 0.0001 && final_overlay_mask == 1) {
 		final_albedo = vec4(0.0);     
-    } else if (over.a == 0.0)  {
+    } else if (over.a < 0.0001)  {
 		final_albedo = base;     
 	} else { 
 		final_albedo = over;     
@@ -186,8 +184,11 @@ void fragment() {
 	// Handle lightmap
 	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
 	// Create lightmap uv
-	vec2 lightmap_uv = world_position.xz;
-	vec4 light = texture(lightmap,(lightmap_uv * actual_lightmap_size) + lightmap_offset);
+	vec2 lightmap_uv = (world_position.xz * actual_lightmap_size) + lightmap_offset;
+	// Offset lightmap uv by view matrix normal
+	vec3 viewmatrix_normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
+	lightmap_uv += viewmatrix_normal.xz * lightmap_bias;
+	vec4 light = texture(lightmap,lightmap_uv);
 	// Handle light mask
 	vec2 light_mask_uv = mix(uv,overlay_uv,float(follow_overlay_uv));
 	vec3 light_mask_tex = texture(light_mask,light_mask_uv).rgb;

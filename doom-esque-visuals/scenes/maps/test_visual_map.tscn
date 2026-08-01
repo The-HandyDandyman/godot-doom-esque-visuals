@@ -345,7 +345,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -416,7 +415,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -476,7 +474,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -518,7 +515,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -571,7 +567,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -616,7 +611,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.05
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -667,7 +661,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -713,7 +706,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -759,7 +751,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -804,7 +795,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -851,7 +841,6 @@ shader_parameter/use_back_mask_overlay = false
 shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap_size = Vector2(1, 1)
 shader_parameter/lightmap_offset = Vector2(0, 0)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -897,7 +886,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -948,7 +936,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.05
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -1000,7 +987,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -1040,7 +1026,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -1115,7 +1100,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask = ExtResource("34_34lvq")
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
@@ -1156,7 +1140,6 @@ shader_parameter/back_mask_overlay = 0
 shader_parameter/lightmap = ExtResource("7_co6d3")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
-shader_parameter/lightmap_bias = 0.02
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 
@@ -1238,17 +1221,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_7cfve")
 theme_override_constants/outline_size = 3
-text = "Q and E to adjust camera
-A and D to rotate Godot plush
-W to toggle Godot plushie rotation
-Enter to toggle palette swap (Currently set to false)
-Arrow keys to set palette offset (0,0)
-Escape to toggle fog (Currently set to false)
-Tab to toggle environment
-Delete to switch view
-R and T to adjust ghost opacity
-H to switch ghost dither texture
-Backspace to hide instructions"
 horizontal_alignment = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=214195318]
@@ -1760,7 +1732,7 @@ mesh = SubResource("PlaneMesh_tv3nu")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D27" type="MeshInstance3D" parent="FullMap/Map" unique_id=1245909506]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 1, -1.5)
+transform = Transform3D(-1, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, -1, -4, 1, -1.5)
 mesh = SubResource("PlaneMesh_q1nm7")
 skeleton = NodePath("../../..")
 
