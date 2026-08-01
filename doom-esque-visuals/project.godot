@@ -111,3 +111,34 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[shader_globals]
+
+light_diminishing={
+"type": "bool",
+"value": true
+}
+min_diminish={
+"type": "float",
+"value": 0.0
+}
+max_diminish={
+"type": "float",
+"value": 4.0
+}
+color_banding={
+"type": "bool",
+"value": false
+}
+color_bands={
+"type": "int",
+"value": 32
+}
+fog_diminishing={
+"type": "bool",
+"value": false
+}
+fog_modulate={
+"type": "color",
+"value": Color(0, 0, 0, 1)
+}

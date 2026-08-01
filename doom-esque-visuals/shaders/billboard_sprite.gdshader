@@ -19,13 +19,13 @@ uniform sampler2D light_mask:hint_default_black,filter_nearest;
 uniform float light_mask_strength:hint_range(0.0,1.0) = 1.0;
 
 group_uniforms Misc_Lighting;
-uniform bool light_diminishing = false;
-uniform float min_diminish = 0.0;
-uniform float max_diminish = 4.0;
-uniform bool color_banding = false;
-uniform int color_bands = 32;
-uniform bool fog = false;
-uniform vec4 fog_modulate : source_color = vec4(0.0,0.0,0.0,1.0);
+global uniform bool light_diminishing = false;
+global uniform float min_diminish = 0.0;
+global uniform float max_diminish = 4.0;
+global uniform bool color_banding = false;
+global uniform int color_bands = 32;
+global uniform bool fog_diminishing = false;
+global uniform vec4 fog_modulate : source_color = vec4(0.0,0.0,0.0,1.0);
 
 varying flat vec3 world_origin;
 varying flat vec3 light_color;
@@ -84,6 +84,6 @@ void fragment() {
 	light_color_masked = screen(light_color_masked,final_light_diminish);
 	vec3 complete_albedo = final_albedo.rgb * modulate.rgb * light_color_masked;
 	vec3 fog_albedo = mix(complete_albedo,fog_modulate.rgb,1.0 - light_diminish_factor);
-	ALBEDO = mix(complete_albedo,fog_albedo,float(fog));
+	ALBEDO = mix(complete_albedo,fog_albedo,float(fog_diminishing));
 	//ALBEDO = final_light_diminish;
 }

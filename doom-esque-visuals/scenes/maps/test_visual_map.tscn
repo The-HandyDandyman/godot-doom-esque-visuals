@@ -59,13 +59,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/use_lightmap = true
 shader_parameter/light_mask_strength = 1.0
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfpul"]
 render_priority = 0
@@ -80,13 +73,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/use_lightmap = true
 shader_parameter/light_mask_strength = 1.0
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = true
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_tdlcb"]
 resource_name = "RESET"
@@ -141,13 +127,6 @@ shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/use_lightmap = true
 shader_parameter/light_mask = ExtResource("14_5qdoq")
 shader_parameter/light_mask_strength = 1.0
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 4.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghvj4"]
 render_priority = 0
@@ -162,13 +141,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/use_lightmap = true
 shader_parameter/light_mask_strength = 1.0
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pto52"]
 lightmap_size_hint = Vector2i(8, 10)
@@ -375,13 +347,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0inlb"]
 size = Vector2(4, 8)
@@ -452,13 +417,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 4.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ye8wr"]
 material = SubResource("ShaderMaterial_r5k6x")
@@ -518,13 +476,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1hjvk"]
 size = Vector2(4, 8)
@@ -566,13 +517,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kx7fj"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -625,13 +569,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rvo57"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -676,13 +613,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5yamh"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -733,13 +663,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lye5c"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -785,13 +708,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_anwq7"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -837,13 +753,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bo68a"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -888,13 +797,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = true
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pqenq"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -936,13 +838,6 @@ shader_parameter/lightmap_size = Vector2(1, 1)
 shader_parameter/lightmap_offset = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = true
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6ph3c"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -988,13 +883,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i41x2"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1045,13 +933,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v6r00"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1103,13 +984,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqjuv"]
 render_priority = 0
@@ -1149,13 +1023,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h5lua"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1231,13 +1098,6 @@ shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask = ExtResource("34_34lvq")
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08jpx"]
 render_priority = 0
@@ -1277,13 +1137,6 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_offset = Vector2(-0.5, -0.5)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
-shader_parameter/light_diminishing = true
-shader_parameter/min_diminish = 0.0
-shader_parameter/max_diminish = 8.0
-shader_parameter/color_banding = false
-shader_parameter/color_bands = 32
-shader_parameter/fog = false
-shader_parameter/fog_modulate = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tv3nu"]
 lightmap_size_hint = Vector2i(12, 12)
