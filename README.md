@@ -38,11 +38,15 @@ using APirateHat's Godot Plushie model!
 -- What am I seeking to include in the future? --
 
 - Lighting setup is nearly complete, though there are a few caveats to work around! To name a few:
-- 
-- I need to implement some way to create viewporttexture-based lightmaps, allowing them to be updated when needed and to make creating them a lot more practical.
-- Though not a top priority at the moment + not necessary for all cases: I would like to figure out a way to account for the Y axis in the lightmaps. I'm unsure of how I'd go about this, but especially when accounting for Doom's floor-over-floors and how they can have different levels of light between them, I reckon that is something I ought to figure out!
-- 
-- I'd like to adjust the light diminishing, as I have noticed in some spots within both Doom and some of the games built off it (mainly, srb2) that despite the fact that the game uses light diminishing for the most part, there are spots where light diminishing is seemingly either absent or lowered immensely. I'd like to look into how that's handled!
+  - I need to implement some way to create viewporttexture-based lightmaps, allowing them to be updated when needed and to make creating them a lot more practical.
+    
+  - Though not a top priority at the moment + not necessary for all cases: I would like to figure out a way to account for the Y axis in the lightmaps. I'm unsure of how I'd go about this, but especially when accounting     for Doom's floor-over-floors and how they can have different levels of light between them, I reckon that is something I ought to figure out!
+  
+  - I'd like to adjust the light diminishing, as I have noticed in some spots within both Doom and some of the games built off it (mainly, srb2) that despite the fact that the game uses light diminishing for the most
+    part, there are spots where light diminishing is seemingly either absent or lowered immensely. I'd like to look into how that's handled!
+  
+- Something I'd like to at least attempt to implement for a while is translucency: I've been wanting to replicate Doom's translucency effects for a while (particularly Doom Legacy's various color blending effects) as though the dithering transparency works well for practicality and does have its utility, and whilst vanilla Doom had practically no transparency period: it'd probably be nice for folks using this pack to be able to have some way to do slightly more natural transparency.
+However, this is probably the lowest priority of the features I'd like to implement.
 
 - I may try and find a way to make the directional sprite shader work with Sprite3Ds, at the moment you kind of have to measure them based on other sprites as they use MeshInstance3Ds though I hope to remedy that issue in the future. At the moment, it's not really necessary but it would make the difference between handling directional sprites and static sprites a littleee less jarring.
 
