@@ -1,4 +1,4 @@
-***DISCLAIMER!*** If you'd like to make a pull request to this project, *please* share what you're cooking up in [Discussions](https://github.com/The-HandyDandyman/godot-doom-esque-visuals/discussions/categories/ideas) first!
+***DISCLAIMER!*** If you'd like to submit a pull request to this project, *please* share what you're cooking up in [Discussions](https://github.com/The-HandyDandyman/godot-doom-esque-visuals/discussions/categories/ideas) first!
 -----
 
 Hello! My name's Dandy, and I'm somebody who likes programming and has been working on a project inspired by old, cheap, 3D first person PC games! 
