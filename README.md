@@ -1,3 +1,6 @@
+***DISCLAIMER!*** If you'd like to make a pull request to this project, *PLEASE* discuss it within discussions first!
+-----
+
 Hello! My name's Dandy, and I'm somebody who likes programming and has been working on a project inspired by old, cheap, 3D first person PC games! 
 Due to this, the commitment to authenticity for that aforementioned project and the fact I have a feeling there are more people besides I who are probably interested in that sort of niche:
 I've made this open source Github repo packaged with the shaders I use and some
@@ -6,7 +9,8 @@ stock assets seperate from my original project, specifically to act as a way to 
 
 ![alt text](https://raw.githubusercontent.com/The-HandyDandyman/godot-doom-esque-visuals/refs/heads/main/godotDoomesqueVisualsPreview.png "Wacky preview")
 
--- What's included? --
+-----
+# What's included?
 
 - My improved multi-directional sprite shader built off of the original more primtive shader by dron1885 on Reddit, which now includes the ability to adjust the amount of directions and animation frames, the ability for asymmetry, the ability to scale,
 Y-billboarding and the ability to modulate! If you'd like more info, check the credits and read the instructions in the link!
@@ -35,14 +39,17 @@ using APirateHat's Godot Plushie model!
 
 - Stock music from Microsoft Music Producer (wouldn't recommend using the audio or the midi outside of the sample project here)
 
--- What am I seeking to include in the future? --
+----
 
-If you'd like to see what's planned, try reading through [the To-Do list! ](https://github.com/users/The-HandyDandyman/projects/2) This here'll give you a little insight into what's planned, if you need a deeper explanation or want to see visual examples of what's planned: just read through here and you'll be set!
+# What's planned to be included in the future? 
+
+- If you'd like to see what's planned, try reading through [the To-Do list! ](https://github.com/users/The-HandyDandyman/projects/2) This here'll give you a little insight into what's planned, if you need a deeper explanation or want to see visual examples of what's planned: just read through here and you'll be set!
+----
 
 If you have any questions, want to discuss the project, show support or anything of the sort along those lines, also be sure to use [Discussions](https://github.com/The-HandyDandyman/godot-doom-esque-visuals/discussions)!
 
 -----
-Assets included and credits:
+# Credits
 
 [  Multi-Directional Sprite Shader -- https://godotshaders.com/shader/multi-directional-sprite-shader/  
 
