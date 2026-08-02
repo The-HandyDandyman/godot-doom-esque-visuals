@@ -37,7 +37,7 @@ using APirateHat's Godot Plushie model!
 
 -- What am I seeking to include in the future? --
 
-If you'd like to see what's planned, try reading through [here! ](https://github.com/users/The-HandyDandyman/projects/2) This here'll give you a little insight into what's planned, if you need a deeper explanation or want to see visual examples of what's planned: just read through here and you'll be set!
+If you'd like to see what's planned, try reading through [the To-Do list! ](https://github.com/users/The-HandyDandyman/projects/2) This here'll give you a little insight into what's planned, if you need a deeper explanation or want to see visual examples of what's planned: just read through here and you'll be set!
 
 If you have any questions, want to discuss the project, show support or anything of the sort along those lines, also be sure to use [Discussions](https://github.com/The-HandyDandyman/godot-doom-esque-visuals/discussions)!
 
