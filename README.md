@@ -3,8 +3,6 @@ Due to this, the commitment to authenticity for that aforementioned project and 
 I've made this open source Github repo packaged with the shaders I use and some
 stock assets seperate from my original project, specifically to act as a way to both share what I've managed to start so far and as a way to hopefully get assistance on specific aspects!
 
-- NOTE TO SELF TO UPDATE THIS A LITTLE FURTHER LATER!! This is the lighting branch, there's some extra documentation to go over for the lightmap system! - 
-
 
 ![alt text](https://raw.githubusercontent.com/The-HandyDandyman/godot-doom-esque-visuals/refs/heads/main/godotDoomesqueVisualsPreview.png "Wacky preview")
 
@@ -23,6 +21,14 @@ Y-billboarding and the ability to modulate! If you'd like more info, check the c
 - Some sample textures, mostly modified from OpenGameArt and Wikimedia Commons with a custom demonstration spritesheet for the directional shader
 using APirateHat's Godot Plushie model!
 
+- Flat warping for triplanars (akin to Quake's fluid distortion!), though not a particularly accurate thing for vanilla Doom it is present in many source ports (ZDoom and GZDoom!)
+  
+- Proper lightmaps, with the ability to change a sprite's solid color and to affect the surroundings!
+
+- This is more of a Baldi thing than a Doom thing, but since I reckoned it might be practical: sprites and triplanars both support light masks which mask out the lightmap and give the illusion of illumination!
+
+ - Light diminishing and fog which can be controlled by shader globals, with optional color banding and most of the adjustment settings fog_depth has! By default, this uses -VERTEX.Z which makes the fog linear, though there is an option for radial fog!
+
 - A modified version of a test map I had been using in the unrelated personal project that served as part of the reason I created this repo.
 
 - A simple transition manager with a screen melt shader transition attached to it using a modified version of ericalfaro's Pixel Melt shader!
@@ -31,12 +37,14 @@ using APirateHat's Godot Plushie model!
 
 -- What am I seeking to include in the future? --
 
-- The big one at the moment is sector-based lighting: I've opened a thread on the Godot Forums you can find at this link
-( https://forum.godotengine.org/t/seeking-advice-regarding-attempts-to-replicate-the-behavior-of-doom-style-lighting/139445 )
-to discuss the matter and try and figure out a good way to implement that sort of system,
-though at the moment I'm currently experimenting to see what methods would work best for the kind of technique I'm trying to replicate.
+- Lighting setup is nearly complete, though there are a few caveats to work around! To name a few:
+- 
+- I need to implement some way to create viewporttexture-based lightmaps, allowing them to be updated when needed and to make creating them a lot more practical.
+- Though not a top priority at the moment + not necessary for all cases: I would like to figure out a way to account for the Y axis in the lightmaps. I'm unsure of how I'd go about this, but especially when accounting for Doom's floor-over-floors and how they can have different levels of light between them, I reckon that is something I ought to figure out!
+- 
+- I'd like to adjust the light diminishing, as I have noticed in some spots within both Doom and some of the games built off it (mainly, srb2) that despite the fact that the game uses light diminishing for the most part, there are spots where light diminishing is seemingly either absent or lowered immensely. I'd like to look into how that's handled!
 
-- I may try and find a way to make the directional sprite shader work with Sprite3Ds, at the moment you kind of have to measure them based on other sprites as they use MeshInstance3Ds though I hope to remedy that issue in the future.
+- I may try and find a way to make the directional sprite shader work with Sprite3Ds, at the moment you kind of have to measure them based on other sprites as they use MeshInstance3Ds though I hope to remedy that issue in the future. At the moment, it's not really necessary but it would make the difference between handling directional sprites and static sprites a littleee less jarring.
 
 
 -----
