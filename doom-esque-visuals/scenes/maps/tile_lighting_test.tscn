@@ -1,0 +1,1368 @@
+[gd_scene format=3 uid="uid://b8pwvrvlktma5"]
+
+[ext_resource type="Shader" uid="uid://jwy36pp0ptuu" path="res://shaders/triplanar.gdshader" id="1_jbn7v"]
+[ext_resource type="Script" uid="uid://bpba2qawc4t5w" path="res://scripts/test_stuff/tile_lighting_test.gd" id="1_qvhmq"]
+[ext_resource type="Texture2D" uid="uid://6rofgxx6iu7m" path="res://graphics/ceilingTexture.png" id="2_qvhmq"]
+[ext_resource type="Texture2D" uid="uid://dtgewxk4mfpls" path="res://graphics/brickTexture.png" id="3_h2h7i"]
+[ext_resource type="Texture2D" uid="uid://dy86wfy2hwmki" path="res://graphics/lightmapTest2.png" id="4_h2h7i"]
+[ext_resource type="Texture2D" uid="uid://d308nmgxf4tm0" path="res://graphics/dither/bayer4.png" id="4_hdr6i"]
+[ext_resource type="Texture2D" uid="uid://b0m2yi87euuu3" path="res://graphics/windowMask.png" id="5_xw5h2"]
+[ext_resource type="Texture2D" uid="uid://cy3p4s4oqm1ww" path="res://graphics/window.png" id="6_b18ba"]
+[ext_resource type="Texture2D" uid="uid://3xbgx2lh7k6c" path="res://graphics/checkerboardTexture.png" id="7_v5saw"]
+[ext_resource type="Environment" uid="uid://b5mgo8xoorbtn" path="res://materials/environment_b.tres" id="8_w7v1l"]
+[ext_resource type="Texture2D" uid="uid://b0lb5p1t7neqr" path="res://graphics/brickGateMask2.png" id="9_xw5h2"]
+[ext_resource type="Texture2D" uid="uid://drp24b47st0l4" path="res://graphics/posterTexture.png" id="10_b18ba"]
+[ext_resource type="Texture2D" uid="uid://bsws80jhy77r3" path="res://graphics/carpetTexture.png" id="11_b18ba"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmr8v"]
+render_priority = 0
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/dither_tex = ExtResource("4_hdr6i")
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("2_qvhmq")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_500o7"]
+material = SubResource("ShaderMaterial_lmr8v")
+size = Vector2(42, 42)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rmfs4"]
+render_priority = 0
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/dither_tex = ExtResource("4_hdr6i")
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("3_h2h7i")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_otdea"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_rmfs4")
+orientation = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b18ba"]
+render_priority = 0
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/dither_tex = ExtResource("4_hdr6i")
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("3_h2h7i")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_texture = ExtResource("10_b18ba")
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 2.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = false
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v5saw"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_b18ba")
+orientation = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_215ji"]
+render_priority = 0
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/dither_tex = ExtResource("4_hdr6i")
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("3_h2h7i")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_texture = ExtResource("5_xw5h2")
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.250000011875
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_texture = ExtResource("6_b18ba")
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 1
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fjimi"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_215ji")
+orientation = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5saw"]
+render_priority = 0
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = true
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("3_h2h7i")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_texture = ExtResource("9_xw5h2")
+shader_parameter/mask_scale = 2.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = false
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w7v1l"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_v5saw")
+orientation = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7v1l"]
+render_priority = 0
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = false
+shader_parameter/render_back = true
+shader_parameter/dither_tex = ExtResource("4_hdr6i")
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("3_h2h7i")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otdea"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_w7v1l")
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/dither_tex = ExtResource("4_hdr6i")
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("3_h2h7i")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 1.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = true
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_texture = ExtResource("10_b18ba")
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 2.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = false
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_215ji"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_otdea")
+orientation = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lmr8v"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_b18ba")
+orientation = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0tiud"]
+render_priority = 0
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("7_v5saw")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7cfve"]
+material = SubResource("ShaderMaterial_0tiud")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_500o7"]
+render_priority = 0
+shader = ExtResource("1_jbn7v")
+shader_parameter/blend_sharpness = 4.0
+shader_parameter/render_front = true
+shader_parameter/render_back = false
+shader_parameter/dither_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("11_b18ba")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/tile_scale = 2.0
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/rotation_degrees = 0
+shader_parameter/fix_back = false
+shader_parameter/flip_texture = false
+shader_parameter/tex_world_pos = true
+shader_parameter/mask_scale = 1.0
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/mask_rotation = 0
+shader_parameter/mask_back_flip = false
+shader_parameter/mask_intensity = 0.0
+shader_parameter/mask_world_pos = true
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = 1.0
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/overlay_rotation = 0
+shader_parameter/flip_overlay = false
+shader_parameter/backflip_overlay = false
+shader_parameter/overlay_world_pos = true
+shader_parameter/front_mask_overlay = 0
+shader_parameter/use_back_mask_overlay = false
+shader_parameter/back_mask_overlay = 0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/follow_overlay_uv = false
+shader_parameter/warp_speed = 1.0
+shader_parameter/warp_intensity = 0.12
+shader_parameter/warp_closeness = 2.0
+shader_parameter/flow_dir = Vector2(1, 0)
+shader_parameter/flow_speed = 0.0
+shader_parameter/flat_warping = false
+shader_parameter/use_pausable_time = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rmfs4"]
+material = SubResource("ShaderMaterial_500o7")
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_7cfve"]
+item/0/name = "Floor"
+item/0/mesh = SubResource("PlaneMesh_7cfve")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "CarpetFloor"
+item/1/mesh = SubResource("PlaneMesh_rmfs4")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
+
+[sub_resource type="Animation" id="Animation_500o7"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2, 1, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rmfs4"]
+resource_name = "move"
+length = 35.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10, 12.9, 20.1, 30, 35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-2, 1, 11), Vector3(-2, 1, -4), Vector3(-12, 1, -4), Vector3(-12, 1, -12), Vector3(8, 1, -12), Vector3(8, 1, 10), Vector3(-2, 1, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.6, 5, 9.7, 10, 12.5, 12.9, 19.9, 20.1, 20.2, 29.5, 30, 34.649086, 35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1e-05, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -1.5707964, 0), Vector3(0, -1.5707964, 0), Vector3(0, -3.1415927, 0), Vector3(0, 3.1415925, 0), Vector3(0, 3.1415925, 0), Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_otdea"]
+_data = {
+&"RESET": SubResource("Animation_500o7"),
+&"move": SubResource("Animation_rmfs4")
+}
+
+[node name="TileLighting_Test" type="Node3D" unique_id=623476468 node_paths=PackedStringArray("gridMap")]
+script = ExtResource("1_qvhmq")
+gridMap = NodePath("GridMap")
+
+[node name="Ceiling" type="MeshInstance3D" parent="." unique_id=153181914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("PlaneMesh_500o7")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=2067035202]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 1, 9)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D61" type="MeshInstance3D" parent="." unique_id=1076699379]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D120" type="MeshInstance3D" parent="." unique_id=1027828120]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D122" type="MeshInstance3D" parent="." unique_id=2032300939]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D124" type="MeshInstance3D" parent="." unique_id=959338176]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D125" type="MeshInstance3D" parent="." unique_id=1454620208]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D127" type="MeshInstance3D" parent="." unique_id=72066367]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D126" type="MeshInstance3D" parent="." unique_id=570233632]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D128" type="MeshInstance3D" parent="." unique_id=1743554340]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 1, 5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D132" type="MeshInstance3D" parent="." unique_id=529538643]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 1, 3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D133" type="MeshInstance3D" parent="." unique_id=1170319301]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 1, 3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D129" type="MeshInstance3D" parent="." unique_id=1909532848]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 1, 5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D130" type="MeshInstance3D" parent="." unique_id=641085565]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 1, 5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D131" type="MeshInstance3D" parent="." unique_id=1672240237]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 1, 5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D62" type="MeshInstance3D" parent="." unique_id=1285800461]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D63" type="MeshInstance3D" parent="." unique_id=179203247]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D64" type="MeshInstance3D" parent="." unique_id=2135342007]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D76" type="MeshInstance3D" parent="." unique_id=979883819]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 1, -11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D77" type="MeshInstance3D" parent="." unique_id=1473784123]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, -11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D66" type="MeshInstance3D" parent="." unique_id=362793743]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D67" type="MeshInstance3D" parent="." unique_id=1398523677]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D68" type="MeshInstance3D" parent="." unique_id=1016700411]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D162" type="MeshInstance3D" parent="." unique_id=1934530008]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 1, -11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D163" type="MeshInstance3D" parent="." unique_id=163821918]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 1, -11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D65" type="MeshInstance3D" parent="." unique_id=1873440853]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D85" type="MeshInstance3D" parent="." unique_id=1035326170]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D86" type="MeshInstance3D" parent="." unique_id=1934665660]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D87" type="MeshInstance3D" parent="." unique_id=951892354]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 1, -11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D88" type="MeshInstance3D" parent="." unique_id=1459428785]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 1, -11)
+mesh = SubResource("PlaneMesh_v5saw")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D89" type="MeshInstance3D" parent="." unique_id=1573307133]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1, -11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D91" type="MeshInstance3D" parent="." unique_id=1113182863]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D94" type="MeshInstance3D" parent="." unique_id=1834752436]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D95" type="MeshInstance3D" parent="." unique_id=1201965229]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D92" type="MeshInstance3D" parent="." unique_id=1206835332]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 1, -13)
+mesh = SubResource("PlaneMesh_v5saw")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D93" type="MeshInstance3D" parent="." unique_id=1495032620]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D96" type="MeshInstance3D" parent="." unique_id=1796779199]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D97" type="MeshInstance3D" parent="." unique_id=1670364812]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D98" type="MeshInstance3D" parent="." unique_id=1217565174]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D99" type="MeshInstance3D" parent="." unique_id=288308091]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D101" type="MeshInstance3D" parent="." unique_id=476235900]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D102" type="MeshInstance3D" parent="." unique_id=1868510229]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 1, -13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1644339188]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 1, 11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="." unique_id=1000609320]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 1, 11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=599332475]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 1, 9)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=1447504443]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 1, 11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="." unique_id=322445559]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 1, 13)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="." unique_id=1562532462]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 1, 9)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D41" type="MeshInstance3D" parent="." unique_id=193401712]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1, 9)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D42" type="MeshInstance3D" parent="." unique_id=1119264469]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 1, 9)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D43" type="MeshInstance3D" parent="." unique_id=1760618469]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 1, 9)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D54" type="MeshInstance3D" parent="." unique_id=1351224252]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1, 11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D55" type="MeshInstance3D" parent="." unique_id=1642340440]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 1, 11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D56" type="MeshInstance3D" parent="." unique_id=1270222317]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 1, 11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D57" type="MeshInstance3D" parent="." unique_id=1695786981]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 1, 11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D137" type="MeshInstance3D" parent="." unique_id=1869468721]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 1, 7)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D138" type="MeshInstance3D" parent="." unique_id=2020153201]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, 1, 7)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D139" type="MeshInstance3D" parent="." unique_id=1955498742]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 1, 7)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D142" type="MeshInstance3D" parent="." unique_id=1912543229]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 1, 5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D143" type="MeshInstance3D" parent="." unique_id=1888190140]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, 1, 5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D144" type="MeshInstance3D" parent="." unique_id=533095788]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 1, 5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D146" type="MeshInstance3D" parent="." unique_id=1854254441]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 1, 3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D140" type="MeshInstance3D" parent="." unique_id=433989866]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, 1, 7)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D141" type="MeshInstance3D" parent="." unique_id=1741041027]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 1, 7)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D161" type="MeshInstance3D" parent="." unique_id=1775092671]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 1, 3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D44" type="MeshInstance3D" parent="." unique_id=2009101962]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D47" type="MeshInstance3D" parent="." unique_id=1503987440]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D46" type="MeshInstance3D" parent="." unique_id=841310434]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="." unique_id=1064229236]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 1, 11)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="." unique_id=941768345]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 1, 13)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="." unique_id=414958341]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 1, 9)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D40" type="MeshInstance3D" parent="." unique_id=427587835]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 1, -3)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D121" type="MeshInstance3D" parent="." unique_id=584831793]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 1, -3)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D123" type="MeshInstance3D" parent="." unique_id=1197655337]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 1, 3)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D70" type="MeshInstance3D" parent="." unique_id=412401986]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, -8)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="." unique_id=1713014707]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 9)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="." unique_id=1391135342]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 1, -5)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="." unique_id=1004921755]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 13)
+mesh = SubResource("PlaneMesh_fjimi")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="." unique_id=1067478334]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 1, 12)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="." unique_id=391528724]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, 1, 12)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="." unique_id=1833542404]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, 1, 8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="." unique_id=1671119090]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, 1, 6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="." unique_id=1690948873]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, 1, 4)
+mesh = SubResource("PlaneMesh_w7v1l")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="." unique_id=8232727]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 1, 6)
+mesh = SubResource("PlaneMesh_w7v1l")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D45" type="MeshInstance3D" parent="." unique_id=1332182451]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 1, -3)
+mesh = SubResource("PlaneMesh_w7v1l")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D84" type="MeshInstance3D" parent="." unique_id=1813190157]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 1, -5)
+mesh = SubResource("PlaneMesh_w7v1l")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D75" type="MeshInstance3D" parent="." unique_id=214588162]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 1, -11)
+mesh = SubResource("PlaneMesh_w7v1l")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D90" type="MeshInstance3D" parent="." unique_id=900098055]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 1, -11)
+mesh = SubResource("PlaneMesh_w7v1l")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="." unique_id=1971169780]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="." unique_id=1991891933]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="." unique_id=204369121]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, 1, -2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="." unique_id=740559416]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 1, 8)
+mesh = SubResource("PlaneMesh_215ji")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="." unique_id=598356355]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, 10)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="." unique_id=63084055]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, 8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="." unique_id=1285397721]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, 6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D100" type="MeshInstance3D" parent="." unique_id=1422848931]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D103" type="MeshInstance3D" parent="." unique_id=1816802861]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D104" type="MeshInstance3D" parent="." unique_id=435588791]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, -2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D134" type="MeshInstance3D" parent="." unique_id=834972191]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -19, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D135" type="MeshInstance3D" parent="." unique_id=58893084]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -19, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D136" type="MeshInstance3D" parent="." unique_id=250808334]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -19, 1, -2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D105" type="MeshInstance3D" parent="." unique_id=196731448]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, -6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D106" type="MeshInstance3D" parent="." unique_id=1256311626]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, -8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D107" type="MeshInstance3D" parent="." unique_id=1186414645]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, -10)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D108" type="MeshInstance3D" parent="." unique_id=1556016964]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 1, -12)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="." unique_id=1582486583]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, 8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="." unique_id=1102221590]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, 6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="." unique_id=1216317866]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, 4)
+mesh = SubResource("PlaneMesh_lmr8v")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D37" type="MeshInstance3D" parent="." unique_id=238665702]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D38" type="MeshInstance3D" parent="." unique_id=271738856]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D39" type="MeshInstance3D" parent="." unique_id=719637538]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, -2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D69" type="MeshInstance3D" parent="." unique_id=440658508]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, -6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D71" type="MeshInstance3D" parent="." unique_id=1716047025]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 1, -10)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D72" type="MeshInstance3D" parent="." unique_id=389108544]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 1, -6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D73" type="MeshInstance3D" parent="." unique_id=2005897206]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 1, -8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D74" type="MeshInstance3D" parent="." unique_id=646217808]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 1, -10)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D78" type="MeshInstance3D" parent="." unique_id=1677569414]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, 1, -6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D79" type="MeshInstance3D" parent="." unique_id=1269711136]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, 1, -8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D80" type="MeshInstance3D" parent="." unique_id=1693894654]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, 1, -10)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D81" type="MeshInstance3D" parent="." unique_id=1652868943]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, -6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D82" type="MeshInstance3D" parent="." unique_id=889432906]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, -8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D83" type="MeshInstance3D" parent="." unique_id=600687127]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, -10)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="." unique_id=1827742269]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 1, 4)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="." unique_id=1375873332]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D48" type="MeshInstance3D" parent="." unique_id=1847920590]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D49" type="MeshInstance3D" parent="." unique_id=826946524]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D50" type="MeshInstance3D" parent="." unique_id=1757728717]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, -2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D51" type="MeshInstance3D" parent="." unique_id=772941038]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, 4)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D58" type="MeshInstance3D" parent="." unique_id=1892277404]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D59" type="MeshInstance3D" parent="." unique_id=1088133726]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D60" type="MeshInstance3D" parent="." unique_id=1325211464]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, 4)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D145" type="MeshInstance3D" parent="." unique_id=1320237116]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 15, 1, 4)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D159" type="MeshInstance3D" parent="." unique_id=122832369]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 17, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D157" type="MeshInstance3D" parent="." unique_id=565838455]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, 1, 4)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D160" type="MeshInstance3D" parent="." unique_id=1601062499]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, 1, 6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D147" type="MeshInstance3D" parent="." unique_id=1466500063]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D148" type="MeshInstance3D" parent="." unique_id=634491303]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, 1, 1)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D150" type="MeshInstance3D" parent="." unique_id=1631936572]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 1, -1)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D149" type="MeshInstance3D" parent="." unique_id=758300581]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 11, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D151" type="MeshInstance3D" parent="." unique_id=1302904346]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 1, -1)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D158" type="MeshInstance3D" parent="." unique_id=1268697862]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, 1, 1)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D152" type="MeshInstance3D" parent="." unique_id=731207034]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 15, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D153" type="MeshInstance3D" parent="." unique_id=426286548]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13, 1, -2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D154" type="MeshInstance3D" parent="." unique_id=1295989770]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, 1, -3)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D155" type="MeshInstance3D" parent="." unique_id=1545142213]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 1, -5)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D156" type="MeshInstance3D" parent="." unique_id=1850103991]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 11, 1, -4)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D109" type="MeshInstance3D" parent="." unique_id=769401944]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, -8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D110" type="MeshInstance3D" parent="." unique_id=2064181531]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, -10)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D112" type="MeshInstance3D" parent="." unique_id=290468161]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, -12)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D111" type="MeshInstance3D" parent="." unique_id=974616289]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, -6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D52" type="MeshInstance3D" parent="." unique_id=1996259880]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, 6)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D53" type="MeshInstance3D" parent="." unique_id=828726072]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 1, 8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D113" type="MeshInstance3D" parent="." unique_id=404406905]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, 8)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D114" type="MeshInstance3D" parent="." unique_id=1536963333]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9, 1, 10)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D115" type="MeshInstance3D" parent="." unique_id=1824113824]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21, 1, 2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D116" type="MeshInstance3D" parent="." unique_id=806984192]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21, 1, 4)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D117" type="MeshInstance3D" parent="." unique_id=1527695502]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21, 1, -2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D119" type="MeshInstance3D" parent="." unique_id=1130151027]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21, 1, -4)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D118" type="MeshInstance3D" parent="." unique_id=479210402]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="." unique_id=1138019122]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 1, 0)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="." unique_id=1571824841]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 1, -2)
+mesh = SubResource("PlaneMesh_otdea")
+skeleton = NodePath("../../..")
+
+[node name="GridMap" type="GridMap" parent="." unique_id=1030419332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 9)
+mesh_library = SubResource("MeshLibrary_7cfve")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(6, 1, 1048576, 7, 1, 1048576, 8, 1, 1048576, 5, 0, 1048576, 6, 0, 1048576, 7, 0, 1048576, 8, 0, 1048576, 9, 0, 1048576, 7, 65535, 1048576, 7, 65534, 1048576, 7, 65533, 1048576, 7, 65532, 1048576, 7, 65531, 1048576, 7, 65530, 1048576, 4, 0, 1048576, 10, 0, 1048576, 3, 0, 1048576, 11, 0, 1048576, 12, 0, 1048576, 2, 0, 1048576, 2, 65535, 1048576, 2, 65534, 1048576, 2, 65533, 1048576, 2, 65532, 1048576, 2, 65531, 1048576, 2, 65530, 1048576, 12, 65535, 1048576, 12, 65534, 1048576, 12, 65533, 1048576, 12, 65532, 1048576, 12, 65531, 1048576, 12, 65530, 1048576, 2, 65529, 1048576, 3, 65529, 1048576, 4, 65529, 1048576, 5, 65529, 1048576, 6, 65529, 1048576, 7, 65529, 1048576, 8, 65529, 1048576, 9, 65529, 1048576, 10, 65529, 1048576, 11, 65529, 1048576, 12, 65529, 1048576, 2, 65528, 1048576, 2, 65527, 1048576, 2, 65526, 1048576, 3, 65525, 1048576, 4, 65525, 1048576, 5, 65525, 1048576, 6, 65525, 1048576, 7, 65525, 1048576, 8, 65525, 1048576, 9, 65525, 1048576, 10, 65525, 1048576, 11, 65525, 1048576, 12, 65526, 1048576, 12, 65527, 1048576, 12, 65528, 1048576, 1, 65529, 1048576, 0, 65529, 1048576, 65535, 65529, 1048576, 65534, 65529, 1048576, 65534, 65530, 1048576, 65534, 65531, 1048576, 65534, 65532, 1048576, 65534, 65533, 1048576, 65535, 65533, 1048576, 0, 65533, 1048576, 1, 65533, 1048576, 13, 65529, 1048576, 13, 65530, 1048576, 14, 65530, 1048576, 14, 65531, 1048576, 15, 65531, 1048576, 15, 65532, 1048576, 16, 65532, 1048576, 16, 65533, 1048576, 17, 65533, 1048576, 17, 65534, 1048576, 16, 65534, 1048576, 15, 65534, 1048576, 14, 65534, 1048576, 13, 65534, 1048576, 3, 65535, 1, 3, 65534, 1, 3, 65533, 1, 4, 65535, 1, 5, 65535, 1, 6, 65535, 1, 6, 65534, 1, 5, 65534, 1, 4, 65534, 1, 4, 65533, 1, 5, 65533, 1, 6, 65533, 1, 3, 65532, 1, 4, 65532, 1, 5, 65532, 1, 6, 65532, 1, 6, 65531, 1, 6, 65530, 1, 5, 65530, 1, 4, 65530, 1, 3, 65530, 1, 3, 65531, 1, 4, 65531, 1, 5, 65531, 1, 8, 65530, 1, 8, 65531, 1, 8, 65532, 1, 8, 65533, 1, 8, 65534, 1, 8, 65535, 1, 9, 65535, 1, 10, 65535, 1, 11, 65535, 1, 11, 65534, 1, 11, 65533, 1, 11, 65532, 1, 11, 65531, 1, 11, 65530, 1, 10, 65530, 1, 9, 65530, 1, 9, 65531, 1, 9, 65532, 1, 10, 65532, 1, 10, 65531, 1, 9, 65533, 1, 10, 65533, 1, 9, 65534, 1, 10, 65534, 1, 65523, 5, 1, 7, 65528, 1, 8, 65528, 1, 8, 65527, 1, 7, 65527, 1, 6, 65528, 1, 6, 65527, 1, 7, 65526, 1, 8, 65526, 1, 6, 65526, 1, 2, 65525, 0, 12, 65525, 0, 0, 65530, 1, 1, 65530, 1, 1, 65531, 1, 0, 65531, 1, 65535, 65531, 1, 65535, 65530, 1, 1, 65532, 1, 0, 65532, 1, 65535, 65532, 1, 4, 65526, 0, 3, 65526, 0, 5, 65526, 0, 5, 65527, 0, 5, 65528, 0, 4, 65528, 0, 3, 65528, 0, 3, 65527, 0, 4, 65527, 0, 10, 65528, 0, 9, 65528, 0, 11, 65528, 0, 11, 65527, 0, 10, 65527, 0, 9, 65527, 0, 9, 65526, 0, 10, 65526, 0, 11, 65526, 0)
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=849310567]
+environment = ExtResource("8_w7v1l")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=868473425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 11)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D" unique_id=1439961049]
+libraries/ = SubResource("AnimationLibrary_otdea")

@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://c5126268nucih"]
 
+[ext_resource type="Script" uid="uid://c5tesdbrne5fo" path="res://scripts/globals/lighting_manager.gd" id="1_n41wy"]
+
 [node name="LightingManager" type="Node" unique_id=252181117]
+script = ExtResource("1_n41wy")

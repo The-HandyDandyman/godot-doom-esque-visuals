@@ -47,9 +47,9 @@ uniform bool use_back_mask_overlay = false;
 uniform int back_mask_overlay:hint_range(-1,1);
 
 group_uniforms Lightmap;
-uniform sampler2D lightmap:hint_default_white,filter_nearest;
+uniform sampler2D lightmap:hint_default_white,filter_nearest,repeat_disable;
 uniform vec2 lightmap_size = vec2(1.0);
-uniform vec2 lightmap_offset = vec2(0.0);
+uniform vec2 lightmap_origin = vec2(0.0);
 
 group_uniforms LightMask;
 uniform sampler2D light_mask:hint_default_black,filter_nearest;
@@ -84,10 +84,11 @@ global uniform float pausable_time = 0.0;
 varying vec3 world_position;
 varying vec2 base_uv;
 varying vec3 world_normal;
+varying vec2 adjusted_light_origin;
 
 varying vec3 norm_normal;
 varying vec3 abs_normal;
-const float lightmap_bias = 0.00001; // Bias is extremely small to ensure the bias is as accurate as possible
+const float lightmap_bias = 0.0001; // Bias is extremely small to ensure the bias is as accurate as possible
 
 vec3 screen(vec3 base, vec3 blend){
 	return 1.0 - (1.0 - base) * (1.0 - blend);
@@ -102,6 +103,9 @@ void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
 	base_uv = UV;
+	// Set light origin
+	vec2 local_world_pos = world_position.xz - lightmap_origin;
+	adjusted_light_origin = (local_world_pos / lightmap_size) + vec2(0.5);
 }
 
 vec2 uv_calc(float scale, sampler2D albedo_in, vec2 offset, bool world_pos,int rot, bool frontface) {
@@ -211,7 +215,7 @@ void fragment() {
 	// Handle lightmap
 	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
 	// Create lightmap uv
-	vec2 lightmap_uv = (world_position.xz * actual_lightmap_size) + lightmap_offset;
+	vec2 lightmap_uv = adjusted_light_origin;
 	// Offset lightmap uv by view matrix normal
 	vec3 viewmatrix_normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
 	lightmap_uv += viewmatrix_normal.xz * lightmap_bias;
