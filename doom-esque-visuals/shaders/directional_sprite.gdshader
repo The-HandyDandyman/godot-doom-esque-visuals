@@ -27,7 +27,7 @@ uniform float dither_scale = 1.0;
 group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
-uniform vec2 lightmap_offset = vec2(0.0);
+uniform vec2 lightmap_origin = vec2(0.0);
 uniform bool use_lightmap = true;
 
 group_uniforms LightMask;
@@ -50,6 +50,7 @@ global uniform float fog_diminish_curve = 1.0;
 
 varying vec3 look_dir;
 varying flat vec3 world_origin;
+varying vec2 adjusted_light_origin;
 varying flat vec3 light_color;
 
 vec3 screen(vec3 base, vec3 blend){
@@ -61,11 +62,8 @@ float diminish_factor_calc(float min_val,float max_val, float dim_curve, float v
 	return  mix(dim,(floor(dim * float(color_bands)) / float(color_bands)),float(color_banding)); // Apply color banding if needed
 }
 
-vec3 create_lightmap_color(vec2 offset){
-	// Run the same calculations done for the ground: use world origin instead though as that's the center of the object
-	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
-	vec2 lightmap_uv = (world_origin.xz * actual_lightmap_size) + lightmap_offset + offset;
-	return texture(lightmap,lightmap_uv).rgb;
+vec3 create_lightmap_color(){
+	return texture(lightmap,adjusted_light_origin).rgb;
 }
 void vertex() {
 	world_origin = MODEL_MATRIX[3].xyz;
@@ -100,7 +98,9 @@ void vertex() {
 	vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
 	vec4(0.0, 0.0, 0.0, 1.0));
 	// Handle lightmap colors: we're handling it in here so that way the light is just one color
-	light_color = create_lightmap_color(vec2(0));
+	vec2 local_world_pos = world_origin.xz - lightmap_origin;
+	adjusted_light_origin = (local_world_pos / lightmap_size) + vec2(0.5);
+	light_color = create_lightmap_color();
 }
 
 
