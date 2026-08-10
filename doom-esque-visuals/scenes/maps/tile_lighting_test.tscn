@@ -13,6 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://b0lb5p1t7neqr" path="res://graphics/brickGateMask2.png" id="9_xw5h2"]
 [ext_resource type="Texture2D" uid="uid://drp24b47st0l4" path="res://graphics/posterTexture.png" id="10_b18ba"]
 [ext_resource type="Texture2D" uid="uid://bsws80jhy77r3" path="res://graphics/carpetTexture.png" id="11_b18ba"]
+[ext_resource type="Shader" uid="uid://semt281lb46i" path="res://shaders/billboard_sprite.gdshader" id="14_500o7"]
+[ext_resource type="Texture2D" uid="uid://bcok6fpjogbpt" path="res://graphics/dither/bayer8.png" id="15_rmfs4"]
+[ext_resource type="Texture2D" uid="uid://dxgfv5vvgqck7" path="res://graphics/lampLightMask.png" id="16_otdea"]
+[ext_resource type="Texture2D" uid="uid://djdstscpj6pmd" path="res://graphics/lampSprite.png" id="17_215ji"]
+[ext_resource type="AudioStream" uid="uid://dtdwyqllwj52q" path="res://sound/classroomTurmoilScary.mp3" id="18_rmfs4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmr8v"]
 render_priority = 0
@@ -540,6 +545,21 @@ _data = {
 &"RESET": SubResource("Animation_500o7"),
 &"move": SubResource("Animation_rmfs4")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fjimi"]
+render_priority = 0
+shader = ExtResource("14_500o7")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_215ji")
+shader_parameter/dither_tex = ExtResource("15_rmfs4")
+shader_parameter/dither_scale = 1.0
+shader_parameter/lightmap = ExtResource("4_h2h7i")
+shader_parameter/lightmap_size = Vector2(42, 42)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = true
+shader_parameter/light_mask = ExtResource("16_otdea")
+shader_parameter/light_mask_strength = 1.0
 
 [node name="TileLighting_Test" type="Node3D" unique_id=623476468 node_paths=PackedStringArray("gridMap")]
 script = ExtResource("1_qvhmq")
@@ -1366,3 +1386,68 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 11)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D" unique_id=1439961049]
 libraries/ = SubResource("AnimationLibrary_otdea")
+
+[node name="Lamp" type="Sprite3D" parent="." unique_id=2049127229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.235408, 1, -1.7892177)
+material_override = SubResource("ShaderMaterial_fjimi")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("17_215ji")
+metadata/sector_tag = 1
+
+[node name="Lamp2" type="Sprite3D" parent="." unique_id=1215330883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.235408, 1, 12.210782)
+material_override = SubResource("ShaderMaterial_fjimi")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("17_215ji")
+metadata/sector_tag = 1
+
+[node name="Lamp3" type="Sprite3D" parent="." unique_id=1117178877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23540783, 1, 12.210782)
+material_override = SubResource("ShaderMaterial_fjimi")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("17_215ji")
+metadata/sector_tag = 1
+
+[node name="Lamp4" type="Sprite3D" parent="." unique_id=48624482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23540783, 1, 3.210782)
+material_override = SubResource("ShaderMaterial_fjimi")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("17_215ji")
+metadata/sector_tag = 1
+
+[node name="Lamp5" type="Sprite3D" parent="." unique_id=275528341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7645922, 1, -1.789218)
+material_override = SubResource("ShaderMaterial_fjimi")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("17_215ji")
+metadata/sector_tag = 1
+
+[node name="Lamp6" type="Sprite3D" parent="." unique_id=829552434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23540783, 1, -5.789218)
+material_override = SubResource("ShaderMaterial_fjimi")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("17_215ji")
+metadata/sector_tag = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1260687818]
+process_mode = 3
+stream = ExtResource("18_rmfs4")
+autoplay = true

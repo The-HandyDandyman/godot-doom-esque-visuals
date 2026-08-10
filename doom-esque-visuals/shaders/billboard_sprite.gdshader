@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, depth_prepass_alpha, depth_draw_opaque;
+render_mode unshaded;
 uniform vec4 modulate: source_color = vec4(1.0,1.0,1.0,1.0);
 uniform bool y_billboard = false; // Enables Y-Billboarding when true
 uniform sampler2D sprite_texture: source_color, filter_nearest;

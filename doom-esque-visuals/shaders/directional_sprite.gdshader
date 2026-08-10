@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, depth_prepass_alpha, depth_draw_opaque;
+render_mode unshaded;
 
 // rows - directions, column - animation frames
 // First (0) row - front

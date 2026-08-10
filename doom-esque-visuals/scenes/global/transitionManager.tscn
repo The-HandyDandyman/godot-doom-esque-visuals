@@ -3,6 +3,8 @@
 [ext_resource type="Shader" uid="uid://cu1h2mdcir8dj" path="res://shaders/screen_melt.gdshader" id="1_f6m8m"]
 [ext_resource type="Script" uid="uid://dpjbmw1mhsxbv" path="res://scripts/transition_manager.gd" id="1_t60f8"]
 [ext_resource type="Texture2D" uid="uid://c0lbugvn7unwf" path="res://graphics/splashscreen.png" id="2_t60f8"]
+[ext_resource type="Shader" uid="uid://c57b6fa1vuxar" path="res://shaders/dither_transparency_sprite.gdshader" id="4_c35go"]
+[ext_resource type="Texture2D" uid="uid://d308nmgxf4tm0" path="res://graphics/dither/bayer4.png" id="5_c35go"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7cfve"]
 shader = ExtResource("1_f6m8m")
@@ -10,7 +12,13 @@ shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
 shader_parameter/pixel_melt_chunk_length = 2
 
-[node name="TransitionManager" type="Control" unique_id=632992921 node_paths=PackedStringArray("melt_transition")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1db0"]
+shader = ExtResource("4_c35go")
+shader_parameter/dither_tex = ExtResource("5_c35go")
+shader_parameter/dither_scale = 1.0
+shader_parameter/transparency = 1.0
+
+[node name="TransitionManager" type="Control" unique_id=632992921 node_paths=PackedStringArray("melt_transition", "dither_transition")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -19,14 +27,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t60f8")
-melt_transition = NodePath("transitionLayer/currentImage")
+melt_transition = NodePath("transitionLayer/meltTransition")
+dither_transition = NodePath("transitionLayer/ditherTransition")
 
 [node name="transitionLayer" type="CanvasLayer" parent="." unique_id=723232604]
 layer = 999
 
-[node name="currentImage" type="TextureRect" parent="transitionLayer" unique_id=1401086168]
+[node name="meltTransition" type="TextureRect" parent="transitionLayer" unique_id=1401086168]
 visible = false
 material = SubResource("ShaderMaterial_7cfve")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t60f8")
+
+[node name="ditherTransition" type="TextureRect" parent="transitionLayer" unique_id=1765726564]
+visible = false
+material = SubResource("ShaderMaterial_m1db0")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

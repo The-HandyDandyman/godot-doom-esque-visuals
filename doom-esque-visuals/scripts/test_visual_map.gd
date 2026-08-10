@@ -6,7 +6,7 @@ extends Node3D
 @export var environment_a:Environment
 @export var environment_b:Environment
 @onready var skybox:MeshInstance3D = $FullMap/LazySkyboxBecauseThisIsATestMap
-@onready var cameraPoint:AnimationPlayer = $Camera3D/AnimationPlayer
+@onready var cameraPoint:AnimationPlayer = $Camera/AnimationPlayer
 @export var sky:MeshInstance3D
 @onready var musicPlayer:AudioStreamPlayer = $AudioStreamPlayer
 
@@ -56,4 +56,6 @@ func _process(delta):
 			cameraPoint.play("otherotherpoint")
 		else:
 			cameraPoint.play("RESET")
-	Text.text = "Q and E to adjust camera\nA and D to rotate Godot plush\nW to toggle Godot plushie rotation\n" + ScreenOverlay.paletteRelatedText + "Escape to toggle fog (Currently set to " + str(WorldEnv.environment.fog_enabled) + ")\nTab to toggle environment\nEquals sign to toggle light diminishing\nDel to switch view\nR and T to adjust ghost opacity\nH to switch ghost dither texture\nM to mute music\nBackspace to hide instructions"
+	Text.text = "Q and E to adjust camera\nA and D to rotate Godot plush\nW to toggle Godot plushie rotation\n" + ScreenOverlay.paletteRelatedText + "Escape to toggle fog (Currently set to " + str(WorldEnv.environment.fog_enabled) + ")
+	Tab to toggle environment\nEquals sign to toggle light diminishing\nDel to switch view\nJ to toggle mouselook\nK to toggle y-shearing
+	R and T to adjust ghost opacity\nH to switch ghost dither texture\nM to mute music\nBackspace to hide instructions"

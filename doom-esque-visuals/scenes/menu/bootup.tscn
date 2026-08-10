@@ -3,12 +3,36 @@
 [ext_resource type="Script" uid="uid://cpvojy7u4ep4u" path="res://scripts/bootup.gd" id="1_4ak6e"]
 [ext_resource type="PackedScene" uid="uid://cfa7y2ntdwl2" path="res://scenes/maps/test_visual_map.tscn" id="2_0vdey"]
 [ext_resource type="Texture2D" uid="uid://c0lbugvn7unwf" path="res://graphics/splashscreen.png" id="2_d8clq"]
+[ext_resource type="PackedScene" uid="uid://b8pwvrvlktma5" path="res://scenes/maps/tile_lighting_test.tscn" id="3_1683y"]
+[ext_resource type="FontFile" uid="uid://dov0f3icir4wj" path="res://graphics/fonts/PixelOperator.ttf" id="5_vhr7s"]
+
+[sub_resource type="Theme" id="Theme_7cfve"]
+default_font = ExtResource("5_vhr7s")
 
 [node name="Node2D" type="Node2D" unique_id=1510968085]
 script = ExtResource("1_4ak6e")
-nextScene = ExtResource("2_0vdey")
+testScenes = Array[PackedScene]([ExtResource("2_0vdey"), ExtResource("3_1683y")])
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=545929164]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_d8clq")
+
+[node name="Button" type="Button" parent="." unique_id=1254026031]
+offset_left = 32.0
+offset_top = 416.0
+offset_right = 154.0
+offset_bottom = 440.0
+theme = SubResource("Theme_7cfve")
+text = "TEST VISUAL MAP"
+
+[node name="Button2" type="Button" parent="." unique_id=192826275]
+offset_left = 480.0
+offset_top = 416.0
+offset_right = 609.0
+offset_bottom = 440.0
+theme = SubResource("Theme_7cfve")
+text = "TILE BASED LIGHTING"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
