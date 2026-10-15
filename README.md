@@ -22,7 +22,7 @@ Y-billboarding and the ability to modulate! If you'd like more info, check the c
 
 - A modified screen palette shader based on the one by Badger_ on Godot Shaders, which allows you to both palette swap the whole screen after applying the adapt-to-palette shader first and to offset the colors!
 
-- Some sample textures, mostly modified from OpenGameArt and Wikimedia Commons with a custom demonstration spritesheet for the directional shader
+- Some sample textures, mostly modified from OpenGameArt and Wikimedia Commons with two custom demonstration spritesheets for the directional shader
 using APirateHat's Godot Plushie model!
 
 - Flat warping for triplanars (akin to Quake's fluid distortion!), though not a particularly accurate thing for vanilla Doom it is present in many source ports (ZDoom and GZDoom!)
