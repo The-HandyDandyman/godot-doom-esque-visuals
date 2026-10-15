@@ -146,7 +146,8 @@ void fragment() {
 	// Getting correct frame
 	vec2 frame = vec2(current_frame, _direction);
 	vec2 frame_size = vec2(f_ncolumns, f_directions);
-	vec4 tex = texture(sprite_sheet, (UV + frame) / frame_size * vec2(flip, 1.0));
+	vec2 sprite_uv = (UV + frame) / frame_size * vec2(flip, 1.0);
+	vec4 tex = texture(sprite_sheet, sprite_uv);
 	vec4 final_albedo = tex * modulate;
 	// Handle dithered transparency
 	ivec2 dither_size = textureSize(dither_tex, 0);
@@ -157,7 +158,7 @@ void fragment() {
 		discard;
 	}
 	// Apply light mask to light color
-	vec3 light_mask_tex = texture(light_mask,UV).rgb;
+	vec3 light_mask_tex = texture(light_mask,sprite_uv).rgb;
 	vec3 light_color_masked = screen(light_color,light_mask_tex * vec3(light_mask_strength));
 	light_color_masked = mix(light_color_masked,vec3(1.0),1.0 - float(use_lightmap));
 	// Calculate light diminishing and fog
