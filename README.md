@@ -95,6 +95,8 @@ Initial adjustments by Dandy (that's me!) and tentabrobpy on Godot Shaders ]
 
 [ Godot Plushie Spritesheet: Created using this model by APirateHat on Itch.io https://apiratehat.itch.io/godot-plushie-3d-character . Sprites were made with Libresprite and applying the palette used via Indexed Dither mode.]
 
+[ Sophia Spritesheet: Created using the model featured in the GDQuest 3D Characters Repo: https://github.com/gdquest-demos/godot-4-3D-Characters. Sprites were made with Libresprite and touched up a bit with GIMP. ]
+
 [ Pixel Melt Shader - https://godotshaders.com/shader/pixel-melt/
 
    Created by ericalfaro on Godot Shaders]
