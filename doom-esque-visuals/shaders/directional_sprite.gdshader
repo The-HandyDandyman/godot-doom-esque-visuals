@@ -28,7 +28,10 @@ group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_origin = vec2(0.0);
-uniform bool use_lightmap = true;
+uniform int use_lightmap:hint_enum("Disabled","Enabled","Global") = 1;
+global uniform sampler2D global_lightmap:hint_default_white,filter_nearest,repeat_disable;
+global uniform vec2 global_lightmap_size;
+global uniform vec2 global_lightmap_origin;
 
 group_uniforms LightMask;
 uniform sampler2D light_mask:hint_default_black,filter_nearest;
@@ -52,6 +55,8 @@ varying vec3 look_dir;
 varying flat vec3 world_origin;
 varying vec2 adjusted_light_origin;
 varying flat vec3 light_color;
+varying vec2 selected_lightmap_size;
+varying vec2 selected_lightmap_origin;
 
 vec3 screen(vec3 base, vec3 blend){
 	return 1.0 - (1.0 - base) * (1.0 - blend);
@@ -63,7 +68,9 @@ float diminish_factor_calc(float min_val,float max_val, float dim_curve, float v
 }
 
 vec3 create_lightmap_color(){
-	return texture(lightmap,adjusted_light_origin).rgb;
+	vec3 global_tex = texture(global_lightmap,adjusted_light_origin).rgb;
+	vec3 local_tex = texture(lightmap,adjusted_light_origin).rgb;
+	return mix(local_tex,global_tex,float(use_lightmap > 1));
 }
 void vertex() {
 	world_origin = MODEL_MATRIX[3].xyz;
@@ -97,9 +104,12 @@ void vertex() {
 	vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
 	vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
 	vec4(0.0, 0.0, 0.0, 1.0));
+	// Determine if lightmap is global or not and use that to help with UV mapping
+	selected_lightmap_origin = mix(lightmap_origin,global_lightmap_origin,float(use_lightmap > 1));
+	selected_lightmap_size = mix(lightmap_size,global_lightmap_size,float(use_lightmap > 1));
 	// Handle lightmap colors: we're handling it in here so that way the light is just one color
-	vec2 local_world_pos = world_origin.xz - lightmap_origin;
-	adjusted_light_origin = (local_world_pos / lightmap_size) + vec2(0.5);
+	vec2 local_world_pos = world_origin.xz - selected_lightmap_origin;
+	adjusted_light_origin = (local_world_pos / selected_lightmap_size) + vec2(0.5);
 	light_color = create_lightmap_color();
 }
 
@@ -160,7 +170,7 @@ void fragment() {
 	// Apply light mask to light color
 	vec3 light_mask_tex = texture(light_mask,sprite_uv).rgb;
 	vec3 light_color_masked = screen(light_color,light_mask_tex * vec3(light_mask_strength));
-	light_color_masked = mix(light_color_masked,vec3(1.0),1.0 - float(use_lightmap));
+	light_color_masked = mix(light_color_masked,vec3(1.0),1.0 - float(use_lightmap > 0));
 	// Calculate light diminishing and fog
 	float vertex_diminish = mix(-VERTEX.z,length(VERTEX),float(radial_diminish));
 	float light_diminish_factor = diminish_factor_calc(light_min_diminish,light_max_diminish,light_diminish_curve,vertex_diminish);

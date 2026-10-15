@@ -21,5 +21,5 @@ shader_parameter/dither_scale = 1.0
 shader_parameter/lightmap = ExtResource("3_avlyq")
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_origin = Vector2(0, 0)
-shader_parameter/use_lightmap = true
+shader_parameter/use_lightmap = 1
 shader_parameter/light_mask_strength = 1.0

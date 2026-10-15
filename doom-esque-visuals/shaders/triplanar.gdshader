@@ -48,8 +48,13 @@ uniform int back_mask_overlay:hint_range(-1,1);
 
 group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest,repeat_disable;
+uniform int use_lightmap:hint_enum("Disabled","Enabled","Global") = 1;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_origin = vec2(0.0);
+global uniform sampler2D global_lightmap:hint_default_white,filter_nearest,repeat_disable;
+global uniform vec2 global_lightmap_size;
+global uniform vec2 global_lightmap_origin;
+
 
 group_uniforms LightMask;
 uniform sampler2D light_mask:hint_default_black,filter_nearest;
@@ -85,6 +90,8 @@ varying vec3 world_position;
 varying vec2 base_uv;
 varying vec3 world_normal;
 varying vec2 adjusted_light_origin;
+varying vec2 selected_lightmap_size;
+varying vec2 selected_lightmap_origin;
 
 varying vec3 norm_normal;
 varying vec3 abs_normal;
@@ -103,9 +110,12 @@ void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
 	base_uv = UV;
+	// Determine if lightmap is global or not and use that to help with UV mapping
+	selected_lightmap_origin = mix(lightmap_origin,global_lightmap_origin,float(use_lightmap > 1));
+	selected_lightmap_size = mix(lightmap_size,global_lightmap_size,float(use_lightmap > 1));
 	// Set light origin
-	vec2 local_world_pos = world_position.xz - lightmap_origin;
-	adjusted_light_origin = (local_world_pos / lightmap_size) + vec2(0.5);
+	vec2 local_world_pos = world_position.xz - selected_lightmap_origin;
+	adjusted_light_origin = (local_world_pos / selected_lightmap_size) + vec2(0.5);
 }
 
 vec2 uv_calc(float scale, sampler2D albedo_in, vec2 offset, bool world_pos,int rot, bool frontface) {
@@ -213,13 +223,16 @@ void fragment() {
 		discard;
 	}
 	// Handle lightmap
-	vec2 actual_lightmap_size = vec2(1.0) / lightmap_size;
+	vec2 actual_lightmap_size = vec2(1.0) / selected_lightmap_size;
 	// Create lightmap uv
 	vec2 lightmap_uv = adjusted_light_origin;
 	// Offset lightmap uv by view matrix normal
 	vec3 viewmatrix_normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
 	lightmap_uv += viewmatrix_normal.xz * lightmap_bias;
 	vec4 light = texture(lightmap,lightmap_uv);
+	// Set lightmap to use global if the parameters check out, otherwise just keep the lightmap as is
+	light = mix(light,texture(global_lightmap,lightmap_uv),float(use_lightmap > 1));
+	
 	// Handle light mask
 	vec2 light_mask_uv = mix(uv,overlay_uv,float(follow_overlay_uv));
 	vec3 light_mask_tex = texture(light_mask,light_mask_uv).rgb;
@@ -231,6 +244,7 @@ void fragment() {
 	// Create final light diminishing
 	vec3 final_light_diminish = vec3(mix(0.0,light_diminish_factor,float(light_diminishing)));
 	light_color_masked = screen(light_color_masked,final_light_diminish);
+	light_color_masked = mix(vec3(1.0),light_color_masked,float(use_lightmap > 0));
 	vec3 complete_albedo = final_albedo.rgb * light_color_masked;
 	// Handle fog
 	vec3 fog_albedo = mix(complete_albedo,fog_modulate.rgb,1.0 - fog_diminish_factor);

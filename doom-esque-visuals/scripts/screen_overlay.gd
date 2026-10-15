@@ -17,6 +17,8 @@ var previousPalOffset:Vector2i = newOffset
 var swap:bool = false
 var paletteRelatedText:String
 
+func togglePostprocessOverlay(active:bool = true):
+	screenOverlay.visible = active
 func paletteSetup(material:ShaderMaterial = palSwapShader, defaultPal:Texture = defaultPALETTE, paletteSwap:Texture = PALETTE_SWAP,paletteOffset:Vector2i = defaultPalOffset,newSize:Vector2i = defaultPalSize):
 	if PALETTE_SWAP == null:
 		PALETTE_SWAP = defaultPALETTE

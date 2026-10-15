@@ -182,3 +182,15 @@ pausable_time={
 "type": "float",
 "value": 0.0
 }
+global_lightmap={
+"type": "sampler2D",
+"value": "res://graphics/lightmapTest.png"
+}
+global_lightmap_size={
+"type": "vec2",
+"value": Vector2(40, 40)
+}
+global_lightmap_origin={
+"type": "vec2",
+"value": Vector2(0, 0)
+}

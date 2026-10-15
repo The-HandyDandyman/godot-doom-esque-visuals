@@ -20,6 +20,7 @@ shader_parameter/transparency = 1.0
 
 [node name="TransitionManager" type="Control" unique_id=632992921 node_paths=PackedStringArray("melt_transition", "dither_transition")]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
