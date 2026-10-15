@@ -133,9 +133,8 @@ void fragment() {
 
 	float current_frame = float(animframe);
 	// makes sure flip is oriented correctly and plays frames in the correct order if it flips, will ignore if it's asymmetrical though
-	if (flip < float(0) && !asymmetrical) {
-		current_frame = (current_frame * float(-1)) + f_nrows - (f_ncolumns - 4.0);
-	}
+	float frame_mod = mod(current_frame, f_ncolumns);
+	current_frame = mix(current_frame, (current_frame - frame_mod) + ((f_ncolumns - float(1)) - frame_mod), float(flip < float(0) && !asymmetrical));
 	if (asymmetrical) { // Check if the sprite is supposed to be flipped, then set flip to 1 and makes sure the in betweens are done correctly
 		if (_direction > float(0) && _direction < f_nrows && flip < float(0)){
 			_direction = f_nrows - _direction + inbetweens;
