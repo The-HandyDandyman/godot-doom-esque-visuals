@@ -194,3 +194,7 @@ global_lightmap_origin={
 "type": "vec2",
 "value": Vector2(0, 0)
 }
+global_diminish_map={
+"type": "sampler2D",
+"value": "res://graphics/dimmapTest.png"
+}

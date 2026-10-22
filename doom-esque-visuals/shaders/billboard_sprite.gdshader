@@ -12,7 +12,7 @@ group_uniforms Lightmap;
 uniform sampler2D lightmap:hint_default_white,filter_nearest;
 uniform vec2 lightmap_size = vec2(1.0);
 uniform vec2 lightmap_origin = vec2(0.0);
-uniform int use_lightmap:hint_enum("Disabled","Enabled","Global") = 1;
+uniform int use_lightmap:hint_enum("Disabled","Enabled","Global") = 2;
 global uniform sampler2D global_lightmap:hint_default_white,filter_nearest,repeat_disable;
 global uniform vec2 global_lightmap_size;
 global uniform vec2 global_lightmap_origin;
@@ -28,6 +28,8 @@ global uniform float light_max_diminish = 4.0;
 global uniform float light_diminish_curve = 1.0;
 global uniform bool radial_diminish = false;
 global uniform bool color_banding = false;
+global uniform sampler2D global_diminish_map:hint_default_white,filter_nearest,repeat_disable;
+uniform sampler2D diminish_map:hint_default_white,filter_nearest,repeat_disable;
 global uniform int color_bands = 32;
 global uniform bool fog_diminishing = false;
 global uniform vec4 fog_modulate : source_color = vec4(0.0,0.0,0.0,1.0);
@@ -38,6 +40,7 @@ global uniform float fog_diminish_curve = 1.0;
 varying flat vec3 world_origin;
 varying vec2 adjusted_light_origin;
 varying flat vec3 light_color;
+varying flat vec3 dim_color;
 varying vec2 selected_lightmap_size;
 varying vec2 selected_lightmap_origin;
 
@@ -46,14 +49,8 @@ vec3 screen(vec3 base, vec3 blend){
 }
 
 float diminish_factor_calc(float min_val,float max_val, float dim_curve, float vertex_dim){
-	float dim = pow(1.0 - smoothstep(min_val,max_val,vertex_dim),max(0.0,dim_curve)); // Initial calculations
+	float dim = pow(1.0 - smoothstep(min_val,max_val,vertex_dim),max(0.001,dim_curve)); // Initial calculations
 	return  mix(dim,(floor(dim * float(color_bands)) / float(color_bands)),float(color_banding)); // Apply color banding if needed
-}
-
-vec3 create_lightmap_color(){
-	vec3 global_tex = texture(global_lightmap,adjusted_light_origin).rgb;
-	vec3 local_tex = texture(lightmap,adjusted_light_origin).rgb;
-	return mix(local_tex,global_tex,float(use_lightmap > 1));
 }
 
 void vertex() {
@@ -77,7 +74,8 @@ void vertex() {
 	// Handle lightmap colors: we're handling it in here so that way the light is just one color
 	vec2 local_world_pos = world_origin.xz - selected_lightmap_origin;
 	adjusted_light_origin = (local_world_pos / selected_lightmap_size) + vec2(0.5);
-	light_color = create_lightmap_color();
+	light_color = mix(texture(lightmap,adjusted_light_origin).rgb,texture(global_lightmap,adjusted_light_origin).rgb,float(use_lightmap > 1));
+	dim_color = mix(texture(diminish_map,adjusted_light_origin).rgb,texture(global_diminish_map,adjusted_light_origin).rgb,float(use_lightmap > 1));
 }
 
 void fragment() {
@@ -93,14 +91,14 @@ void fragment() {
 	}
 	// Apply light mask to light color
 	vec3 light_mask_tex = texture(light_mask,UV).rgb;
-	vec3 light_color_masked = screen(light_color,light_mask_tex * vec3(light_mask_strength));
+	vec3 light_color_masked = light_mask_tex * vec3(light_mask_strength);
 	light_color_masked = mix(light_color_masked,vec3(1.0),1.0 - float(use_lightmap > 0));
 	// Calculate light diminishing and fog
 	float vertex_diminish = mix(-VERTEX.z,length(VERTEX),float(radial_diminish));
 	float light_diminish_factor = diminish_factor_calc(light_min_diminish,light_max_diminish,light_diminish_curve,vertex_diminish);
 	float fog_diminish_factor = diminish_factor_calc(fog_min_diminish,fog_max_diminish,fog_diminish_curve,vertex_diminish);
 	// Create final light diminishing
-	vec3 final_light_diminish = vec3(mix(0.0,light_diminish_factor,float(light_diminishing)));
+	vec3 final_light_diminish = mix(light_color,dim_color,float(light_diminishing) * light_diminish_factor);
 	light_color_masked = screen(light_color_masked,final_light_diminish);
 	vec3 complete_albedo = final_albedo.rgb * modulate.rgb * light_color_masked;
 	vec3 fog_albedo = mix(complete_albedo,fog_modulate.rgb,1.0 - fog_diminish_factor);

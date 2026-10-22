@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://cs3kqwey7im23" path="res://shaders/directional_sprite.gdshader" id="1_lj20b"]
 [ext_resource type="Texture2D" uid="uid://dh6yivqkdg1nx" path="res://graphics/asymmetricalDirectionalTest.png" id="2_anqna"]
 [ext_resource type="Texture2D" uid="uid://bcok6fpjogbpt" path="res://graphics/dither/bayer8.png" id="2_avlyq"]
+[ext_resource type="Texture2D" uid="uid://bp5hcngnx806d" path="res://graphics/dimmapTest.png" id="2_tvova"]
 [ext_resource type="Texture2D" uid="uid://ejb5kdjqwjjc" path="res://graphics/lightmapTest.png" id="3_avlyq"]
 
 [resource]
@@ -23,3 +24,4 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/use_lightmap = 1
 shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("2_tvova")
