@@ -1,4 +1,6 @@
 extends Node
+
+## unused stuff for now!
 var stored_lightmaps:Array[ImageTexture]
 
 func generate_tile_lightmap(tiles:GridMap):

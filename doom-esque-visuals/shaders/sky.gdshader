@@ -8,6 +8,11 @@ uniform vec2 fov = vec2(180.0, 90.0);
 uniform ivec2 tiling = ivec2(1, 1);
 uniform vec2 offset = vec2(0.0, 0.0);
 uniform bool transparent = false; // This is mainly here for layered backgrounds, akin to Hexen
+group_uniforms Autoscroll;
+uniform bool use_autoscroll = false;
+uniform vec2 autoscroll_offset = vec2(0.0,0.0);
+uniform bool use_pausable_time = true;
+global uniform float pausable_time = 0.0;
 
 varying vec4 BG_COORDS;
 
@@ -28,7 +33,8 @@ void vertex() {
 }
 
 void fragment() {
-	vec2 uv = (SCREEN_UV + vec2(-offset.x, offset.y)) * BG_COORDS.zw + BG_COORDS.xy;
+	vec2 final_autoscroll = vec2(-autoscroll_offset.x, autoscroll_offset.y) * mix(TIME,pausable_time,float(use_pausable_time)) * vec2(float(use_autoscroll));
+	vec2 uv = (SCREEN_UV + vec2(-offset.x, offset.y) + final_autoscroll) * BG_COORDS.zw + BG_COORDS.xy;
 	uv *= vec2(tiling);
 	vec4 tex = texture(sky_texture, uv);
 	if (tex.a < 1.0 && transparent){ //This is mainly here for cases where you want layering!

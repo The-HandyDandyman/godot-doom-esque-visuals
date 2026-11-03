@@ -40,3 +40,12 @@ func set_light_dim(active:bool,light_diminish_curve:float = 5.5,min_light:float 
 		RenderingServer.global_shader_parameter_set("light_diminish_curve",light_diminish_curve)
 		RenderingServer.global_shader_parameter_set("light_min_diminish",min_light)
 		RenderingServer.global_shader_parameter_set("light_max_diminish",max_light)
+
+func set_lightmap(lmap:Texture2D,dmap:Texture2D,maporigin:Vector2,mapsize:Vector2):
+	RenderingServer.global_shader_parameter_set("global_lightmap",lmap)
+	if dmap == null:
+		set_light_dim(false)
+	RenderingServer.global_shader_parameter_set("global_diminish_map",dmap)
+	RenderingServer.global_shader_parameter_set("global_lightmap_origin",maporigin)
+	RenderingServer.global_shader_parameter_set("global_lightmap_size",mapsize)
+	

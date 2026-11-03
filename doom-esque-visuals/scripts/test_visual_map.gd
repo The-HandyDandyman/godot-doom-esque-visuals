@@ -9,10 +9,15 @@ extends Node3D
 @onready var cameraPoint:AnimationPlayer = $Camera/AnimationPlayer
 @export var sky:MeshInstance3D
 @onready var musicPlayer:AudioStreamPlayer = $AudioStreamPlayer
+@export var lightmap:Texture2D
+@export var diminishmap:Texture2D
+@export var lightmap_origin:Vector2
+@export var lightmap_size:Vector2
 
 var skyOffset:Vector2 = Vector2.ZERO
 
 func _ready():
+	ShaderGlobalManager.set_lightmap(lightmap,diminishmap,lightmap_origin,lightmap_size)
 	var paletteTest:TextureRect = ScreenOverlay.get_node("ScreenOverlay/OverlayB/PaletteTest")
 	if paletteTest:
 		paletteTest.visible = true
@@ -25,9 +30,6 @@ func setup_sky_offset():
 func setup_the_fog(env:Environment):
 	ShaderGlobalManager.set_fog(ShaderGlobalManager.fog,env.fog_light_color,env.fog_depth_curve,env.fog_depth_begin,env.fog_depth_end)
 func _process(delta):
-	if sky != null:
-		var scrollSky:Vector2 = Vector2(skyOffset.x + 0.01 * ShaderGlobalManager.pausable_time,0)
-		sky.get_surface_override_material(0).set_shader_parameter("offset",scrollSky) # Really shoddy sky autoscroll, just here for demonstration purposes
 	if Input.is_action_just_pressed("ui_cancel"):
 		ShaderGlobalManager.fog = not ShaderGlobalManager.fog
 		setup_the_fog(WorldEnv.environment)

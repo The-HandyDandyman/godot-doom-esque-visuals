@@ -132,7 +132,7 @@ renderer/rendering_method.mobile="gl_compatibility"
 
 light_diminishing={
 "type": "bool",
-"value": false
+"value": true
 }
 color_banding={
 "type": "bool",

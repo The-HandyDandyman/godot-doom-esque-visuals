@@ -499,6 +499,9 @@ shader_parameter/fov = Vector2(180, 180)
 shader_parameter/tiling = Vector2i(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/transparent = true
+shader_parameter/use_autoscroll = false
+shader_parameter/autoscroll_offset = Vector2(0, 0)
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckmbu"]
 render_priority = -1
@@ -511,6 +514,9 @@ shader_parameter/fov = Vector2(180, 180)
 shader_parameter/tiling = Vector2i(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/transparent = false
+shader_parameter/use_autoscroll = true
+shader_parameter/autoscroll_offset = Vector2(0.01, 0)
+shader_parameter/use_pausable_time = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ye8wr"]
 material = SubResource("ShaderMaterial_r5k6x")
@@ -1599,6 +1605,9 @@ script = ExtResource("1_fq3v1")
 environment_a = ExtResource("3_vogo8")
 environment_b = ExtResource("3_gk7wh")
 sky = NodePath("FullMap/LazySkyboxBecauseThisIsATestMap")
+lightmap = ExtResource("7_co6d3")
+diminishmap = ExtResource("7_p1yk6")
+lightmap_size = Vector2(40, 40)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=982813731]
 process_mode = 3
