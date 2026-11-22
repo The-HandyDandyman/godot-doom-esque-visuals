@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://f12h4ekmwqn6"]
+
+[ext_resource type="Script" uid="uid://beeack0b2j8rv" path="res://scripts/shader_global_manager.gd" id="1_6fayg"]
+
+[node name="ShaderGlobalManager" type="Node" unique_id=1665141941]
+script = ExtResource("1_6fayg")

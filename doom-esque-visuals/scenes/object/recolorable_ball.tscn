@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://8p3i6tc3pw5o"]
+
+[ext_resource type="Shader" uid="uid://semt281lb46i" path="res://shaders/billboard_sprite.gdshader" id="1_k2yr8"]
+[ext_resource type="Texture2D" uid="uid://bp5hcngnx806d" path="res://graphics/dimmapTest.png" id="2_ruicj"]
+[ext_resource type="Texture2D" uid="uid://bcok6fpjogbpt" path="res://graphics/dither/bayer8.png" id="3_b5dff"]
+[ext_resource type="Texture2D" uid="uid://ejb5kdjqwjjc" path="res://graphics/lightmapTest.png" id="4_334ie"]
+[ext_resource type="Texture2D" uid="uid://ct425gkwlmbqx" path="res://graphics/palette/prefcolor/prefcolor_1.png" id="5_v0uej"]
+[ext_resource type="Texture2D" uid="uid://ooddohqafjkw" path="res://graphics/recolorableBall.png" id="6_h8yko"]
+[ext_resource type="Script" uid="uid://dvw31trowb5ul" path="res://scripts/test_stuff/recolorable_ball.gd" id="7_ruicj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1hvy"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_k2yr8")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("6_h8yko")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("3_b5dff")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("4_334ie")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("2_ruicj")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("5_v0uej")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7cfve"]
+radius = 0.55
+
+[node name="RecolorableBall" type="Sprite3D" unique_id=358384419]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_x1hvy")
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("6_h8yko")
+script = ExtResource("7_ruicj")
+metadata/sector_tag = 1
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1120013843]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1472085952]
+shape = SubResource("SphereShape3D_7cfve")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]

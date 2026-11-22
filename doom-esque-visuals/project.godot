@@ -43,7 +43,7 @@ texture={
 "compress/rdo_quality_loss": 0.0,
 "compress/uastc_level": 0,
 "detect_3d/compress_to": 0,
-"mipmaps/generate": true,
+"mipmaps/generate": false,
 "mipmaps/limit": -1,
 "process/channel_remap/alpha": 3,
 "process/channel_remap/blue": 2,
@@ -197,4 +197,12 @@ global_lightmap_origin={
 global_diminish_map={
 "type": "sampler2D",
 "value": "res://graphics/dimmapTest.png"
+}
+global_dither_tex={
+"type": "sampler2D",
+"value": "res://graphics/dither/bayer8.png"
+}
+global_dither_scale={
+"type": "float",
+"value": 1.0
 }

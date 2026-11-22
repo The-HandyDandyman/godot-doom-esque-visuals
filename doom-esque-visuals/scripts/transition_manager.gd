@@ -17,7 +17,7 @@ func screen_melt_to_scene(next_scene:String,length:float = 1.0,chunk_size:int = 
 	melt_transition.material.set_shader_parameter("shader_parameter/progress",0.0)
 	get_tree().change_scene_to_file(next_scene)
 	get_tree().paused = true
-	print("transition!")
+	#print("transition!")
 	tween.tween_property(melt_transition.material,"shader_parameter/progress",1.0,length)
 	await tween.finished
 	get_tree().paused = false
@@ -29,12 +29,12 @@ func dither_to_scene(next_scene:String,length:float = 1.0,dither_scale:float = 1
 	var img:Image = get_viewport().get_texture().get_image()
 	var tex:ImageTexture = ImageTexture.create_from_image(img)
 	dither_transition.texture = tex
-	dither_transition.material.set_shader_parameter("shader_parameter/transparency",1.0)
+	dither_transition.modulate = Color.WHITE
 	dither_transition.material.set_shader_parameter("shader_parameter/dither_scale",dither_scale)
 	get_tree().change_scene_to_file(next_scene)
 	get_tree().paused = true
-	print("transition!")
-	tween.tween_property(dither_transition.material,"shader_parameter/transparency",0.0,length)
+	#print("transition!")
+	tween.tween_property(dither_transition,"modulate",Color.TRANSPARENT,length)
 	await tween.finished
 	get_tree().paused = false
 	dither_transition.visible = false

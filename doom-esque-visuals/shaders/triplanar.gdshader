@@ -6,8 +6,11 @@ uniform bool render_front = true;
 uniform bool render_back = true;
 
 group_uniforms Dither;
-uniform sampler2D dither_tex : repeat_enable,filter_nearest,source_color,hint_default_white;
+uniform bool use_global_dither = true;
+uniform sampler2D dither_tex : repeat_enable,filter_nearest;
 uniform float dither_scale = 1.0;
+global uniform sampler2D global_dither_tex : repeat_enable,filter_nearest;
+global uniform float global_dither_scale;
 
 
 group_uniforms Texture;
@@ -77,6 +80,10 @@ global uniform float fog_min_diminish = 0.0;
 global uniform float fog_max_diminish = 4.0;
 global uniform float fog_diminish_curve = 1.0;
 
+group_uniforms Pausable_Shader_Time;
+uniform bool use_pausable_time = true;
+global uniform float pausable_time = 0.0;
+
 group_uniforms Flat_Warping;
 uniform float warp_speed: hint_range(0.0, 5.0)  = 1.0;
 uniform float warp_intensity: hint_range(0.0, 1.5)  = 0.12;
@@ -84,8 +91,16 @@ uniform float warp_closeness: hint_range(0.01, 10.0) = 2.0;
 uniform vec2  flow_dir = vec2(1.0, 0.0);
 uniform float flow_speed : hint_range(0.0, 5.0) = 0.0;
 uniform bool flat_warping = false;
-uniform bool use_pausable_time = true;
-global uniform float pausable_time = 0.0;
+
+group_uniforms Palette;
+uniform bool use_palette_swap = false;
+uniform sampler2D palette_in: filter_nearest, source_color;
+uniform sampler2D palette_out: filter_nearest, hint_default_transparent, source_color;
+uniform ivec2 palette_size;
+uniform ivec2 palette_offset;
+group_uniforms Palette_Scroll;
+uniform bool use_palette_scroll = false;
+uniform vec2 palette_scroll_speed;
 
 
 varying vec3 world_position;
@@ -106,6 +121,34 @@ vec3 screen(vec3 base, vec3 blend){
 float diminish_factor_calc(float min_val,float max_val, float dim_curve, float vertex_dim){
 	float dim = pow(1.0 - smoothstep(min_val,max_val,vertex_dim),max(0.001,dim_curve)); // Initial calculations
 	return  mix(dim,(floor(dim * float(color_bands)) / float(color_bands)),float(color_banding)); // Apply color banding if needed
+}
+
+vec3 palette_swap(vec3 original_color){
+	float actual_time = mix(TIME,pausable_time,float(use_pausable_time));
+	vec3 final_color = original_color;
+	vec2 uv_offset = 1.0/vec2(palette_size);
+	int x = 0;
+	for (int x = 0; x < palette_size.x; x++){
+		for (int y = 0; y < palette_size.y; y++) {
+			vec2 palette_uv = vec2(float(x) + 0.5, float(y) + 0.5) * uv_offset;
+			// Set palette offset properly and ensure it's modulated to the palette size
+			vec2 pal_offset = vec2(mod(float(x + palette_offset.x), float(palette_size.x)),mod(float(y + palette_offset.y), float(palette_size.y)));
+			vec2 pal_scroll = (palette_scroll_speed * actual_time);
+			vec2 pal_scroll_offset = pal_offset + pal_scroll;
+			
+			pal_offset = mix(pal_offset,pal_scroll_offset,float(use_palette_scroll));
+			// Set new palette UV using the pal_offset and the uv_offset
+			vec2 new_palette_uv = vec2(pal_offset.x + 0.5, pal_offset.y + 0.5) * uv_offset;
+			
+			vec4 old_color = texture(palette_in, palette_uv);
+			vec4 new_color = texture(palette_out, new_palette_uv);
+			// If you're offsetting palette: make sure no two colors on your palette index are the same! Original code used 0.0 but 0.01 has seemed to work better in this case
+			float same_color = step(distance(final_color, old_color.rgb), 0.01);
+			
+			final_color = mix(final_color, new_color.rgb, same_color * float(new_color.a > 0.001));
+		}
+	}
+	return mix(original_color,final_color,float(use_palette_swap));
 }
 
 void vertex() {
@@ -172,6 +215,7 @@ vec4 create_full_albedo(sampler2D albedo_tex, vec2 given_uv,int mask,vec4 mask_a
 	} else if (mask == -1){
 		result_albedo.a *= 1.0 - mask_albedo.r - mask_intensity;
 	}
+	result_albedo.rgb = palette_swap(result_albedo.rgb);
 	result_albedo *= modcolor;
 	return result_albedo;
 }
@@ -217,10 +261,11 @@ void fragment() {
 		final_albedo = over;     
 	}
 	// Handle dithered transparency
-	ivec2 dither_size = textureSize(dither_tex, 0);
-	vec2 f_dither_size = vec2(1.0 / float(dither_size.x), 1.0 / float(dither_size.y)) * vec2(1.0 / dither_scale);
+	ivec2 dither_size = ivec2(mix(vec2(textureSize(dither_tex, 0)),vec2(textureSize(global_dither_tex, 0)),float(use_global_dither)));
+	float target_dither_scale = mix(dither_scale,global_dither_scale,float(use_global_dither));
+	vec2 f_dither_size = vec2(1.0 / float(dither_size.x), 1.0 / float(dither_size.y)) * vec2(1.0 / target_dither_scale);
 	vec2 dither_uv = FRAGCOORD.xy * f_dither_size;
-	float dither_threshold = texture(dither_tex, dither_uv).r;
+	float dither_threshold = mix(texture(dither_tex, dither_uv).r, texture(global_dither_tex, dither_uv).r, float(use_global_dither));
 	if (final_albedo.a < 0.001 || final_albedo.a < dither_threshold) {
 		discard;
 	}

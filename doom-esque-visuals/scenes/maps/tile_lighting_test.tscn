@@ -57,13 +57,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_500o7"]
 material = SubResource("ShaderMaterial_lmr8v")
@@ -107,13 +112,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_otdea"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -159,13 +169,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v5saw"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -212,13 +227,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fjimi"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -263,13 +283,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_w7v1l"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -314,13 +339,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otdea"]
 render_priority = 0
@@ -362,13 +392,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_215ji"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -417,13 +452,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7cfve"]
 material = SubResource("ShaderMaterial_0tiud")
@@ -465,13 +505,18 @@ shader_parameter/lightmap_size = Vector2(42, 42)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rmfs4"]
 material = SubResource("ShaderMaterial_500o7")
@@ -569,10 +614,16 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/use_lightmap = 2
 shader_parameter/light_mask = ExtResource("16_otdea")
 shader_parameter/light_mask_strength = 1.0
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
-[node name="TileLighting_Test" type="Node3D" unique_id=623476468 node_paths=PackedStringArray("gridMap")]
+[node name="TileLighting_Test" type="Node3D" unique_id=623476468 node_paths=PackedStringArray("grid_map")]
 script = ExtResource("1_qvhmq")
-gridMap = NodePath("GridMap")
+grid_map = NodePath("GridMap")
 lightmap = ExtResource("4_h2h7i")
 lightmap_size = Vector2(42, 42)
 

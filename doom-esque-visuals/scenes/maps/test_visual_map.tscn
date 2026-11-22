@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://jwy36pp0ptuu" path="res://shaders/triplanar.gdshader" id="6_0d08v"]
 [ext_resource type="Texture2D" uid="uid://dtgewxk4mfpls" path="res://graphics/brickTexture.png" id="6_hiahu"]
 [ext_resource type="Texture2D" uid="uid://ejb5kdjqwjjc" path="res://graphics/lightmapTest.png" id="7_co6d3"]
+[ext_resource type="Material" uid="uid://bhvv05kb5j85o" path="res://materials/canvassprite.tres" id="7_i41x2"]
 [ext_resource type="Texture2D" uid="uid://bp5hcngnx806d" path="res://graphics/dimmapTest.png" id="7_p1yk6"]
 [ext_resource type="Texture2D" uid="uid://braytkvs1i5xk" path="res://graphics/transparencyTestSprite.png" id="8_10jm7"]
 [ext_resource type="Texture2D" uid="uid://d1ncxop77tslk" path="res://graphics/dither/blue_noise.png" id="8_t8kl2"]
@@ -30,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://djdstscpj6pmd" path="res://graphics/lampSprite.png" id="15_ntolb"]
 [ext_resource type="Texture2D" uid="uid://b0lb5p1t7neqr" path="res://graphics/brickGateMask2.png" id="15_vogo8"]
 [ext_resource type="Texture2D" uid="uid://bhovjkfefkk0u" path="res://graphics/skyTexture.png" id="16_qdqv0"]
+[ext_resource type="Texture2D" uid="uid://ooddohqafjkw" path="res://graphics/recolorableBall.png" id="17_o1bnp"]
 [ext_resource type="Texture2D" uid="uid://cwhr4jv0mbjea" path="res://graphics/brickGlassFenceMask.png" id="18_0inlb"]
 [ext_resource type="Texture2D" uid="uid://b0m2yi87euuu3" path="res://graphics/windowMask.png" id="18_woe0t"]
 [ext_resource type="Texture2D" uid="uid://dt04tfts7l40k" path="res://graphics/brickGlassFenceTexture.png" id="19_eyxet"]
@@ -42,11 +44,15 @@
 [ext_resource type="Texture2D" uid="uid://cyxbtgxktd3q5" path="res://graphics/grassTexture.png" id="24_ntolb"]
 [ext_resource type="Texture2D" uid="uid://cyj8dk5c6w0d5" path="res://graphics/waterTexture5.png" id="30_i41x2"]
 [ext_resource type="Texture2D" uid="uid://dk273og2pkwty" path="res://graphics/directionTest.png" id="30_t8kl2"]
+[ext_resource type="Texture2D" uid="uid://ddi2lmm0wifvy" path="res://graphics/palette/screen/PALETTE.png" id="30_tv3nu"]
+[ext_resource type="Texture2D" uid="uid://c38x2382thc4t" path="res://graphics/palette/scroll/WATERPAL.png" id="32_o1bnp"]
 [ext_resource type="Texture2D" uid="uid://bie3ktwijxqco" path="res://graphics/window2LightMask.png" id="34_34lvq"]
 [ext_resource type="Texture2D" uid="uid://cch7lxf6cv7y4" path="res://graphics/window2Mask.png" id="35_co6d3"]
 [ext_resource type="AudioStream" uid="uid://ba011hsio7qjy" path="res://sound/danceHopTrackForDoomesqueRealReal.mp3" id="35_pqenq"]
 [ext_resource type="Texture2D" uid="uid://3sfaed2kobp2" path="res://graphics/reallyPoorlyMadeWallHoleMask.png" id="35_ytx8d"]
 [ext_resource type="Texture2D" uid="uid://cdksof25p3ym3" path="res://graphics/window2.png" id="36_ytx8d"]
+[ext_resource type="PackedScene" uid="uid://8p3i6tc3pw5o" path="res://scenes/object/recolorable_ball.tscn" id="51_i41x2"]
+[ext_resource type="Texture2D" uid="uid://ct425gkwlmbqx" path="res://graphics/palette/prefcolor/prefcolor_1.png" id="52_x1hvy"]
 
 [sub_resource type="Theme" id="Theme_7cfve"]
 default_font = ExtResource("1_5l6uk")
@@ -57,6 +63,7 @@ shader = ExtResource("5_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("10_f0hix")
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/lightmap = ExtResource("7_co6d3")
@@ -65,6 +72,12 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/use_lightmap = 1
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfpul"]
 render_priority = 0
@@ -72,6 +85,7 @@ shader = ExtResource("5_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 0.7490196)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("8_10jm7")
+shader_parameter/use_global_dither = false
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/lightmap = ExtResource("7_co6d3")
@@ -80,6 +94,12 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/use_lightmap = 1
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="Animation" id="Animation_tdlcb"]
 resource_name = "RESET"
@@ -126,6 +146,7 @@ shader = ExtResource("5_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("15_ntolb")
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/lightmap = ExtResource("7_co6d3")
@@ -135,6 +156,12 @@ shader_parameter/use_lightmap = 1
 shader_parameter/light_mask = ExtResource("14_5qdoq")
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghvj4"]
 render_priority = 0
@@ -142,6 +169,7 @@ shader = ExtResource("5_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/y_billboard = false
 shader_parameter/sprite_texture = ExtResource("10_f0hix")
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/lightmap = ExtResource("7_co6d3")
@@ -150,6 +178,12 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/use_lightmap = 1
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pto52"]
 lightmap_size_hint = Vector2i(8, 10)
@@ -207,6 +241,7 @@ shader_parameter/frames = 3
 shader_parameter/animframe = 1
 shader_parameter/asymmetrical = false
 shader_parameter/y_billboard = false
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/lightmap = ExtResource("7_co6d3")
@@ -216,6 +251,12 @@ shader_parameter/use_lightmap = 1
 shader_parameter/light_mask = ExtResource("21_p1yk6")
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="Animation" id="Animation_t8kl2"]
 length = 0.001
@@ -378,6 +419,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("14_ntolb")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -410,13 +452,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_eqjuv"]
 size = Vector2(6, 1)
@@ -439,6 +486,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("24_ntolb")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -471,13 +519,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0inlb"]
 size = Vector2(4, 8)
@@ -499,9 +552,14 @@ shader_parameter/fov = Vector2(180, 180)
 shader_parameter/tiling = Vector2i(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/transparent = true
+shader_parameter/use_pausable_time = true
 shader_parameter/use_autoscroll = false
 shader_parameter/autoscroll_offset = Vector2(0, 0)
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckmbu"]
 render_priority = -1
@@ -514,9 +572,16 @@ shader_parameter/fov = Vector2(180, 180)
 shader_parameter/tiling = Vector2i(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/transparent = false
+shader_parameter/use_pausable_time = true
 shader_parameter/use_autoscroll = true
 shader_parameter/autoscroll_offset = Vector2(0.01, 0)
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("30_tv3nu")
+shader_parameter/palette_out = ExtResource("30_tv3nu")
+shader_parameter/palette_size = Vector2i(16, 16)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(1, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ye8wr"]
 material = SubResource("ShaderMaterial_r5k6x")
@@ -534,6 +599,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("30_i41x2")
@@ -567,13 +633,20 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = false
 shader_parameter/warp_speed = 1.0000000475
 shader_parameter/warp_intensity = 0.2000000095
 shader_parameter/warp_closeness = 0.50000002305148
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.22400001064
 shader_parameter/flat_warping = true
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_in = ExtResource("32_o1bnp")
+shader_parameter/palette_out = ExtResource("32_o1bnp")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(1, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_o1bnp"]
 size = Vector2(8, 6)
@@ -605,6 +678,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = false
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("13_umug6")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -637,13 +711,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1hjvk"]
 size = Vector2(4, 8)
@@ -654,6 +733,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("5_lye5c")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -687,13 +767,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kx7fj"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -713,6 +798,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("19_eyxet")
@@ -748,13 +834,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rvo57"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -768,6 +859,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -801,13 +893,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5yamh"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -826,6 +923,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -860,13 +958,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lye5c"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -880,6 +983,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -913,13 +1017,18 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_anwq7"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -933,6 +1042,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -967,13 +1077,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bo68a"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -986,6 +1101,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -1018,13 +1134,18 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pqenq"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1037,6 +1158,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("30_t8kl2")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -1067,13 +1189,18 @@ shader_parameter/lightmap_size = Vector2(1, 1)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6ph3c"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1086,6 +1213,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
@@ -1121,13 +1249,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i41x2"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1146,6 +1279,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -1179,13 +1313,18 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v6r00"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1205,6 +1344,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("19_yv2o7")
@@ -1239,13 +1379,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqjuv"]
 render_priority = 0
@@ -1253,6 +1398,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -1287,13 +1433,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h5lua"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1325,6 +1476,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("24_ntolb")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -1350,18 +1502,23 @@ shader_parameter/overlay_world_pos = true
 shader_parameter/front_mask_overlay = 0
 shader_parameter/use_back_mask_overlay = false
 shader_parameter/back_mask_overlay = 0
-shader_parameter/use_lightmap = 1
+shader_parameter/use_lightmap = 2
 shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bce4m"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1375,6 +1532,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -1408,13 +1566,18 @@ shader_parameter/lightmap_size = Vector2(40, 40)
 shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gt2te"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1439,6 +1602,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_tex = ExtResource("20_anwq7")
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("36_ytx8d")
@@ -1472,13 +1636,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask = ExtResource("34_34lvq")
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08jpx"]
 render_priority = 0
@@ -1486,6 +1655,7 @@ shader = ExtResource("6_0d08v")
 shader_parameter/blend_sharpness = 4.0
 shader_parameter/render_front = true
 shader_parameter/render_back = true
+shader_parameter/use_global_dither = true
 shader_parameter/dither_scale = 1.0
 shader_parameter/texture_albedo = ExtResource("6_hiahu")
 shader_parameter/modulate = Color(1, 1, 1, 1)
@@ -1520,13 +1690,18 @@ shader_parameter/lightmap_origin = Vector2(0, 0)
 shader_parameter/light_mask_strength = 1.0
 shader_parameter/follow_overlay_uv = false
 shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
 shader_parameter/warp_speed = 1.0
 shader_parameter/warp_intensity = 0.12
 shader_parameter/warp_closeness = 2.0
 shader_parameter/flow_dir = Vector2(1, 0)
 shader_parameter/flow_speed = 0.0
 shader_parameter/flat_warping = false
-shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = false
+shader_parameter/palette_size = Vector2i(0, 0)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tv3nu"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -1600,6 +1775,246 @@ _data = {
 &"otherpoint": SubResource("Animation_v6r00")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1hvy"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lneui"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bce4m"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdlcb"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqbub"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4lqg"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y70l8"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okc5b"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ph3c"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0c5f4"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_hiahu")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
+shader_parameter/sprite_texture = ExtResource("17_o1bnp")
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("20_anwq7")
+shader_parameter/dither_scale = 2.0
+shader_parameter/lightmap = ExtResource("7_co6d3")
+shader_parameter/lightmap_size = Vector2(40, 40)
+shader_parameter/lightmap_origin = Vector2(0, 0)
+shader_parameter/use_lightmap = 1
+shader_parameter/light_mask_strength = 1.0
+shader_parameter/diminish_map = ExtResource("7_p1yk6")
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("52_x1hvy")
+shader_parameter/palette_size = Vector2i(16, 1)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)
+
 [node name="Map" type="Node3D" unique_id=614603824 node_paths=PackedStringArray("sky")]
 script = ExtResource("1_fq3v1")
 environment_a = ExtResource("3_vogo8")
@@ -1622,14 +2037,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Text" unique_id=545970750]
+material = ExtResource("7_i41x2")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = SubResource("Theme_7cfve")
 theme_override_constants/outline_size = 3
 horizontal_alignment = 2
@@ -2330,6 +2748,59 @@ script = ExtResource("10_wbs4n")
 libraries/ = SubResource("AnimationLibrary_anwq7")
 
 [node name="Camera3D" type="Camera3D" parent="Camera" unique_id=1948516196]
-transform = Transform3D(0.9659258, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, 0.9659258, 0, 0, 0)
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 0, 0, 0)
 projection = 2
 size = 0.077
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera/Camera3D" unique_id=844916304]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(3, 0, 0)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RecolorableBall" parent="." unique_id=358384419 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -5, 0.5, -15)
+material_override = SubResource("ShaderMaterial_x1hvy")
+
+[node name="RecolorableBall8" parent="." unique_id=1620075290 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.6536815, 0.5, -11)
+material_override = SubResource("ShaderMaterial_lneui")
+use_palette_scroll = true
+palette_scroll_speed = Vector2(10, 0)
+
+[node name="RecolorableBall9" parent="." unique_id=2006130160 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.6536815, 0.5, -11)
+material_override = SubResource("ShaderMaterial_bce4m")
+use_palette_scroll = true
+palette_scroll_speed = Vector2(-10, 0)
+
+[node name="RecolorableBall10" parent="." unique_id=463554542 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.6536815, 0.5, -11)
+material_override = SubResource("ShaderMaterial_tdlcb")
+use_palette_scroll = true
+palette_scroll_speed = Vector2(-10, 0)
+
+[node name="RecolorableBall5" parent="." unique_id=1846534720 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 13, 0.5, -15)
+material_override = SubResource("ShaderMaterial_lqbub")
+
+[node name="RecolorableBall6" parent="." unique_id=513375765 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 13, 0.5, -13)
+material_override = SubResource("ShaderMaterial_q4lqg")
+
+[node name="RecolorableBall7" parent="." unique_id=1780999939 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 13, 0.5, -11)
+material_override = SubResource("ShaderMaterial_y70l8")
+
+[node name="RecolorableBall2" parent="." unique_id=929839673 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5, 0.5, -2)
+material_override = SubResource("ShaderMaterial_okc5b")
+
+[node name="RecolorableBall4" parent="." unique_id=1538293717 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 5, 0.5, -6)
+material_override = SubResource("ShaderMaterial_6ph3c")
+
+[node name="RecolorableBall3" parent="." unique_id=1706618394 instance=ExtResource("51_i41x2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6, 0.5, -3)
+material_override = SubResource("ShaderMaterial_0c5f4")

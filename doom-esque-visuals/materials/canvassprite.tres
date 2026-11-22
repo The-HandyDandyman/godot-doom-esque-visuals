@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bhvv05kb5j85o"]
+
+[ext_resource type="Shader" uid="uid://c57b6fa1vuxar" path="res://shaders/canvas_sprite.gdshader" id="1_hul5c"]
+[ext_resource type="Texture2D" uid="uid://d308nmgxf4tm0" path="res://graphics/dither/bayer4.png" id="2_hul5c"]
+[ext_resource type="Texture2D" uid="uid://ddi2lmm0wifvy" path="res://graphics/palette/screen/PALETTE.png" id="3_s7maa"]
+
+[resource]
+shader = ExtResource("1_hul5c")
+shader_parameter/secondary_modulate = Color(1, 1, 1, 1)
+shader_parameter/use_global_dither = true
+shader_parameter/dither_tex = ExtResource("2_hul5c")
+shader_parameter/dither_scale = 1.0
+shader_parameter/use_pausable_time = true
+shader_parameter/use_palette_swap = true
+shader_parameter/palette_in = ExtResource("3_s7maa")
+shader_parameter/palette_out = ExtResource("3_s7maa")
+shader_parameter/palette_size = Vector2i(16, 16)
+shader_parameter/palette_offset = Vector2i(0, 0)
+shader_parameter/use_palette_scroll = false
+shader_parameter/palette_scroll_speed = Vector2(0, 0)

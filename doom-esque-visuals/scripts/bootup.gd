@@ -7,5 +7,5 @@ func _on_button_pressed():
 
 
 func _on_button_2_pressed():
-	ScreenOverlay.togglePostprocessOverlay(false)
+	ScreenOverlay.toggle_postprocess_overlay(false)
 	TransitionManager.dither_to_scene(testScenes[1].resource_path,0.25)

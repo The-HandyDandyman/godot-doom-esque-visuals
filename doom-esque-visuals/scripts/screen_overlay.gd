@@ -1,72 +1,74 @@
 extends Node2D
 
-@onready var screenOverlay:CanvasLayer = $ScreenOverlay
-@onready var adaptPalCover:ColorRect = $ScreenOverlay/OverlayB/adaptToPal
-@onready var adaptPalShader:ShaderMaterial = adaptPalCover.material
-@onready var palSwapCover:ColorRect = $ScreenOverlay/OverlayA/palSwap
-@onready var palSwapShader:ShaderMaterial = palSwapCover.material
-@export var defaultPALETTE:Texture
-@export var PALETTE_SWAP:Texture
-@export var defaultPalSize:Vector2i = Vector2i(16,16)
-@export var defaultPalOffset:Vector2i = Vector2i(0,0)
-var paletteSize:Vector2i = defaultPalSize
+@onready var screen_overlay:CanvasLayer = $ScreenOverlay
+@onready var adapt_pal_cover:ColorRect = $ScreenOverlay/OverlayB/adaptToPal
+@onready var adapt_pal_shader:ShaderMaterial = adapt_pal_cover.material
+@onready var pal_swap_cover:ColorRect = $ScreenOverlay/OverlayA/palSwap
+@onready var pal_swap_shader:ShaderMaterial = pal_swap_cover.material
+@export var default_palette:Texture
+@export var palette_swap:Texture
+@export var default_pal_size:Vector2i = Vector2i(16,16)
+@export var default_pal_offset:Vector2i = Vector2i(0,0)
+var palette_size:Vector2i = default_pal_size
 
 ## Variable just used to test palette offset and palette swap
-var newOffset:Vector2i = Vector2i.ZERO
-var previousPalOffset:Vector2i = newOffset
+var new_offset:Vector2i = Vector2i.ZERO
+var previous_pal_offset:Vector2i = new_offset
 var swap:bool = false
-var paletteRelatedText:String
+var palette_related_text:String
 
-func togglePostprocessOverlay(active:bool = true):
-	screenOverlay.visible = active
-func paletteSetup(material:ShaderMaterial = palSwapShader, defaultPal:Texture = defaultPALETTE, paletteSwap:Texture = PALETTE_SWAP,paletteOffset:Vector2i = defaultPalOffset,newSize:Vector2i = defaultPalSize):
-	if PALETTE_SWAP == null:
-		PALETTE_SWAP = defaultPALETTE
-	setDefaultPalette(defaultPal,material)
-	setPaletteSwap(paletteSwap,material)
-	setPaletteOffset(paletteOffset,material)
-	setPaletteSize(newSize,material)
+func toggle_postprocess_overlay(active:bool = true):
+	screen_overlay.visible = active
+	for child in screen_overlay.get_children():
+		child.visible = active
+func palette_setup(material:ShaderMaterial = pal_swap_shader, default_pal:Texture = default_palette, pal_swap:Texture = palette_swap,palette_offset:Vector2i = default_pal_offset,new_size:Vector2i = default_pal_size):
+	if pal_swap == null:
+		pal_swap = default_palette
+	set_default_palette(default_pal,material)
+	set_palette_swap(pal_swap,material)
+	set_palette_offset(palette_offset,material)
+	set_palette_size(new_size,material)
 
-func setDefaultPalette(paletteTexture:Texture = defaultPALETTE,material:ShaderMaterial = palSwapShader):
-	if paletteTexture == null: return
-	material.set_shader_parameter("palette_in",paletteTexture)
+func set_default_palette(palette_texture:Texture = default_palette,material:ShaderMaterial = pal_swap_shader):
+	if palette_texture == null: return
+	PaletteUtil.set_palette(material,palette_texture,"palette_in")
 
-func setPaletteSwap(paletteTexture:Texture = PALETTE_SWAP,material:ShaderMaterial = palSwapShader):
-	if paletteTexture == null: return
-	material.set_shader_parameter("palette_out",paletteTexture)
+func set_palette_swap(palette_texture:Texture = palette_swap,material:ShaderMaterial = pal_swap_shader):
+	if palette_texture == null: return
+	PaletteUtil.set_palette(material,palette_texture,"palette_out")
 
-func setPaletteSize(newSize:Vector2i = defaultPalSize,material:ShaderMaterial = palSwapShader):
-	paletteSize = newSize
-	material.set_shader_parameter("paletteSize",paletteSize)
+func set_palette_size(new_size:Vector2i = default_pal_size,material:ShaderMaterial = pal_swap_shader):
+	palette_size = new_size
+	PaletteUtil.set_palette_size(material,new_size)
 
-func setPaletteOffset(paletteOffset:Vector2i = Vector2i(0,0),material:ShaderMaterial = palSwapShader):
-	material.set_shader_parameter("paletteOffset",paletteOffset)
+func set_palette_offset(palette_offset:Vector2i = Vector2i(0,0),material:ShaderMaterial = pal_swap_shader):
+	PaletteUtil.set_palette_size(material,palette_offset)
 
 # Called when the node enters the scene tree for the first time.
 
-func fullPaletteSetup(defaultPal:Texture = defaultPALETTE, paletteSwap:Texture = PALETTE_SWAP,paletteOffset:Vector2i = defaultPalOffset,newSize:Vector2i = defaultPalSize):
-	paletteSetup()
-	adaptPalShader.set_shader_parameter("palette_out",defaultPal)
+func full_palette_setup(default_pal:Texture = default_palette, pal_swap:Texture = palette_swap,palette_offset:Vector2i = default_pal_offset,new_size:Vector2i = default_pal_size):
+	palette_setup(pal_swap_shader,default_pal,pal_swap,palette_offset,new_size)
+	PaletteUtil.set_palette(adapt_pal_shader,default_pal)
 	
 func _ready():
-	fullPaletteSetup()
+	full_palette_setup()
 # Remove the process function if you're using this for a project
 func _process(delta):
 	if Input.is_action_just_pressed("ui_right"):
-		newOffset.x -= 1
+		new_offset.x -= 1
 	elif Input.is_action_just_pressed("ui_left"):
-		newOffset.x += 1
+		new_offset.x += 1
 	if Input.is_action_just_pressed("ui_up"):
-		newOffset.y += 1
+		new_offset.y += 1
 	elif Input.is_action_just_pressed("ui_down"):
-		newOffset.y -= 1
-	if previousPalOffset != newOffset:
-		previousPalOffset = newOffset
-		setPaletteOffset(newOffset)
+		new_offset.y -= 1
+	if previous_pal_offset != new_offset:
+		previous_pal_offset = new_offset
+		set_palette_offset(new_offset)
 	if Input.is_action_just_pressed("ui_accept"):
 		swap = not swap
 	if swap:
-		setPaletteSwap(PALETTE_SWAP)
+		set_palette_swap(palette_swap)
 	else:
-		setPaletteSwap(defaultPALETTE)
-	paletteRelatedText = "Enter to toggle palette swap (Currently set to " + str(swap) + ")\nArrow keys to set palette offset" + str(newOffset) + "\n"
+		set_palette_swap(default_palette)
+	palette_related_text = "Enter to toggle palette swap (Currently set to " + str(swap) + ")\nArrow keys to set palette offset" + str(new_offset) + "\n"
